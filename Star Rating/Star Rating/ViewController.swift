@@ -15,10 +15,11 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+		updateRating(starControl)
 	}
 
 	@IBAction func updateRating(_ sender: StarControl) {
-		title = sender.value == 1 ? "User Rating: \(sender.value) star" : "User Rating: \(sender.value) stars"
+		navigationItem.title = sender.value == 1 ? "User Rating: \(sender.value) star" : "User Rating: \(sender.value) stars"
 	}
 
 }

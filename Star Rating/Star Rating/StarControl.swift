@@ -96,6 +96,7 @@ class StarControl: UIControl {
 
 	func setValue(to value: Int) {
 		self.value = value
+		sendActions(for: .valueChanged)
 		for star in stars {
 			if star.tag <= value {
 				star.textColor = componentActiveColor
