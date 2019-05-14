@@ -10,10 +10,14 @@ import UIKit
 
 class CustomControl: UIControl {
 	var value = 1
+	
 	private let componentDimension: CGFloat = 40.0
 	private let componentCount = 5
 	private let componentActiveColor = UIColor.black
 	private let componentInactiveColor = UIColor.gray
+	
+	private(set) var wasTriggered = false
+	private(set) var starLabels: [UILabel] = []
 	
 	required init?(coder aCoder: NSCoder) {
 		super.init(coder: aCoder)
@@ -22,7 +26,7 @@ class CustomControl: UIControl {
 	
 	
 	private func setup() {
-		var labels: [UILabel] = []
+		
 		
 		for i in 0...4 {
 			let label = UILabel()
@@ -32,11 +36,11 @@ class CustomControl: UIControl {
 			label.font = UIFont.boldSystemFont(ofSize: 32)
 			//let darkstar = Character(★)
 			label.text = "☆"
-			labels.append(label)
+			starLabels.append(label)
 		}
-		labels[0].textColor = .green
-		labels.forEach( { addSubview( $0 )} )
-		print(labels.count)
+		starLabels[0].textColor = .green
+		starLabels.forEach( { addSubview( $0 )} )
+		print(starLabels.count)
 	}
 	
 	override var intrinsicContentSize: CGSize {
@@ -53,7 +57,7 @@ class CustomControl: UIControl {
 	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
 //		let location = touch.location(in: self)
 		updateValue(at: touch)
-		print(touch.location(in: self))
+//		print(touch.location(in: self))
 		return true
 	}
 	
@@ -65,7 +69,7 @@ class CustomControl: UIControl {
 		} else {
 			updateValue(at: touch)
 		}
-		
+		print(touch.location(in: self))
 		return true
 	}
 	
@@ -78,6 +82,7 @@ class CustomControl: UIControl {
 		} else {
 			updateValue(at: touch)
 		}
+		
 	}
 	
 	override func cancelTracking(with event: UIEvent?) {
@@ -85,6 +90,9 @@ class CustomControl: UIControl {
 	}
 	
 	func updateValue(at touch: UITouch) {
+		let location = touch.location(in: self)
+		
+		
 		
 	}
 }
