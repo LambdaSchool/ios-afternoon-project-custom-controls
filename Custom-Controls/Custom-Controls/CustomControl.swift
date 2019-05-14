@@ -33,10 +33,9 @@ class CustomControl: UIControl {
 			label.font = UIFont.boldSystemFont(ofSize: 32)
 			//let darkstar = Character(★)
 			label.text = "☆"
-			label.textColor = .green
 			labels.append(label)
 		}
-		
+		labels[0].textColor = .green
 		labels.forEach( { addSubview( $0 )} )
 		print(labels.count)
 	}
