@@ -16,5 +16,13 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func updateRating(_ ratingControl: CustomController) {
+        switch ratingControl.value {
+        case 1:
+            self.title = "User Rating: \(ratingControl.value) star"
+        default:
+            self.title = "User Rating: \(ratingControl.value) stars"
+        }
+    }
 }
 
