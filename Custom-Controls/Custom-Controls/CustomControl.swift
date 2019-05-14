@@ -26,8 +26,6 @@ class CustomControl: UIControl {
 	
 	
 	private func setup() {
-		
-		
 		for i in 0...5 {
 			let label = UILabel()
 			let frame =  CGRect(x: 8.0 + componentDimension * CGFloat(i), y: 0, width: componentDimension, height: componentDimension)
@@ -59,6 +57,7 @@ class CustomControl: UIControl {
 		let location = touch.location(in: self)
 		
 		if bounds.contains(location) {
+			updateValue(at: touch)
 			sendActions(for: [.touchDragInside,  .touchDragOutside])
 		} else {
 			updateValue(at: touch)
