@@ -112,8 +112,18 @@ import UIKit
 extension UIView {
     // "Flare view" animation sequence
     func performFlare() {
-        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
-        func unflare() { transform = .identity }
+        func flare() {
+            let scale = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            transform = scale.rotated(by: CGFloat.pi / 2)
+            backgroundColor = .purple
+            alpha = 0.5
+        }
+        
+        func unflare() {
+            transform = .identity
+            backgroundColor = .clear
+            alpha = 1.0
+        }
         
         UIView.animate(withDuration: 0.3,
                        animations: { flare() },
