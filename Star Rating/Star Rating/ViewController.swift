@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+	@IBOutlet var starControl: StarControl!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 	}
 
+	@IBAction func updateRating(_ sender: StarControl) {
+		title = sender.value == 1 ? "User Rating: \(sender.value) star" : "User Rating: \(sender.value) stars"
+	}
 
 }
 
