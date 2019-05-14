@@ -34,8 +34,9 @@ class CustomControl: UIControl {
 			label.frame = frame
 			label.tag = i + 1
 			label.font = UIFont.boldSystemFont(ofSize: 32)
-			//let darkstar = Character(★)
+			//"★"
 			label.text = "☆"
+			performFlare()
 			starLabels.append(label)
 		}
 		starLabels[0].textColor = .green
@@ -88,6 +89,7 @@ class CustomControl: UIControl {
 			if label.frame.contains(location) {
 				value = label.tag
 				isRated(value: value)
+				label.performFlare()
 				sendActions(for: [.valueChanged])
 			}
 		}
