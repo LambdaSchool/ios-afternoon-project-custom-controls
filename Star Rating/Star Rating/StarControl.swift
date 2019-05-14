@@ -115,9 +115,8 @@ class StarControl: UIControl {
 	// MARK: - internal setters
 
 	private func internalSetValue(to value: Int, sendAction: Bool = true, animate: Bool = true) {
-		var animate = animate
-		if animate && value == self.value {
-			animate = false
+		if value == self.value {
+			return
 		}
 		self.value = value
 		if sendAction {
@@ -147,8 +146,14 @@ class StarControl: UIControl {
 
 extension UIView {
 	func performFlare(afterDelay delay: TimeInterval, midPoint: @escaping () -> Void) {
-		func flare() { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
-		func unflare() { transform = .identity }
+		func flare() {
+			transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+		}
+		func unflare() {
+			transform = .identity
+		}
+
+		layer.removeAllAnimations()
 
 		UIView.animate(withDuration: 0.13, delay: delay, options: [.allowAnimatedContent, .beginFromCurrentState, .curveLinear], animations: {
 			flare()
