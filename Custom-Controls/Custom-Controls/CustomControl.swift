@@ -38,7 +38,7 @@ class CustomControl: UIControl {
 			label.text = "☆"
 			starLabels.append(label)
 		}
-
+		starLabels[0].textColor = .green
 		starLabels.forEach( { addSubview( $0 )} )
 	}
 	
@@ -89,9 +89,26 @@ class CustomControl: UIControl {
 		for label in starLabels {
 			if label.frame.contains(location) {
 				value = label.tag
+				isRated(value: value)
 			}
 		}
 		
-		print(value)
+		
+	}
+	
+	func isRated(value: Int) {
+		for i in 0..<value {
+			starLabels[i].textColor = .green
+		}
+		
+		unRated(value: value)
+	}
+	
+	func unRated(value: Int) {
+		for label in starLabels {
+			if label.tag > value {
+				label.textColor = .black
+			}
+		}
 	}
 }
