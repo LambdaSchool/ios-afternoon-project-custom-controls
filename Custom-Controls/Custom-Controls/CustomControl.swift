@@ -15,6 +15,16 @@ class CustomControl: UIControl {
 	private let componentActiveColor = UIColor.black
 	private let componentInactiveColor = UIColor.gray
 	
+	required init?(coder aCoder: NSCoder) {
+		super.init(coder: aCoder)
+		setup()
+	}
+	
+	
+	private func setup() {
+		
+	}
+	
 	override func draw(_ rect: CGRect) {
 		
     }
