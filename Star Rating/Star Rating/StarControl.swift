@@ -14,6 +14,7 @@ class StarControl: UIControl {
 	private let componentCount = 5
 	private let componentActiveColor = UIColor.black
 	private let componentInactiveColor = UIColor.gray
+	private var stars = [UILabel]()
 
 
 	override var intrinsicContentSize: CGSize {
@@ -30,7 +31,6 @@ class StarControl: UIControl {
 	}
 
 	private func setup() {
-		var stars = [UILabel]()
 
 		for index in 1...componentCount {
 			let xPos = (componentDimension + 8) * CGFloat(index) - componentDimension
@@ -58,6 +58,7 @@ class StarControl: UIControl {
 			updateValue(at: touch)
 			sendActions(for: [.touchDragInside])
 		} else {
+			updateValue(at: touch)
 			sendActions(for: [.touchDragOutside])
 		}
 		return true
@@ -80,6 +81,27 @@ class StarControl: UIControl {
 	}
 
 	func updateValue(at touch: UITouch) {
+		for star in stars.reversed() {
+			let location = touch.location(in: star)
+			if star.bounds.contains(location) && star.tag != value {
+				setValue(to: star.tag)
+				return
+			}
+		}
+		let location = touch.location(in: self)
+		if location.x < bounds.origin.x {
+			setValue(to: 0)
+		}
+	}
 
+	func setValue(to value: Int) {
+		self.value = value
+		for star in stars {
+			if star.tag <= value {
+				star.textColor = componentActiveColor
+			} else {
+				star.textColor = componentInactiveColor
+			}
+		}
 	}
 }
