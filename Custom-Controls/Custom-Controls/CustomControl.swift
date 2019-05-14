@@ -26,7 +26,6 @@ class CustomControl: UIControl {
 		
 		for i in 0...4 {
 			let label = UILabel()
-			//let x = i == 0 ?  8.0  * CGFloat(i) :  8.0 + componentDimension * CGFloat(i)
 			let frame =  CGRect(x: 8.0 + componentDimension * CGFloat(i), y: 0, width: componentDimension, height: componentDimension)
 			label.frame = frame
 			label.tag = i + 1
@@ -51,5 +50,41 @@ class CustomControl: UIControl {
 		
     }
 	
-
+	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+//		let location = touch.location(in: self)
+		updateValue(at: touch)
+		print(touch.location(in: self))
+		return true
+	}
+	
+	override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+		let location = touch.location(in: self)
+		
+		if bounds.contains(location) {
+			sendActions(for: [.touchDragInside,  .touchDragOutside])
+		} else {
+			updateValue(at: touch)
+		}
+		
+		return true
+	}
+	
+	override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+		guard let touch = touch else { return }
+		let location = touch.location(in: self)
+		
+		if bounds.contains(location) {
+			sendActions(for: [.touchUpInside, .touchUpOutside])
+		} else {
+			updateValue(at: touch)
+		}
+	}
+	
+	override func cancelTracking(with event: UIEvent?) {
+		sendActions(for: [.touchCancel])
+	}
+	
+	func updateValue(at touch: UITouch) {
+		
+	}
 }
