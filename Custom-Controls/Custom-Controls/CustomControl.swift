@@ -51,7 +51,6 @@ class CustomControl: UIControl {
 	
 	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
 		updateValue(at: touch)
-
 		return true
 	}
 	
@@ -85,11 +84,11 @@ class CustomControl: UIControl {
 	
 	func updateValue(at touch: UITouch) {
 		let location = touch.location(in: self)
-		
 		for label in starLabels {
 			if label.frame.contains(location) {
 				value = label.tag
 				isRated(value: value)
+				sendActions(for: [.valueChanged])
 			}
 		}
 		

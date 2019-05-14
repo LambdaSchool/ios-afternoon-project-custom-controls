@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 	@IBAction func updateRating(_ ratingControl: CustomControl) {
 		print("here")
 		let value = ratingControl.value
-		title = "User Rating: \(value) \(value == 1 ? "star" : "stars")"
+		title = "User Rating: \(ratingControl.value) \(value == 1 ? "star" : "stars")"
 	}
 	
 }

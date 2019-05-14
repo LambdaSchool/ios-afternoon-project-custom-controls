@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="width" secondItem="aJB-bX-1ud" secondAttribute="height" multiplier="1:1" id="2kl-el-cS5"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="F5M-ex-j9u"/>
+                                    <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="eZS-QS-iPK"/>
                                 </connections>
                             </view>
                         </subviews>
