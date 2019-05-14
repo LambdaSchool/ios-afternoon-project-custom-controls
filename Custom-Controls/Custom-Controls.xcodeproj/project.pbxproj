@@ -13,6 +13,7 @@
 		E8FC6FD8228B4A8300DD8D30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FC6FD7228B4A8300DD8D30 /* Assets.xcassets */; };
 		E8FC6FDB228B4A8300DD8D30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FC6FD9228B4A8300DD8D30 /* LaunchScreen.storyboard */; };
 		E8FC6FE3228B4AB700DD8D30 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC6FE2228B4AB700DD8D30 /* CustomControl.swift */; };
+		E8FC6FE5228B6E7E00DD8D30 /* uiview+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC6FE4228B6E7E00DD8D30 /* uiview+ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E8FC6FDA228B4A8300DD8D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8FC6FDC228B4A8300DD8D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FC6FE2228B4AB700DD8D30 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
+		E8FC6FE4228B6E7E00DD8D30 /* uiview+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "uiview+ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E8FC6FD0228B4A8200DD8D30 /* AppDelegate.swift */,
 				E8FC6FD2228B4A8200DD8D30 /* ViewController.swift */,
 				E8FC6FE2228B4AB700DD8D30 /* CustomControl.swift */,
+				E8FC6FE4228B6E7E00DD8D30 /* uiview+ext.swift */,
 				E8FC6FD4228B4A8200DD8D30 /* Main.storyboard */,
 				E8FC6FD7228B4A8300DD8D30 /* Assets.xcassets */,
 				E8FC6FD9228B4A8300DD8D30 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FC6FE5228B6E7E00DD8D30 /* uiview+ext.swift in Sources */,
 				E8FC6FD3228B4A8200DD8D30 /* ViewController.swift in Sources */,
 				E8FC6FE3228B4AB700DD8D30 /* CustomControl.swift in Sources */,
 				E8FC6FD1228B4A8200DD8D30 /* AppDelegate.swift in Sources */,

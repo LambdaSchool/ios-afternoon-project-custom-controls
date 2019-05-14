@@ -38,9 +38,8 @@ class CustomControl: UIControl {
 			label.text = "☆"
 			starLabels.append(label)
 		}
-		starLabels[0].textColor = .green
+
 		starLabels.forEach( { addSubview( $0 )} )
-		print(starLabels.count)
 	}
 	
 	override var intrinsicContentSize: CGSize {
@@ -50,14 +49,9 @@ class CustomControl: UIControl {
 		return CGSize(width: width, height: componentDimension)
 	}
 	
-	override func draw(_ rect: CGRect) {
-		
-    }
-	
 	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-//		let location = touch.location(in: self)
 		updateValue(at: touch)
-//		print(touch.location(in: self))
+
 		return true
 	}
 	
@@ -69,7 +63,7 @@ class CustomControl: UIControl {
 		} else {
 			updateValue(at: touch)
 		}
-		print(touch.location(in: self))
+
 		return true
 	}
 	
@@ -92,7 +86,12 @@ class CustomControl: UIControl {
 	func updateValue(at touch: UITouch) {
 		let location = touch.location(in: self)
 		
+		for label in starLabels {
+			if label.frame.contains(location) {
+				value = label.tag
+			}
+		}
 		
-		
+		print(value)
 	}
 }
