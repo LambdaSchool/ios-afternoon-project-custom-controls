@@ -98,7 +98,7 @@ class StarControl: UIControl {
 		sendActions(for: [.touchCancel])
 	}
 
-	func updateValue(at touch: UITouch) {
+	private func updateValue(at touch: UITouch) {
 		for star in stars.reversed() {
 			let location = touch.location(in: star)
 			if star.bounds.contains(location) && star.tag != value {
@@ -111,6 +111,8 @@ class StarControl: UIControl {
 			internalSetValue(to: 0)
 		}
 	}
+
+	// MARK: - internal setters
 
 	private func internalSetValue(to value: Int, sendAction: Bool = true, animate: Bool = true) {
 		var animate = animate
