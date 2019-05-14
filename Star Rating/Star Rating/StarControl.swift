@@ -11,11 +11,10 @@ import UIKit
 class StarControl: UIControl {
 	var value: Int = 1
 	private let componentDimension = CGFloat(40)
-	private let componentCount = 5
+	private let componentCount = 6
 	private let componentActiveColor = UIColor.black
 	private let componentInactiveColor = UIColor.gray
 	private var stars = [UILabel]()
-
 
 	override var intrinsicContentSize: CGSize {
 		let componentsWidth = CGFloat(componentCount) * componentDimension
@@ -89,7 +88,7 @@ class StarControl: UIControl {
 			}
 		}
 		let location = touch.location(in: self)
-		if location.x < bounds.origin.x {
+		if location.x < bounds.origin.x && location.y >= bounds.origin.y && location.y <= bounds.maxY {
 			setValue(to: 0)
 		}
 	}
