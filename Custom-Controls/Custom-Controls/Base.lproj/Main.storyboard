@@ -17,7 +17,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJB-bX-1ud" customClass="CustomControl" customModule="Custom_Controls" customModuleProvider="target">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aJB-bX-1ud" secondAttribute="height" multiplier="1:1" id="2kl-el-cS5"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="F5M-ex-j9u"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aJB-bX-1ud" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7vY-Te-sa5"/>
+                            <constraint firstItem="aJB-bX-1ud" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fhm-yD-Rua"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="wP8-Tr-sr9"/>
