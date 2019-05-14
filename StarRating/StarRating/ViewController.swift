@@ -10,20 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var customControl = CustomControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let star: String = customControl.value > 1 ?  "stars" : "star"
-        self.navigationItem.title = "User Rating: \(customControl.value) \(star)"
     }
 
     // MARK: - Outlet
     
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        let star: String = customControl.value > 1 ?  "stars" : "star"
-        self.navigationItem.title = "User Rating: \(customControl.value) \(star)"
+        if ratingControl.value == 0 {
+            self.navigationItem.title = "There are no user ratings, sorry"
+        } else {
+            // starWord Hehehe!
+            let starWord: String = ratingControl.value > 1 ?  "stars" : "star"
+            self.navigationItem.title = "User Rating: \(ratingControl.value) \(starWord)"
+        }
     }
     
 }
