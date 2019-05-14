@@ -8,13 +8,22 @@
 
 import UIKit
 
-@IBDesignable class StarControl: UIControl {
+class StarControl: UIControl {
 	var value: Int = 1
 	private let componentDimension = CGFloat(40)
 	private let componentCount = 5
 	private let componentActiveColor = UIColor.black
 	private let componentInactiveColor = UIColor.gray
 
+
+	override var intrinsicContentSize: CGSize {
+		let componentsWidth = CGFloat(componentCount) * componentDimension
+		let componentsSpacing = CGFloat(componentCount + 1) * 8
+		let width = componentsWidth + componentsSpacing
+		return CGSize(width: width, height: componentDimension)
+	}
+
+	// MARK: - Initializer stuff
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
@@ -36,10 +45,41 @@ import UIKit
 		}
 	}
 
-	override var intrinsicContentSize: CGSize {
-		let componentsWidth = CGFloat(componentCount) * componentDimension
-		let componentsSpacing = CGFloat(componentCount + 1) * 8
-		let width = componentsWidth + componentsSpacing
-		return CGSize(width: width, height: componentDimension)
+	// MARK: - Touch Handlers
+	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+		updateValue(at: touch)
+		sendActions(for: [.touchDown])
+		return true
+	}
+
+	override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+		let location = touch.location(in: self)
+		if bounds.contains(location) {
+			updateValue(at: touch)
+			sendActions(for: [.touchDragInside])
+		} else {
+			sendActions(for: [.touchDragOutside])
+		}
+		return true
+	}
+
+	override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+		if let touch = touch {
+			let location = touch.location(in: self)
+			if bounds.contains(location) {
+				updateValue(at: touch)
+				sendActions(for: [.touchUpInside])
+			} else {
+				sendActions(for: [.touchUpOutside])
+			}
+		}
+	}
+
+	override func cancelTracking(with event: UIEvent?) {
+		sendActions(for: [.touchCancel])
+	}
+
+	func updateValue(at touch: UITouch) {
+
 	}
 }
