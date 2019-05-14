@@ -22,7 +22,16 @@ class CustomControl: UIControl {
 	
 	
 	private func setup() {
+		var labels: [UILabel] = []
 		
+		for i in 1...5 {
+			let label = UILabel()
+			label.tag = i
+			labels.append(label)
+		}
+		
+		labels.forEach( { addSubview( $0 )} )
+		print(labels.count)
 	}
 	
 	override func draw(_ rect: CGRect) {
