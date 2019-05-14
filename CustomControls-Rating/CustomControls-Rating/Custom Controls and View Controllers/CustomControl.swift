@@ -16,7 +16,7 @@ import UIKit
     var oldValue: Int = 1
     
     private let componentDimension: CGFloat = 40.0
-    private let componentCount = 5
+    private let componentCount = 6 // set to 4, 5, or 6 to get 4-star reviews, 5-star reviews, or 6-star reviews
     private let componentActiveColor = UIColor.black
     private let componentInactiveColor = UIColor.gray
     
@@ -32,6 +32,9 @@ import UIKit
         for index in 1...componentCount {
             let x = CGFloat(index - 1)*(componentDimension + 8.0)
             let newLabel = UILabel(frame: CGRect(x: x, y: 0.0, width: componentDimension, height: componentDimension))
+            
+            newLabel.textAlignment = .natural // should help with left to right simulation - not working - more changes need to be made in other places of the app potentially due to the way the labels are created
+            
             newLabel.tag = index
             newLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
             newLabel.text = "✰"
