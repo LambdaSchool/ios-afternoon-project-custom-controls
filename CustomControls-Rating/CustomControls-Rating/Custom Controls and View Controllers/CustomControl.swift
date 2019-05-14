@@ -13,6 +13,7 @@ import UIKit
     // MARK : - Properties
     var value: Int = 1
     var labels = [UILabel]()
+    var oldValue: Int = 1
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
@@ -83,6 +84,40 @@ import UIKit
     }
     
     func updateValue(at touch: UITouch) {
+        for label in labels {
+            let touchPoint = touch.location(in: self)
+            if label.frame.contains(touchPoint) {
+                value = label.tag
+                
+                if value != oldValue {
+                    oldValue = value
+                    label.performFlare()
+                    sendActions(for: [.valueChanged])
+                }
+            }
+        }
         
+        for label in labels {
+            if label.tag <= value {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+            }
+        }
     }
 }
+
+// MARK: - Flare Animation
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+    }
+}
+
