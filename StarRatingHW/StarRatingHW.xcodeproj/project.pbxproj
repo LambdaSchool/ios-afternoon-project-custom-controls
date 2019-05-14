@@ -12,6 +12,7 @@
 		1B9B022B228B432D003AED81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B0229228B432D003AED81 /* Main.storyboard */; };
 		1B9B022D228B432E003AED81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B022C228B432E003AED81 /* Assets.xcassets */; };
 		1B9B0230228B432E003AED81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B022E228B432E003AED81 /* LaunchScreen.storyboard */; };
+		1B9B0238228B43B3003AED81 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B0237228B43B3003AED81 /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1B9B022C228B432E003AED81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B9B022F228B432E003AED81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B9B0231228B432E003AED81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B9B0237228B43B3003AED81 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				1B9B0225228B432D003AED81 /* AppDelegate.swift */,
 				1B9B0227228B432D003AED81 /* ViewController.swift */,
 				1B9B0229228B432D003AED81 /* Main.storyboard */,
+				1B9B0237228B43B3003AED81 /* CustomControl.swift */,
 				1B9B022C228B432E003AED81 /* Assets.xcassets */,
 				1B9B022E228B432E003AED81 /* LaunchScreen.storyboard */,
 				1B9B0231228B432E003AED81 /* Info.plist */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9B0228228B432D003AED81 /* ViewController.swift in Sources */,
+				1B9B0238228B43B3003AED81 /* CustomControl.swift in Sources */,
 				1B9B0226228B432D003AED81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
