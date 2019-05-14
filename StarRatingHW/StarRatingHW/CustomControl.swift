@@ -48,13 +48,10 @@ class CustomControl: UIControl {
             label.font = .boldSystemFont(ofSize: 32.0)
             label.text = "✮"
             label.textAlignment = .center
-            
-            if label.tag == 1 {
-                label.textColor = componentActiveColor
-            } else {
-                label.textColor = componentInActiveColor
-            }
+            label.textColor = componentInActiveColor
+
             addSubview(label)
+            labelArray.append(label)
         }
     }
     
@@ -64,5 +61,78 @@ class CustomControl: UIControl {
         let componentsSpacing = CGFloat(componentCount + 1) * 8.0
         let width = componentsWidth + componentsSpacing
         return CGSize(width: width, height: componentDimension)
+    }
+    
+    
+    //MARK: - Add touch handlers
+    //the sendActions() method you'll call from these handlers is what makes a control a control. Sending actions generates the events that you use in IB with target-action. if you want to subscribe, say, to a touchUpInside, you'd control-drag and then choose THAT event from the IBAction Event popup.
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+       updateValue(at: touch)
+       sendActions(for: [.touchDown])
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+         let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint){
+            sendActions(for: [.touchDragInside])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+        
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        //make sure you still have a valid value
+        guard let touch = touch else { return }
+        
+        //Check whether the touch is inside view bounds and duplicate the logic for continue
+        let touchPoint = touch.location(in: self)
+        
+        if bounds.contains(touchPoint){
+            sendActions(for: [.touchUpInside])
+        } else {
+            sendActions(for: [.touchUpOutside])
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
+    func updateValue(at touch: UITouch){
+        //you handle touchs by checking to see whether they intersect with any of your stored label subviews. implemente a loop that iterates through your component labels and detect whether each touch's location is contained in each label's frame
+        let oldValue = value
+        for label in labelArray {
+            if label.frame.contains(touch.location(in: self)){
+                value = label.tag
+                for index in 1...componentCount {
+                    switch index <= value {
+                    case true:
+                        labelArray[index - 1].textColor = componentActiveColor
+                    case false:
+                        labelArray[ index - 1].textColor = componentInActiveColor
+                    }
+                }
+                label.performFlare()
+                if value != oldValue{
+                    sendActions(for: [.valueChanged])
+                }
+            }
+        }
+    }
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 4.6, y: 4.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.6,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.2) { unflare() }})
     }
 }
