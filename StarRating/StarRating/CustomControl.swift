@@ -20,9 +20,12 @@ class CustomControl: UIControl {
     
     var value: Int = 0
     var stars: [UILabel] = []
-    var starOff = "😐"
-    var starOn = "😍"
-    
+//    var starOff = "😐"
+//    var starOn = "🤩"
+//    var starOff = "🌑"
+//    var starOn = "🌕"
+    var starOff = "🖤"
+    var starOn = "❤️"
     
     // MARK: Private Constants
     
@@ -61,4 +64,70 @@ class CustomControl: UIControl {
         let width = componentsWidth + componentsSpacing
         return CGSize(width: width, height: componentDimension)
     }
-}
+
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        
+        for starTouched in stars {
+            let touchPoint = touch.location(in: starTouched)
+            if bounds.contains(touchPoint) {
+                value = starTouched.tag
+                starTouched.text = starOn
+               sendActions(for: [.touchDragInside, .valueChanged])
+            } else {
+                starTouched.text = starOff
+                sendActions(for: [.touchDragOutside])
+            }
+        }
+        
+        return true
+    }  // func
+    
+   
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchDragInside, .valueChanged])
+            for starTouched in stars {
+                let touchPoint = touch.location(in: starTouched)
+
+                if bounds.contains(touchPoint) {
+                    value = starTouched.tag
+                    starTouched.text = starOn
+                    sendActions(for: [.touchDragInside, .valueChanged])
+                } else {
+                    starTouched.text = starOff
+                    if starTouched.tag == 0 {
+                        value = -1
+                    }
+                   // print("The CustomControl rating sent is: \(starTouched.tag)")
+
+                    sendActions(for: [.touchDragOutside])
+                }
+            }
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+        
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        defer {
+            super.endTracking(touch, with: event)
+        }
+        
+        guard let touch = touch else { return }
+        
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchDragInside, .valueChanged])
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+
+} // Class
