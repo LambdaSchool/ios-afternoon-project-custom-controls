@@ -91,6 +91,7 @@ class StarControl: UIControl {
 			} else {
 				sendActions(for: [.touchUpOutside])
 			}
+			animateValue()
 		}
 	}
 
@@ -124,15 +125,7 @@ class StarControl: UIControl {
 		}
 		for star in stars {
 			if star.tag <= value {
-				if animate {
-					let newColor = componentActiveColor
-					star.transform = .identity
-					star.performFlare(afterDelay: Double(star.tag) * 0.03) {
-						star.textColor = newColor
-					}
-				} else {
-					star.textColor = componentActiveColor
-				}
+				star.textColor = componentActiveColor
 			} else {
 				star.textColor = componentInactiveColor
 			}
@@ -141,6 +134,20 @@ class StarControl: UIControl {
 
 	func setValue(to value: Int) {
 		internalSetValue(to: value, sendAction: false, animate: false)
+	}
+
+	func animateValue() {
+		for star in stars {
+			if star.tag <= value {
+				let newColor = componentActiveColor
+				star.transform = .identity
+				star.performFlare(afterDelay: Double(star.tag) * 0.03) {
+					star.textColor = newColor
+				}
+			} else {
+				star.textColor = componentInactiveColor
+			}
+		}
 	}
 }
 
@@ -155,13 +162,13 @@ extension UIView {
 
 		layer.removeAllAnimations()
 
-		UIView.animate(withDuration: 0.13, delay: delay, options: [.allowAnimatedContent, .beginFromCurrentState, .curveLinear], animations: {
+		UIView.animate(withDuration: 0.05, delay: delay, options: [.allowAnimatedContent, .beginFromCurrentState, .curveLinear], animations: {
 			flare()
 			midPoint()
 		}) { _ in
-			UIView.animate(withDuration: 0.1, animations: {
+			UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: [], animations: {
 				unflare()
-			})
+			}, completion: nil)
 		}
 	}
 }
