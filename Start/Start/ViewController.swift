@@ -14,14 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
-    @IBAction func updateRating(_ ratingControl: CustomController) {
-        switch ratingControl.value {
-        case 1:
-            self.title = "User Rating: \(ratingControl.value) star"
-        default:
-            self.title = "User Rating: \(ratingControl.value) stars"
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        if ratingControl.value == 1 {
+            navigationItem.title = "User Rating: 1 star"
+        } else {
+            navigationItem.title = "User Rating: \(ratingControl.value) stars"
         }
     }
 }
