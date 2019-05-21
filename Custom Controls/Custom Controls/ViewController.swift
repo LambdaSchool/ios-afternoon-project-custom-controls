@@ -15,6 +15,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        var N = 1
+        if N == 1 {
+            title = "User Rating: 1 star"
+        } else {
+            title = "User Rating: \(N) stars"
+        }
+    }
 }
 
