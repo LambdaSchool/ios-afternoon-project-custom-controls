@@ -24,14 +24,16 @@ class CustomControl: UIControl {
     var labelArray: [UILabel] = []
     
     func setup() {
-        for labelIndex in 1...componentCount {
+        for labelIndex in 1...componentCount {//
+            let x = CGFloat(labelIndex - 1)*(componentDimension + 8.0)
             let label = UILabel()
             label.tag = labelIndex
-            label.frame = CGRect(x: 8 + componentDimension * CGFloat(labelIndex), y: 0, width: componentDimension, height: componentDimension)
+            label.frame = CGRect(x: x, y: 0.0, width: componentDimension, height: componentDimension)
+            
             label.font = UIFont.boldSystemFont(ofSize: 32.0)
             label.text = "☆"
             label.textAlignment = .center
-            label.textColor = componentInactiveColor
+            label.textColor = labelIndex == 0 ?  componentActiveColor : componentInactiveColor
             addSubview(label)
             labelArray.append(label)
         }
@@ -45,19 +47,25 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        for star in labelArray {
-            if star.frame.contains(touch.location(in: self)) {
-                if value != star.tag {
-                    value = star.tag
-                    for index in 1...componentCount {
-                        if index - 1 == 0 {
-                            star.textColor = componentInactiveColor
-                        } else if index > 0 {
-                            star.textColor = componentActiveColor
-                        }
+        var oldValue: Int = 1
+        for label in labelArray {
+            let touchPoint = touch.location(in: self)
+            if label.frame.contains(touchPoint) {
+                value = label.tag
+                
+                if value != oldValue {
+                    oldValue = value
+                    label.performFlare()
                     sendActions(for: [.valueChanged])
-                    }
                 }
+            }
+        }
+        
+        for label in labelArray {
+            if label.tag <= value {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
             }
         }
     }
@@ -91,5 +99,17 @@ class CustomControl: UIControl {
     
     override func cancelTracking(with event: UIEvent?) {
         sendActions(for: [.touchCancel, .valueChanged])
+    }
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
 }
