@@ -13,12 +13,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        navigationItem.title = "Give a User Rating"
     }
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-
-        navigationController?.title = "User Rating: \(ratingControl.value) stars"
+        if ratingControl.value == 1 {
+        navigationItem.title = "User Rating: \(ratingControl.value) star"
+        } else {
+            navigationItem.title = "User Rating: \(ratingControl.value) stars"
+        }
     }
 
 }
+
+
+
 
