@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Star Rating
+//  StarRatingAgain
 //
 //  Created by Ryan Murphy on 5/21/19.
 //  Copyright © 2019 Ryan Murphy. All rights reserved.
