@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1y-13-stY">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Wm9-qw-caU">
+            <objects>
+                <navigationController id="w1y-13-stY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rAK-ej-Job">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zNm-Ao-rJD" kind="relationship" relationship="rootViewController" id="pZ0-Zm-3pw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZYZ-aB-9AW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-197" y="143"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yde-VT-bUD">
+            <objects>
+                <viewController id="zNm-Ao-rJD" customClass="ViewController" customModule="UIControl" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jMs-Lt-Zzd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rw-MQ-tfR" customClass="CustomControl" customModule="UIControl" customModuleProvider="target">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="zNm-Ao-rJD" eventType="valueChanged" id="2yd-Gg-LVi"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4rw-MQ-tfR" firstAttribute="centerX" secondItem="jMs-Lt-Zzd" secondAttribute="centerX" id="kKK-2B-UFL"/>
+                            <constraint firstItem="4rw-MQ-tfR" firstAttribute="centerY" secondItem="jMs-Lt-Zzd" secondAttribute="centerY" id="ocE-C0-We1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BoR-bY-f1O"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vSx-ZI-ZC5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rs8-4r-Kf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="606" y="138"/>
+        </scene>
+    </scenes>
+</document>
