@@ -36,7 +36,6 @@
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rw-MQ-tfR" customClass="CustomControl" customModule="UIControl" customModuleProvider="target">
                                 <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <connections>
                                     <action selector="updateRating:" destination="zNm-Ao-rJD" eventType="valueChanged" id="2yd-Gg-LVi"/>
                                 </connections>
