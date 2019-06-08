@@ -10,9 +10,11 @@ import UIKit
 
 class CustomControl: UIControl {
     
+    var labels: [UILabel] = []
     var value: Int = 1
+    
     private let componentDimension: CGFloat = 40.0
-    private let componentCount: Int = 5
+    private let componentCount: Int = 6
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
     
@@ -24,7 +26,6 @@ class CustomControl: UIControl {
     
     // MARK: - Methods
     private func setup() {
-        var labels: [UILabel] = []
         let spacing: CGFloat = 8.0
         var x: CGFloat = spacing
         
@@ -55,7 +56,26 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
         
+        for label in self.labels {
+            if label.frame.contains(touchPoint) {
+                if self.value != label.tag {
+                    label.performFlare()
+                    self.value = label.tag
+                    
+                    for label in self.labels {
+                        if label.tag <= value {
+                            label.textColor = componentActiveColor
+                        } else {
+                            label.textColor = componentInactiveColor
+                        }
+                    }
+                    
+                    sendActions(for: .valueChanged)
+                }
+            }
+        }
     }
     
     // MARK: - Touch Handlers
@@ -100,4 +120,16 @@ class CustomControl: UIControl {
     }
     */
 
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+    }
 }
