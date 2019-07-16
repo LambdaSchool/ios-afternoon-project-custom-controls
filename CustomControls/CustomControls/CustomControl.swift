@@ -15,13 +15,25 @@ class CustomControl: UIControl {
     var starsArray: [UILabel] = []
     
     let componentDimension: CGFloat = 40.0
-    let componentCount = 5
+    let componentCount = 6
     let componentActiveColor = UIColor.black
     let componentInactiveColor = UIColor.gray
+    
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         setup()
+    }
+    
+    override func layoutSubviews() {
+        clipsToBounds = true
+        layer.cornerRadius = 12
+        layer.borderColor = UIColor.darkGray.cgColor
+        layer.borderWidth = 1
+        layer.shadowOpacity = 1.0
+        layer.shadowRadius = 6
+        layer.shadowOffset = .zero
+        layer.shadowColor = UIColor.darkGray.cgColor
     }
     
     func setup() {
@@ -142,4 +154,5 @@ extension UIView {
                        animations: { flare() },
                        completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
+    
 }
