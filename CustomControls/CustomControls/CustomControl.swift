@@ -49,7 +49,7 @@ class CustomControl: UIControl {
             starLabel.tag = i + 1
             starLabel.frame.size = CGSize(width: componentDimension, height: componentDimension)
             starLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
-            starLabel.text = "☆"
+            starLabel.text = "✯"
             starLabel.textAlignment = .center
             
             starLabel.frame.origin = CGPoint(x: x , y: 0.0)
@@ -60,8 +60,16 @@ class CustomControl: UIControl {
             
             if starLabel.tag == 1 {
                 starLabel.textColor = componentActiveColor
+                starLabel.layer.shadowOffset = .zero
+                starLabel.layer.shadowOpacity = 1.0
+                starLabel.layer.shadowRadius = 2.0
+                starLabel.layer.shadowColor = UIColor.darkGray.cgColor
             } else {
                 starLabel.textColor = componentInactiveColor
+                starLabel.layer.shadowOffset = .zero
+                starLabel.layer.shadowOpacity = 0
+                starLabel.layer.shadowRadius = 0
+                starLabel.layer.shadowColor = UIColor.clear.cgColor
             }
             
         }
@@ -86,8 +94,17 @@ class CustomControl: UIControl {
                     for starLabel in self.starsArray {
                         if starLabel.tag <= value {
                             starLabel.textColor = componentActiveColor
+                            starLabel.layer.shadowOffset = .zero
+                            starLabel.layer.shadowOpacity = 1.0
+                            starLabel.layer.shadowRadius = 2.0
+                            starLabel.layer.shadowColor = UIColor.darkGray.cgColor
                         } else {
                             starLabel.textColor = componentInactiveColor
+                            starLabel.textColor = componentInactiveColor
+                            starLabel.layer.shadowOffset = .zero
+                            starLabel.layer.shadowOpacity = 0
+                            starLabel.layer.shadowRadius = 0
+                            starLabel.layer.shadowColor = UIColor.clear.cgColor
                         }
                     }
                     
@@ -96,6 +113,8 @@ class CustomControl: UIControl {
             }
         }
     }
+    
+   
 }
 
 
