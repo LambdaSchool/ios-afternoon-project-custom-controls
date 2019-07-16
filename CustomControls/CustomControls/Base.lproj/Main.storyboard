@@ -33,12 +33,26 @@
                     <view key="view" contentMode="scaleToFill" id="h3o-Xu-oIB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCo-rk-jCR" customClass="CustomControl" customModule="CustomControls" customModuleProvider="target">
+                                <rect key="frame" x="87" y="346" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.54067537249999997" green="0.71830727000000005" blue="0.75485802670000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="xcD-Oz-kb2" eventType="valueChanged" id="pcn-CL-7Tg"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mCo-rk-jCR" firstAttribute="centerX" secondItem="h3o-Xu-oIB" secondAttribute="centerX" id="7w9-SU-yPB"/>
+                            <constraint firstItem="mCo-rk-jCR" firstAttribute="centerY" secondItem="h3o-Xu-oIB" secondAttribute="centerY" id="bNS-eu-leE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0ef-Us-oM0"/>
                     </view>
                     <navigationItem key="navigationItem" id="MnN-io-pqy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDr-VG-lD3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xcD-Oz-kb2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="329" y="34"/>
         </scene>

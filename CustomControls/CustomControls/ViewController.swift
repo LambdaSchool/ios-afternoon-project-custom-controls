@@ -14,6 +14,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func updateRating(_ sender: CustomControl) {
+        switch sender.value {
+            case 1:
+                title = "User Rating: \(sender.value) star"
+            default:
+                title = "User Rating: \(sender.value) stars"
+        }
+        
+    }
+    
+    
+    
 
 
 }
