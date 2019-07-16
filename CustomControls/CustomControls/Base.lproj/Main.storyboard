@@ -29,7 +29,7 @@
         <!--View Controller-->
         <scene sceneID="FOV-lW-6ci">
             <objects>
-                <viewController id="O7S-mk-IVR" sceneMemberID="viewController">
+                <viewController id="O7S-mk-IVR" customClass="ViewController" customModule="CustomControls" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h3o-Xu-oIB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,6 +39,7 @@
                                 <color key="backgroundColor" red="0.54067537249999997" green="0.71830727000000005" blue="0.75485802670000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="updateRating:" destination="xcD-Oz-kb2" eventType="valueChanged" id="pcn-CL-7Tg"/>
+                                    <action selector="updateRating:" destination="O7S-mk-IVR" eventType="valueChanged" id="x7H-b3-agg"/>
                                 </connections>
                             </view>
                         </subviews>
