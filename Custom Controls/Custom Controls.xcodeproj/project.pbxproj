@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		32BCF632230334FE00E760D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCF631230334FE00E760D9 /* AppDelegate.swift */; };
-		32BCF634230334FE00E760D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCF633230334FE00E760D9 /* ViewController.swift */; };
-		32BCF637230334FE00E760D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCF635230334FE00E760D9 /* Main.storyboard */; };
 		32BCF639230334FF00E760D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BCF638230334FF00E760D9 /* Assets.xcassets */; };
 		32BCF63C230334FF00E760D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCF63A230334FF00E760D9 /* LaunchScreen.storyboard */; };
+		32BCF6442303413D00E760D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BCF6432303413D00E760D9 /* Main.storyboard */; };
+		32BCF6462303418A00E760D9 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCF6452303418A00E760D9 /* CustomControl.swift */; };
+		32BCF64A2303428100E760D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BCF6492303428100E760D9 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		32BCF62E230334FE00E760D9 /* Custom Controls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom Controls.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BCF631230334FE00E760D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		32BCF633230334FE00E760D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		32BCF636230334FE00E760D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32BCF638230334FF00E760D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32BCF63B230334FF00E760D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32BCF63D230334FF00E760D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32BCF6432303413D00E760D9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		32BCF6452303418A00E760D9 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
+		32BCF6492303428100E760D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,39 @@
 		32BCF630230334FE00E760D9 /* Custom Controls */ = {
 			isa = PBXGroup;
 			children = (
-				32BCF631230334FE00E760D9 /* AppDelegate.swift */,
-				32BCF633230334FE00E760D9 /* ViewController.swift */,
-				32BCF635230334FE00E760D9 /* Main.storyboard */,
-				32BCF638230334FF00E760D9 /* Assets.xcassets */,
-				32BCF63A230334FF00E760D9 /* LaunchScreen.storyboard */,
-				32BCF63D230334FF00E760D9 /* Info.plist */,
+				32BCF64B2303428800E760D9 /* View Controllers */,
+				32BCF6472303419A00E760D9 /* View */,
+				32BCF648230341A500E760D9 /* Resources */,
 			);
 			path = "Custom Controls";
+			sourceTree = "<group>";
+		};
+		32BCF6472303419A00E760D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32BCF63A230334FF00E760D9 /* LaunchScreen.storyboard */,
+				32BCF6432303413D00E760D9 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32BCF648230341A500E760D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32BCF631230334FE00E760D9 /* AppDelegate.swift */,
+				32BCF638230334FF00E760D9 /* Assets.xcassets */,
+				32BCF63D230334FF00E760D9 /* Info.plist */,
+				32BCF6452303418A00E760D9 /* CustomControl.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32BCF64B2303428800E760D9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32BCF6492303428100E760D9 /* ViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +149,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32BCF6442303413D00E760D9 /* Main.storyboard in Resources */,
 				32BCF63C230334FF00E760D9 /* LaunchScreen.storyboard in Resources */,
 				32BCF639230334FF00E760D9 /* Assets.xcassets in Resources */,
-				32BCF637230334FE00E760D9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32BCF634230334FE00E760D9 /* ViewController.swift in Sources */,
+				32BCF64A2303428100E760D9 /* ViewController.swift in Sources */,
+				32BCF6462303418A00E760D9 /* CustomControl.swift in Sources */,
 				32BCF632230334FE00E760D9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +171,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		32BCF635230334FE00E760D9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				32BCF636230334FE00E760D9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		32BCF63A230334FF00E760D9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +304,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YM84C6XKT7;
-				INFOPLIST_FILE = "Custom Controls/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Custom Controls/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YM84C6XKT7;
-				INFOPLIST_FILE = "Custom Controls/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Custom Controls/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
