@@ -10,6 +10,10 @@ import UIKit
 
 class CustomControl: UIControl {
     
+    //
+    // MARK: - Properties
+    //
+    
     var value: Int = 1
     var starArray: Array<UILabel> = []
     
@@ -30,7 +34,12 @@ class CustomControl: UIControl {
         return CGSize(width: width, height: componentDimension)
     }
     
+    //
+    // MARK: - Functions
+    //
+    
     func setup() {
+        
         var spacer: CGFloat = 8.0
         
         for index in 1...componentCount {
@@ -52,44 +61,34 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
         for label in starArray {
-            let touchPoint = touch.location(in: self)
             if label.frame.contains(touchPoint) {
                 value = label.tag
-                
                 for label in starArray {
                     if label.tag <= value{
                         label.textColor = componentActiveColor
-                        
-                    }else {
+                    } else {
                         label.textColor = componentInactiveColor
                     }
                 }
-                
-//                if label.tag == value {
-//                    label.textColor = componentActiveColor
-//                    print(value)
-//                    print("tag \(label.tag)")
-//                }else {
-//                    label.textColor = componentInactiveColor
-//                }
-                
             }
         }
     }
 }
 
+//
+// MARK: - Extensions
+//
+
 extension CustomControl {
-    
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
         return true
     }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        
         let touchPoint = touch.location(in: self)
-        
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
             sendActions(for: [.touchDragInside, .valueChanged])
@@ -98,20 +97,14 @@ extension CustomControl {
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        defer {
-            super.endTracking(touch, with: event)
-        }
-        
+        defer { super.endTracking(touch, with: event) }
         guard let touch = touch else { return }
-        
         let touchPoint = touch.location(in: self)
-        
         if bounds.contains(touchPoint) {
             sendActions(for: [.touchUpInside, .touchUpOutside, .valueChanged])
-        }else {
+        } else {
             sendActions(for: .touchUpOutside)
         }
-        
         value = 1
     }
     
