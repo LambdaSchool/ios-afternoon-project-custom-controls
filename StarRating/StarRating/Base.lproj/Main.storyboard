@@ -18,12 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3f-XC-7jd" customClass="StarControl" customModule="StarRating" customModuleProvider="target">
-                                <rect key="frame" x="62" y="330" width="290" height="290"/>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" placeholderIntrinsicWidth="207" placeholderIntrinsicHeight="337" translatesAutoresizingMaskIntoConstraints="NO" id="N3f-XC-7jd" customClass="StarControl" customModule="StarRating" customModuleProvider="target">
+                                <rect key="frame" x="103.5" y="279.5" width="207" height="337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="N3f-XC-7jd" secondAttribute="height" multiplier="1:1" id="lAG-cO-J40"/>
-                                </constraints>
                                 <connections>
                                     <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="uvr-D5-679"/>
                                 </connections>
@@ -31,9 +28,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99275928739999997" green="0.97002953290000005" blue="0.90061342720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="N3f-XC-7jd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="OO9-KL-8D5"/>
-                            <constraint firstItem="N3f-XC-7jd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UoQ-nC-uTl"/>
-                            <constraint firstItem="N3f-XC-7jd" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="dSn-ws-KcZ"/>
+                            <constraint firstItem="N3f-XC-7jd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bIw-rH-BOT"/>
+                            <constraint firstItem="N3f-XC-7jd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wXk-cm-FmU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
