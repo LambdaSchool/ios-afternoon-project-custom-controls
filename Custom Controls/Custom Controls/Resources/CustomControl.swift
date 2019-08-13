@@ -54,13 +54,14 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         for label in starArray {
             let touchPoint = touch.location(in: self)
-            if label.bounds.contains(touchPoint) {
-                value = label.tag + 1
-                for label in starArray {
-                    if label.tag <= value {
-                        label.textColor = componentActiveColor
-                    }
+            if label.frame.contains(touchPoint) {
+                value = label.tag
+                if label.tag <= value {
+                    label.textColor = componentActiveColor
+                }else {
+                    label.textColor = componentInactiveColor
                 }
+                
             }
         }
     }
