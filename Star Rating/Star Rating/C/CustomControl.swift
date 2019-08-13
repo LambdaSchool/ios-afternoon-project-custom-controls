@@ -39,7 +39,6 @@ class CustomControl : UIControl {
 //MARK: - Funtions
 extension CustomControl {
     
-    
     func setup() {
         
         stackView.axis = .horizontal
@@ -97,7 +96,7 @@ extension CustomControl {
         
         for starLabel in starArray {
             
-            if starLabel.frame.contains(touchPoint) /*&& !(x.tag == value)*/ {
+            if starLabel.frame.contains(touchPoint) {
                 
                 value = starLabel.tag
                 //starLabel.performFlare()
@@ -108,7 +107,7 @@ extension CustomControl {
                     
                     if starLabel.tag <= value {
                         starLabel.textColor = componentActiveColor
-
+                        starLabel.performFlare()
                     } else {
                         starLabel.textColor = componentInactiveColor
                     }
@@ -168,3 +167,24 @@ extension CustomControl {
         
     }
 }
+
+extension UIView {
+    
+    func performFlare() {
+        func flare() {
+            transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+        }
+        func unflare() {
+            transform = .identity
+        }
+        
+        func rotate() {
+            transform = CGAffineTransform(rotationAngle: 0.5)
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {flare()}, completion: { _ in UIView.animate(withDuration: 0.1) {unflare()}})
+    }
+    
+}
+
+
