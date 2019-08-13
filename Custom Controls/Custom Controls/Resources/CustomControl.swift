@@ -56,11 +56,23 @@ class CustomControl: UIControl {
             let touchPoint = touch.location(in: self)
             if label.frame.contains(touchPoint) {
                 value = label.tag
-                if label.tag <= value {
-                    label.textColor = componentActiveColor
-                }else {
-                    label.textColor = componentInactiveColor
+                
+                for label in starArray {
+                    if label.tag <= value{
+                        label.textColor = componentActiveColor
+                        
+                    }else {
+                        label.textColor = componentInactiveColor
+                    }
                 }
+                
+//                if label.tag == value {
+//                    label.textColor = componentActiveColor
+//                    print(value)
+//                    print("tag \(label.tag)")
+//                }else {
+//                    label.textColor = componentInactiveColor
+//                }
                 
             }
         }
@@ -99,6 +111,8 @@ extension CustomControl {
         }else {
             sendActions(for: .touchUpOutside)
         }
+        
+        value = 1
     }
     
     override func cancelTracking(with event: UIEvent?) {
