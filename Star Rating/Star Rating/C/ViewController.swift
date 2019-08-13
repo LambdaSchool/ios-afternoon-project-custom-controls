@@ -12,15 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        title = "User Rating: 1 star"
     }
     
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         
         if ratingControl.value == 1 {
-            self.title = "User Rating: \(ratingControl.value) star"
+            title = "User Rating: \(ratingControl.value) star"
         } else {
-            self.title = "User Rating: \(ratingControl.value) stars"
+            title = "User Rating: \(ratingControl.value) stars"
         }
         
     }

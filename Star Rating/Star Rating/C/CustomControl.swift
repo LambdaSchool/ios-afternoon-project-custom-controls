@@ -45,6 +45,7 @@ extension CustomControl {
         stackView.distribution = .fill
         stackView.spacing = 25
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor )
+        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         stackView.backgroundColor = .red
         stackView.isUserInteractionEnabled = false
         self.addSubview(stackView)
@@ -52,15 +53,10 @@ extension CustomControl {
         for _ in 1...componentCount {
             
             let star = UILabel()
-            
             star.tag = starArray.count + 1
-            
             star.frame.size = CGSize(width: componentDimension, height: componentDimension)
-            
             star.text = "★"
-            
             star.font = .boldSystemFont(ofSize: 35)
-            
             star.textAlignment = .center
             
             stackView.addArrangedSubview(star)
@@ -95,16 +91,11 @@ extension CustomControl {
         let touchPoint = touch.location(in: self)
         
         for starLabel in starArray {
-            
             if starLabel.frame.contains(touchPoint) {
-                
                 value = starLabel.tag
-                //starLabel.performFlare()
                 sendActions(for: .valueChanged)
-                
-                
+            
                 for starLabel in starArray {
-                    
                     if starLabel.tag <= value {
                         starLabel.textColor = componentActiveColor
                         starLabel.performFlare()
@@ -129,12 +120,9 @@ extension CustomControl {
         let touchPoint = touch.location(in: self)
         
         if bounds.contains(touchPoint) {
-            
             updateValue(at: touch)
             sendActions(for: [.touchDragInside, .valueChanged])
-            
         } else {
-            
             sendActions(for: .touchDragOutside)
         }
         
@@ -143,19 +131,13 @@ extension CustomControl {
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         
-        defer {
-            
-            super.endTracking(touch, with: event)
-        }
+        defer { super.endTracking(touch, with: event) }
         
         guard let touchPoint = touch?.location(in: self) else { return }
         
         if bounds.contains(touchPoint) {
-            
             sendActions(for: [.touchUpInside, .valueChanged])
-            
         } else {
-            
             sendActions(for: .touchUpOutside)
         }
         
@@ -164,16 +146,17 @@ extension CustomControl {
     override func cancelTracking(with event: UIEvent?) {
         
         sendActions(for: [.touchCancel])
-        
     }
 }
 
 extension UIView {
     
     func performFlare() {
+        
         func flare() {
             transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
         }
+        
         func unflare() {
             transform = .identity
         }
@@ -184,7 +167,6 @@ extension UIView {
         
         UIView.animate(withDuration: 0.3, animations: {flare()}, completion: { _ in UIView.animate(withDuration: 0.1) {unflare()}})
     }
-    
 }
 
 
