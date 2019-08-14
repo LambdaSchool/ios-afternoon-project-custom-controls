@@ -12,6 +12,7 @@
 		373FB943230347F3009EF31C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 373FB941230347F3009EF31C /* Main.storyboard */; };
 		373FB945230347F4009EF31C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 373FB944230347F4009EF31C /* Assets.xcassets */; };
 		373FB948230347F4009EF31C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 373FB946230347F4009EF31C /* LaunchScreen.storyboard */; };
+		373FB95023034BCB009EF31C /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373FB94F23034BCB009EF31C /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		373FB944230347F4009EF31C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		373FB947230347F4009EF31C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		373FB949230347F4009EF31C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		373FB94F23034BCB009EF31C /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				373FB93D230347F3009EF31C /* AppDelegate.swift */,
 				373FB93F230347F3009EF31C /* ViewController.swift */,
 				373FB941230347F3009EF31C /* Main.storyboard */,
+				373FB94F23034BCB009EF31C /* CustomControl.swift */,
 				373FB944230347F4009EF31C /* Assets.xcassets */,
 				373FB946230347F4009EF31C /* LaunchScreen.storyboard */,
 				373FB949230347F4009EF31C /* Info.plist */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				373FB940230347F3009EF31C /* ViewController.swift in Sources */,
+				373FB95023034BCB009EF31C /* CustomControl.swift in Sources */,
 				373FB93E230347F3009EF31C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
