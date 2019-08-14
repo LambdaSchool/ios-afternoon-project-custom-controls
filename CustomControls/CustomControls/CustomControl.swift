@@ -34,7 +34,6 @@ class CustomControl: UIControl {
 	}
 
 	func setup() {
-
 		for labelIndex in 1...Int(componentCount) {
 			let offset: CGFloat = CGFloat(labelIndex - 1) * componentDimension + CGFloat(labelIndex) * 8
 			print(offset)
@@ -60,6 +59,7 @@ class CustomControl: UIControl {
 		for label in labelArray {
 			let touchPoint = touch.location(in: self)
 			if label.frame.contains(touchPoint) {
+				label.performFlare()
 				value = label.tag
 				for label in labelArray {
 					if label.tag <= value {
