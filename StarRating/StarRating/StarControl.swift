@@ -16,11 +16,12 @@ class StarControl: UIControl {
 	//MARK: - Properties
 	
 	let componentDimension = CGSize(width: 40, height: 40)
-	let componentCount = 5
+	let componentCount = 6
 	let componentActiveColor = UIColor.black
 	let componentInactiveColor = UIColor.gray
 	
 	var rating = 1
+	var starLabels = [UILabel]()
 	
 	//MARK: - Life Cycle
 	
@@ -33,17 +34,38 @@ class StarControl: UIControl {
 	//MARK: - Touch Actions
 	
 	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+		print("Began touch...")
 		updateValue(at: touch)
-		return false
+		
+		return true
 	}
 	
 	override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+		print("Continue touching..")
+		if bounds.contains(touch.location(in: self)) {
+			updateValue(at: touch)
+			sendActions(for: [.touchDragInside, .valueChanged])
+		} else {
+			sendActions(for: [.touchDragOutside])
+		}
 		
-		return false
+		return true
 	}
 	
 	override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+		print("Ending touch.")
+		defer {
+			super.endTracking(touch, with: event)
+		}
 		
+		guard let touch = touch else { return }
+		
+		if bounds.contains(touch.location(in: self)) {
+			updateValue(at: touch)
+			sendActions(for: [.touchUpInside, .valueChanged])
+		} else {
+			sendActions(for: [.touchUpOutside])
+		}
 	}
 	
 	override func cancelTracking(with event: UIEvent?) {
@@ -60,8 +82,6 @@ class StarControl: UIControl {
 	}
 
 	private func setup() {
-		var starLabels = [UILabel]()
-		
 		for index in 1...componentCount {
 			let label = UILabel(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: componentDimension))
 			
@@ -70,6 +90,7 @@ class StarControl: UIControl {
 			label.font = UIFont(name: label.font.fontName, size: 32)
 			label.textAlignment = .center
 			label.tag = index
+			label.isUserInteractionEnabled = false
 			
 			starLabels.append(label)
 		}
@@ -80,6 +101,7 @@ class StarControl: UIControl {
 		stackView.spacing = 8
 		stackView.center = center
 		stackView.translatesAutoresizingMaskIntoConstraints = false
+		stackView.isUserInteractionEnabled = false
 		
 		addSubview(stackView)
 		
@@ -90,7 +112,15 @@ class StarControl: UIControl {
 	}
 	
 	private func updateValue(at touch: UITouch) {
-		
+		for star in starLabels {
+			if touch.location(in: self).x >= star.frame.minX {
+				star.textColor = componentActiveColor
+				star.performFlare()
+				rating = star.tag
+			} else {
+				star.textColor = componentInactiveColor
+			}
+		}
 	}
 	
 }
