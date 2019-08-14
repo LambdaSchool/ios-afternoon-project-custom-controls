@@ -18,7 +18,7 @@ class CustomControl: UIControl {
     var starArray: Array<UILabel> = []
     
     let componentDimension: CGFloat     = 40.0
-    let componentCount: Int             = 5
+    let componentCount: Int             = 6
     let componentActiveColor: UIColor   = .black
     let componentInactiveColor: UIColor = .darkGray
     
@@ -64,6 +64,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         for label in starArray {
             if label.frame.contains(touchPoint) {
+                label.performFlare()
                 value = label.tag
                 for label in starArray {
                     if label.tag <= value{
@@ -101,6 +102,7 @@ extension CustomControl {
         guard let touch = touch else { return }
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
+            
             sendActions(for: [.touchUpInside, .touchUpOutside, .valueChanged])
         } else {
             sendActions(for: .touchUpOutside)
@@ -110,5 +112,17 @@ extension CustomControl {
     
     override func cancelTracking(with event: UIEvent?) {
         sendActions(for: .touchCancel)
+    }
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
 }
