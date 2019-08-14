@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 						UIColor(red: 0.04, green: 0.24, blue: 0.43, alpha: 1.00).cgColor]
 		layer.frame = view.bounds
 		view.layer.insertSublayer(layer, at: 0)
+		title = "User Rating: 1 star"
 
 	}
 
