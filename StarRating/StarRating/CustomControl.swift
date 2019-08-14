@@ -64,6 +64,7 @@ extension CustomControl {
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         if self.bounds.contains(touch.location(in: self)) {
             updateValue(at: touch)
+            
             sendActions(for: [.touchDragInside, .valueChanged])
         } else {
             sendActions(for: [.touchDragOutside])
@@ -80,6 +81,7 @@ extension CustomControl {
         
         if bounds.contains(touch.location(in: self)) {
             updateValue(at: touch)
+            
             sendActions(for: [.touchUpInside, .valueChanged])
         } else {
             sendActions(for: [.touchUpOutside])
