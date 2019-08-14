@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 		ratingLabelForSwitch.textColor = UIColor(red: 0.01, green: 1.00, blue: 0.79, alpha: 1.00)
 		ratingSwitch.tintColor = UIColor(red: 0.01, green: 1.00, blue: 0.79, alpha: 1.00)
 		ratingSwitch.onTintColor = UIColor(red: 0.01, green: 1.00, blue: 0.79, alpha: 1.00)
-		title = "User Rating: 1 star"
+		title = "User Rating: \(customControl.value) star"
 
 	}
 
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
 	@IBAction func ratingSwitchAction(_ sender: UISwitch) {
 		if ratingSwitch.isOn {
 			customControl.componentCount = 7
-			
+
 			customControl.setup()
 		} else {
 			customControl.componentCount = 5
