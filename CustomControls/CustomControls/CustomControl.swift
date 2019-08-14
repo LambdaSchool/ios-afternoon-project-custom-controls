@@ -21,7 +21,7 @@ class CustomControl: UIControl {
 	}
 
 	let componentDimension: CGFloat = 40.0
-	let componentCount: CGFloat = 5
+	var componentCount: Int = 5
 	let componentActiveColor = UIColor(red: 0.82, green: 0.99, blue: 0.01, alpha: 1.00)
 	let componentINactiveColor = UIColor(red: 0.31, green: 0.40, blue: 0.57, alpha: 0.90)
 
@@ -34,7 +34,12 @@ class CustomControl: UIControl {
 	}
 
 	func setup() {
-		for labelIndex in 1...Int(componentCount) {
+		for subview in subviews {
+			subview.removeFromSuperview()
+			labelArray = []
+		}
+
+		for labelIndex in 1...componentCount {
 			let offset: CGFloat = CGFloat(labelIndex - 1) * componentDimension + CGFloat(labelIndex) * 8
 			print(offset)
 			let starLabel = UILabel(frame: CGRect(x: offset, y: 0,
@@ -76,7 +81,6 @@ class CustomControl: UIControl {
 extension CustomControl {
 
 	override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-
 		updateValue(at: touch)
 		sendActions(for: [.touchDown, .valueChanged])
 		return true
