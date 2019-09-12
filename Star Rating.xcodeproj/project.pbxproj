@@ -12,6 +12,7 @@
 		86A521AE232AE1AE00B6D090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A521AC232AE1AE00B6D090 /* Main.storyboard */; };
 		86A521B0232AE1AE00B6D090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A521AF232AE1AE00B6D090 /* Assets.xcassets */; };
 		86A521B3232AE1AE00B6D090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A521B1232AE1AE00B6D090 /* LaunchScreen.storyboard */; };
+		86A521BB232AE32C00B6D090 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A521BA232AE32C00B6D090 /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		86A521AF232AE1AE00B6D090 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A521B2232AE1AE00B6D090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86A521B4232AE1AF00B6D090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86A521BA232AE32C00B6D090 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				86A521A8232AE1AE00B6D090 /* AppDelegate.swift */,
 				86A521AA232AE1AE00B6D090 /* ViewController.swift */,
 				86A521AC232AE1AE00B6D090 /* Main.storyboard */,
+				86A521BA232AE32C00B6D090 /* CustomControl.swift */,
 				86A521AF232AE1AE00B6D090 /* Assets.xcassets */,
 				86A521B1232AE1AE00B6D090 /* LaunchScreen.storyboard */,
 				86A521B4232AE1AF00B6D090 /* Info.plist */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86A521AB232AE1AE00B6D090 /* ViewController.swift in Sources */,
+				86A521BB232AE32C00B6D090 /* CustomControl.swift in Sources */,
 				86A521A9232AE1AE00B6D090 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
