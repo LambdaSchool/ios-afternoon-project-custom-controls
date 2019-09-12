@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let customControl = CustomControl()
+    // TODO: let customControl = CustomControl(coder: <#NSCoder#>)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,8 @@ class ViewController: UIViewController {
 
     
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        title = "User Rating: \(customControl.value) stars"
+        //TODO: title = "User Rating: \(customControl.value) stars"
+        title = "User Rating: \(ratingControl.value) stars"
     }
 }
 
