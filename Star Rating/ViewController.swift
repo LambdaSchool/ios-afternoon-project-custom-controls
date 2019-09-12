@@ -9,12 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let customControl = CustomControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        title = "User Rating: \(customControl.value) stars"
+    }
 }
 
