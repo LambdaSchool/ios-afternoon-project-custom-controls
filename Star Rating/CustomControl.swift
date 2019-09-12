@@ -26,16 +26,24 @@ class CustomControl: UIControl {
     func setUp() {
         
         var labelArray : [UILabel] = []
-        var xPosition: CGFloat = 10.00
+        var xPosition: CGFloat = -100 // TODO: Change to 8.0 Not sure why not working.
         
         for index in 1...5 {
             
+            let label = UILabel(frame: CGRect(x: xPosition, y: 0, width: componentDimension, height: componentDimension))
+         
+            xPosition += 8.0 + componentDimension
             
-            let label = UILabel(frame: CGRect(x: xPosition, y: 0, width: 50, height: 50))
-            xPosition += 10.0
-            label.text = "A"
+            label.text = "☆"
+            label.tag = index
+            label.font = UIFont.boldSystemFont(ofSize: 32.0)
+            label.textAlignment = .center
             
-            
+            if index == 1 {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+            }
             
             labelArray.append(label)
             addSubview(label)
