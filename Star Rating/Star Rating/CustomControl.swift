@@ -55,7 +55,7 @@ class CustomControl: UIControl {
                 starLabel.frame = CGRect(x: componentDimension * 4 + 40, y: 0, width: componentDimension, height: componentDimension)
             }
             starLabel.font = UIFont.boldSystemFont(ofSize: 32)
-            starLabel.text = "★"
+            starLabel.text = "☆"
             starLabel.textAlignment = .center
             
             if starLabel.tag == 1 {
