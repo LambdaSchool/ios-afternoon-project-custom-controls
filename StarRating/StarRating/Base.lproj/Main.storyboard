@@ -7,14 +7,27 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Star View Controller-->
         <scene sceneID="b2r-LS-UFF">
             <objects>
-                <viewController id="SfH-WI-dxm" sceneMemberID="viewController">
+                <viewController id="SfH-WI-dxm" customClass="StarViewController" customModule="StarRating" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EUO-14-QOY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P0E-r7-m1a" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
+                                <rect key="frame" x="80" y="403.5" width="254" height="143"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="SfH-WI-dxm" eventType="valueChanged" id="BGm-hF-3dP"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="P0E-r7-m1a" firstAttribute="centerX" secondItem="RE1-tV-y0D" secondAttribute="centerX" id="9H3-EM-RWb"/>
+                            <constraint firstItem="P0E-r7-m1a" firstAttribute="centerY" secondItem="RE1-tV-y0D" secondAttribute="centerY" id="RHY-Iy-dqN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RE1-tV-y0D"/>
                     </view>
                     <navigationItem key="navigationItem" id="tiv-Kb-fkj"/>

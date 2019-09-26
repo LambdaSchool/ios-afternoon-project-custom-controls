@@ -12,6 +12,8 @@
 		37C021DA233D0CD1003A5ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C021D8233D0CD1003A5ED3 /* Main.storyboard */; };
 		37C021DC233D0CD2003A5ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C021DB233D0CD2003A5ED3 /* Assets.xcassets */; };
 		37C021DF233D0CD2003A5ED3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C021DD233D0CD2003A5ED3 /* LaunchScreen.storyboard */; };
+		37C021E7233D0E0D003A5ED3 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C021E6233D0E0D003A5ED3 /* CustomControl.swift */; };
+		37C021E9233D114A003A5ED3 /* StarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C021E8233D114A003A5ED3 /* StarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		37C021DB233D0CD2003A5ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37C021DE233D0CD2003A5ED3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37C021E0233D0CD2003A5ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37C021E6233D0E0D003A5ED3 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
+		37C021E8233D114A003A5ED3 /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				37C021D2233D0CD1003A5ED3 /* AppDelegate.swift */,
 				37C021D4233D0CD1003A5ED3 /* SceneDelegate.swift */,
+				37C021E8233D114A003A5ED3 /* StarViewController.swift */,
+				37C021E6233D0E0D003A5ED3 /* CustomControl.swift */,
 				37C021D8233D0CD1003A5ED3 /* Main.storyboard */,
 				37C021DB233D0CD2003A5ED3 /* Assets.xcassets */,
 				37C021DD233D0CD2003A5ED3 /* LaunchScreen.storyboard */,
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C021E9233D114A003A5ED3 /* StarViewController.swift in Sources */,
 				37C021D3233D0CD1003A5ED3 /* AppDelegate.swift in Sources */,
+				37C021E7233D0E0D003A5ED3 /* CustomControl.swift in Sources */,
 				37C021D5233D0CD1003A5ED3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
