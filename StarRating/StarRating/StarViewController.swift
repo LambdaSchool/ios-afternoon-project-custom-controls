@@ -29,7 +29,7 @@ class StarViewController: UIViewController {
             view.backgroundColor = UIColor.systemRed
         } else if ratingControl.value == 3 {
             self.title = "User Rating: 3 Stars"
-            view.backgroundColor = UIColor.white
+            view.backgroundColor = UIColor.lightGray
         } else if ratingControl.value == 4 {
             self.title = "User Rating: 4 Stars"
             view.backgroundColor = UIColor.systemGreen
