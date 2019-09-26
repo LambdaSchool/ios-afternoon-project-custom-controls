@@ -76,6 +76,7 @@ class CustomControl: UIControl {
             
             if star.tag <= value {
                 star.textColor = .systemYellow
+                star.performFlare()
             } else {
                 star.textColor = .lightText
             }
