@@ -131,7 +131,16 @@ class CustomControl: UIControl {
     
     
     func updateValue(at touchPoint: CGPoint) {
-        
+        for star in stars {
+            if star.frame.contains(touchPoint) {
+                self.value = star.tag
+                star.textColor = componentActiveColor
+                sendActions(for: .valueChanged)
+                
+            } else {
+                star.textColor = componentInactiveColor
+            }
+        }
         
     }
     

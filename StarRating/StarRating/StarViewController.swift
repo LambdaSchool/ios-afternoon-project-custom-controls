@@ -10,7 +10,6 @@ import UIKit
 
 class StarViewController: UIViewController {
     
-    var customControl: CustomControl!
     
     
     override func viewDidLoad() {
@@ -31,10 +30,10 @@ class StarViewController: UIViewController {
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         
-        if customControl.value == 1 {
+        if ratingControl.value == 1 {
             self.title = "User Rating: 1 Star"
         } else {
-            self.title = "User Rating: \(customControl.value) Stars"
+            self.title = "User Rating: \(ratingControl.value) Stars"
         }
         
     }
