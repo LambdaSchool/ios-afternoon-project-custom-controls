@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bgu-9b-ewc">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="9pP-fl-kd0">
+            <objects>
+                <navigationController id="Bgu-9b-ewc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b5Y-da-vX4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eGM-ea-SqV" kind="relationship" relationship="rootViewController" id="AKf-GQ-Xl7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="slr-7O-Er1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-702" y="139"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fVf-pP-Get">
+            <objects>
+                <viewController id="eGM-ea-SqV" customClass="ViewController" customModule="Star_Ratings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UOd-Ei-kVa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ob8-kM-a4b" customClass="CustomControl" customModule="Star_Ratings" customModuleProvider="target">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="eGM-ea-SqV" eventType="valueChanged" id="Iov-oQ-wzi"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ob8-kM-a4b" firstAttribute="centerY" secondItem="UOd-Ei-kVa" secondAttribute="centerY" id="3NK-8I-l0F"/>
+                            <constraint firstItem="Ob8-kM-a4b" firstAttribute="centerX" secondItem="UOd-Ei-kVa" secondAttribute="centerX" id="Al3-F6-LVi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Vw-2p-GPY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mDA-H1-Ioe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wnN-Sh-V5m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="139"/>
+        </scene>
+    </scenes>
+</document>
