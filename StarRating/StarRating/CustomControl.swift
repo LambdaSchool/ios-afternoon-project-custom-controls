@@ -27,7 +27,9 @@ class CustomControl: UIControl {
         setup()
     }
     
-    func setup() {
+    
+    
+    private func setup() {
         
             
         let star1 = UILabel(frame: CGRect(x: 8.0, y: 0, width: componentDimension, height: componentDimension))
@@ -90,6 +92,48 @@ class CustomControl: UIControl {
       return CGSize(width: width, height: componentDimension)
     }
     
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+            updateValue(at: touchPoint)
+        sendActions(for: [.touchDown, .valueChanged])
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touchPoint)
+            sendActions(for: [.touchDragInside, .valueChanged])
+        } else  {
+            sendActions(for: [.touchDragOutside])
+        }
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+         defer { super.endTracking(touch, with: event) }
+               
+               guard let touch = touch else { return }
+        
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touchPoint)
+            sendActions(for: [.touchUpInside, .valueChanged])
+        } else  {
+            sendActions(for: [.touchUpOutside])
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
+    
+    func updateValue(at touchPoint: CGPoint) {
+        
+        
+    }
     
     
 }
