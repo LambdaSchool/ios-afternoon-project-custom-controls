@@ -10,9 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK: - Properties
+    
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    //MARK: - IBActions
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        
     }
 
 
