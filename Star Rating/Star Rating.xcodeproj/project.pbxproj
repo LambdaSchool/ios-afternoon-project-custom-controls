@@ -13,6 +13,7 @@
 		E365F436233D675600386B93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E365F434233D675600386B93 /* Main.storyboard */; };
 		E365F438233D675700386B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E365F437233D675700386B93 /* Assets.xcassets */; };
 		E365F43B233D675700386B93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E365F439233D675700386B93 /* LaunchScreen.storyboard */; };
+		E365F443233D68B000386B93 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365F442233D68B000386B93 /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E365F437233D675700386B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E365F43A233D675700386B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E365F43C233D675700386B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E365F442233D68B000386B93 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				E365F42E233D675600386B93 /* AppDelegate.swift */,
 				E365F430233D675600386B93 /* SceneDelegate.swift */,
+				E365F442233D68B000386B93 /* CustomControl.swift */,
 				E365F432233D675600386B93 /* ViewController.swift */,
 				E365F434233D675600386B93 /* Main.storyboard */,
 				E365F437233D675700386B93 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			files = (
 				E365F433233D675600386B93 /* ViewController.swift in Sources */,
 				E365F42F233D675600386B93 /* AppDelegate.swift in Sources */,
+				E365F443233D68B000386B93 /* CustomControl.swift in Sources */,
 				E365F431233D675600386B93 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
