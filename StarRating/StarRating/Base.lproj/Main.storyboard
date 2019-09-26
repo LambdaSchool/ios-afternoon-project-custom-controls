@@ -17,7 +17,6 @@
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P0E-r7-m1a" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
                                 <rect key="frame" x="80" y="403.5" width="254" height="143"/>
-                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="updateRating:" destination="SfH-WI-dxm" eventType="valueChanged" id="BGm-hF-3dP"/>
                                 </connections>
