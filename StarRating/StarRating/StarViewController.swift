@@ -18,23 +18,27 @@ class StarViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         
         if ratingControl.value == 1 {
             self.title = "User Rating: 1 Star"
-        } else {
-            self.title = "User Rating: \(ratingControl.value) Stars"
+            view.backgroundColor = UIColor.red
+        } else if ratingControl.value == 2 {
+            self.title = "User Rating: 2 Stars"
+            view.backgroundColor = UIColor.systemRed
+        } else if ratingControl.value == 3 {
+            self.title = "User Rating: 3 Stars"
+            view.backgroundColor = UIColor.white
+        } else if ratingControl.value == 4 {
+            self.title = "User Rating: 4 Stars"
+            view.backgroundColor = UIColor.systemGreen
+        } else if ratingControl.value == 5 {
+            self.title = "User Rating: 5 Stars"
+            view.backgroundColor = UIColor.green
         }
+        
+       
         
     }
     
