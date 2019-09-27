@@ -31,7 +31,7 @@ class CustomControl: UIControl {
             label.tag = i
             addSubview(label)
             label.frame.size = CGSize(width: componentDimension, height: componentDimension)
-            let x = componentDimension + CGFloat(i * 8)
+            let x = CGFloat(i) * componentDimension + CGFloat(i * 8)
             label.center = CGPoint(x: x, y: 0)
             label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
             label.text = "⭑"
@@ -55,7 +55,7 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         for label in labelArray {
             if label.frame.contains(touch.location(in: self)) {
-                self.value(forKey: "label.tag")
+                CustomControl.value = label.tag
                 label.textColor = componentActiveColor
                 sendActions(for: [.valueChanged])
             }
