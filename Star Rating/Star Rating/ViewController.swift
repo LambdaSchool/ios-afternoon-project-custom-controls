@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateRating(self.customControl)
         self.customControl.addTarget(self, action: #selector(updateRating(_:)), for: .valueChanged)
     }
 
