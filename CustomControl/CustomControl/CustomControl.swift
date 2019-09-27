@@ -42,14 +42,14 @@ class CustomControl: UIControl {
                 y: 0.0,
                 width: componentDimension,
                 height: componentDimension)
-                
+
             } else {
                 label.frame = CGRect(x: componentDimension + componentDistance * CGFloat(i),
                 y: 0.0,
                 width: componentDimension,
                 height: componentDimension)
             }
-            
+
             if i == 0 {
                 label.textColor = componentActiveColor
             } else {
@@ -60,6 +60,31 @@ class CustomControl: UIControl {
             stars.append(label)
 
         }
+        
+//        for label in stars {
+//            if label == stars[0] {
+//                label.frame = CGRect(x: componentDistance,
+//                y: 0.0,
+//                width: componentDimension,
+//                height: componentDimension)
+//
+//            } else {
+//                label.frame = CGRect(x: componentDimension + componentDistance * 2,
+//                y: 0.0,
+//                width: componentDimension,
+//                height: componentDimension)
+//            }
+//
+//            if label == stars[0] {
+//                label.textColor = componentActiveColor
+//            } else {
+//                label.textColor = componentInactiveColor
+//            }
+//        }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        <#code#>
     }
     
     override var intrinsicContentSize: CGSize {
