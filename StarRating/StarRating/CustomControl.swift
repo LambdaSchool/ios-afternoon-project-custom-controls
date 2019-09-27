@@ -31,7 +31,8 @@ class CustomControl: UIControl {
             addSubview(label)
             label.frame.size = CGSize(width: componentDimension, height: componentDimension)
             
-            let x = CGFloat(i-1) * componentDimension + CGFloat(i * 8)
+            let x = CGFloat(i-1) * componentDimension + CGFloat(i*16)
+            
             label.center = CGPoint(x: x, y: 0)
             
             label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
