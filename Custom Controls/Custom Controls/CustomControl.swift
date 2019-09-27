@@ -81,8 +81,8 @@ class CustomControl: UIControl {
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
-            sendActions(for: [.touchDragInside, .valueChanged])
             updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .valueChanged])
         } else {
             sendActions(for: [.touchDragOutside, .valueChanged])
         }
@@ -93,8 +93,9 @@ class CustomControl: UIControl {
         guard let touch = touch else { return }
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
-            sendActions(for: [.touchUpInside, .valueChanged])
             updateValue(at: touch)
+            performFlare()
+            sendActions(for: [.touchUpInside, .valueChanged])
         } else {
             sendActions(for: [.touchUpOutside, .valueChanged])
         }
@@ -104,4 +105,16 @@ class CustomControl: UIControl {
         sendActions(for: [.touchCancel])
     }
     
+}
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
