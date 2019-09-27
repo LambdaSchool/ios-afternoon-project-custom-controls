@@ -32,18 +32,17 @@ class CustomControl: UIControl {
             label.frame.size = CGSize(width: componentDimension, height: componentDimension)
             
             let x = CGFloat(i-1) * componentDimension + CGFloat(i * 8)
-            
-            if i == 1 {
-                label.center = CGPoint(x: x, y: 0)
-                label.textColor = componentActiveColor
-            } else {
-                label.center = CGPoint(x: x, y: 0)
-                label.textColor = componentInactiveColor
-            }
+            label.center = CGPoint(x: x, y: 0)
             
             label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
             label.text = "⭑"
             label.textAlignment = .center
+            
+            if i == 1 {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+            }
             
             labelArray.append(label)
         }
