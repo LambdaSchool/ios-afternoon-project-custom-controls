@@ -10,10 +10,11 @@ import UIKit
 
 class CustomControl: UIControl {
     private let componentDimension: CGFloat = 40.0
-    private let componentCount: CGFloat = 5.0
+    private let componentCount: CGFloat = 6.0
     private let componentActiveColor: CGFloat = 1
     private let componentInactiveColor: CGFloat = 0.5
     private var labels: [UILabel] = []
+    private var leftRight = true
     
     var value: Int = 1 {
         didSet {
@@ -36,7 +37,7 @@ class CustomControl: UIControl {
     }
     
     func setup() {
-        for i in 1...5 {
+        for i in 1...Int(componentCount) {
             let label = UILabel()
             label.text = "⭐️"
             label.tag = i
