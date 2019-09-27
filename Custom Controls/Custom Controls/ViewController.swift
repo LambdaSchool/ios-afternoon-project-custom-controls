@@ -15,11 +15,20 @@ class ViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        title = "User Rating: 1 Star"
+        
     }
     
     //MARK: - IBActions
     @IBAction func updateRating(_ ratingControl: CustomControl) {
+        let currentRating = ratingControl.value
+        
+        if currentRating == 1 {
+            title = "User Rating: \(currentRating) Star"
+        } else {
+            title = "User Rating: \(currentRating) Stars"
+        }
         
     }
 

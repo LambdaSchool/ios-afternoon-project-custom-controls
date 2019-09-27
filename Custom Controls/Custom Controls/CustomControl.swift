@@ -12,7 +12,7 @@ class CustomControl: UIControl {
     
     //MARK: - Properties
     //Rating property
-    var value: Int = 1
+    var value: Int = 1 
     
     //Component Properties
     private let componentDimension: CGFloat = 40.0
@@ -39,8 +39,8 @@ class CustomControl: UIControl {
                 let currentLabelPosition = CGFloat( (componentDimension * CGFloat(i - 1) + CGFloat( i * 8 )) )
                 label.frame = CGRect(x: currentLabelPosition, y: 0.0, width: componentDimension, height: componentDimension)
             }
-            label.font = UIFont(name: "System-Bold", size: 32.0)
-            label.text = "✰"
+            label.font = UIFont(name: "System-Bold", size: 40.0)
+            label.text = "✪"
             label.textAlignment = .center
             label.tag = i
             if i == 1 {label.textColor = componentActiveColor} else { label.textColor = componentInactiveColor}
@@ -57,7 +57,18 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touch: UITouch) {
-        
+        for label in labelArray {
+            if label.frame.contains(touch.location(in: self)) {
+                value = label.tag
+                for labels in labelArray {
+                    if labels.tag <= value {
+                        labels.textColor = componentActiveColor
+                    } else {
+                        labels.textColor = componentInactiveColor
+                    }
+                }
+            }
+        }
     }
     
     //MARK: - Tracking Functions
@@ -70,10 +81,10 @@ class CustomControl: UIControl {
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
-            sendActions(for: [.touchDragInside])
+            sendActions(for: [.touchDragInside, .valueChanged])
             updateValue(at: touch)
         } else {
-            sendActions(for: [.touchDragOutside])
+            sendActions(for: [.touchDragOutside, .valueChanged])
         }
         return true
     }
@@ -82,10 +93,10 @@ class CustomControl: UIControl {
         guard let touch = touch else { return }
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
-            sendActions(for: [.touchUpInside])
+            sendActions(for: [.touchUpInside, .valueChanged])
             updateValue(at: touch)
         } else {
-            sendActions(for: [.touchUpOutside])
+            sendActions(for: [.touchUpOutside, .valueChanged])
         }
     }
     

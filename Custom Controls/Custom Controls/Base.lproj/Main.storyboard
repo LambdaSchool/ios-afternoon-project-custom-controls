@@ -33,7 +33,6 @@
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hVh-Vf-jzX" customClass="CustomControl" customModule="Custom_Controls" customModuleProvider="target">
                                 <rect key="frame" x="87" y="410" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="l5n-jn-q5j"/>
                                 </connections>
