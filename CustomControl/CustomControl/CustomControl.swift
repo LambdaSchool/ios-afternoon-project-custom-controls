@@ -60,27 +60,6 @@ class CustomControl: UIControl {
             stars.append(label)
 
         }
-        
-//        viewWithTag(1)?.frame = CGRect(x: componentDistance, y: 0.0,
-//                                      width: componentDimension,
-//                                      height: componentDimension)
-//        viewWithTag(2)?.frame = CGRect(x: componentDimension + 2 * componentDistance,
-//                                       y: 0.0,
-//                                       width: componentDimension,
-//                                       height: componentDimension)
-//        viewWithTag(3)?.frame = CGRect(x: componentDimension + 4 * componentDistance,
-//                                       y: 0.0,
-//                                       width: componentDimension,
-//                                       height: componentDimension)
-//        viewWithTag(4)?.frame = CGRect(x: componentDimension + 6 * componentDistance,
-//                                       y: 0.0,
-//                                       width: componentDimension,
-//                                       height: componentDimension)
-//        viewWithTag(5)?.frame = CGRect(x: componentDimension + 8 * componentDistance,
-//                                       y: 0.0,
-//                                       width: componentDimension,
-//                                       height: componentDimension)
-    
     }
     
     override var intrinsicContentSize: CGSize {
