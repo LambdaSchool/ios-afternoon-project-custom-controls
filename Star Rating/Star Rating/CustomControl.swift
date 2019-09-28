@@ -9,7 +9,8 @@
 import UIKit
 
 class CustomControl: UIControl {
-    var value: Int = 1
+    var value: Int = 1 { didSet { updateLabels() } }
+    var labels: [UILabel] = []
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
@@ -22,7 +23,6 @@ class CustomControl: UIControl {
     }
     
     func setup() {
-        var labels: [UILabel] = []
         for i in 1...componentCount {
             let label = UILabel()
             label.tag = i
@@ -84,6 +84,17 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        
+        for label in labels {
+            let touchPoint = touch.location(in: label)
+            if label.bounds.contains(touchPoint) {
+                value = label.tag
+            }
+        }
+    }
+    
+    func updateLabels() {
+        for i in 1...componentCount {
+            labels[i - 1].textColor =  i > value ? componentInactiveColor : componentActiveColor
+        }
     }
 }
