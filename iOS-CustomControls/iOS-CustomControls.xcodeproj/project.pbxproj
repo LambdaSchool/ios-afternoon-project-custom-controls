@@ -13,6 +13,7 @@
 		4F951376234FB72A005D251B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F951374234FB72A005D251B /* Main.storyboard */; };
 		4F951378234FB72E005D251B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F951377234FB72E005D251B /* Assets.xcassets */; };
 		4F95137B234FB72E005D251B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F951379234FB72E005D251B /* LaunchScreen.storyboard */; };
+		4F951383234FB85C005D251B /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F951382234FB85C005D251B /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4F951377234FB72E005D251B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F95137A234FB72E005D251B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F95137C234FB72E005D251B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F951382234FB85C005D251B /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,24 @@
 		4F95136D234FB72A005D251B /* iOS-CustomControls */ = {
 			isa = PBXGroup;
 			children = (
-				4F95136E234FB72A005D251B /* AppDelegate.swift */,
-				4F951370234FB72A005D251B /* SceneDelegate.swift */,
 				4F951372234FB72A005D251B /* ViewController.swift */,
+				4F951382234FB85C005D251B /* CustomControl.swift */,
 				4F951374234FB72A005D251B /* Main.storyboard */,
-				4F951377234FB72E005D251B /* Assets.xcassets */,
-				4F951379234FB72E005D251B /* LaunchScreen.storyboard */,
 				4F95137C234FB72E005D251B /* Info.plist */,
+				4F951384234FB9D9005D251B /* Resources */,
 			);
 			path = "iOS-CustomControls";
+			sourceTree = "<group>";
+		};
+		4F951384234FB9D9005D251B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F95136E234FB72A005D251B /* AppDelegate.swift */,
+				4F951377234FB72E005D251B /* Assets.xcassets */,
+				4F951370234FB72A005D251B /* SceneDelegate.swift */,
+				4F951379234FB72E005D251B /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			files = (
 				4F951373234FB72A005D251B /* ViewController.swift in Sources */,
 				4F95136F234FB72A005D251B /* AppDelegate.swift in Sources */,
+				4F951383234FB85C005D251B /* CustomControl.swift in Sources */,
 				4F951371234FB72A005D251B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
