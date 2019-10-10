@@ -100,7 +100,8 @@ class CustomControl: UIControl {
 
     func updateValue(at touch: UITouch) {
         for label in labels {
-            if label.bounds.contains(touch.location(in: label)) {
+            if label.bounds.contains(touch.location(in: label)),
+                value != label.tag {
                 value = label.tag
                 
                 label.performFlare()
