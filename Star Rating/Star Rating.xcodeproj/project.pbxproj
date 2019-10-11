@@ -13,6 +13,7 @@
 		808904DC234FF9A200F2C192 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808904DA234FF9A200F2C192 /* Main.storyboard */; };
 		808904DE234FF9A300F2C192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808904DD234FF9A300F2C192 /* Assets.xcassets */; };
 		808904E1234FF9A300F2C192 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808904DF234FF9A300F2C192 /* LaunchScreen.storyboard */; };
+		808904EB234FFA4000F2C192 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808904EA234FFA4000F2C192 /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		808904DD234FF9A300F2C192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		808904E0234FF9A300F2C192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		808904E2234FF9A300F2C192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		808904EA234FFA4000F2C192 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				808904E8234FF9B900F2C192 /* Resources */,
 				808904E9234FF9C300F2C192 /* View Controllers */,
+				808904EC234FFA4A00F2C192 /* Controlelrs */,
 				808904DA234FF9A200F2C192 /* Main.storyboard */,
 				808904E2234FF9A300F2C192 /* Info.plist */,
 			);
@@ -81,6 +84,14 @@
 				808904D8234FF9A200F2C192 /* ViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		808904EC234FFA4A00F2C192 /* Controlelrs */ = {
+			isa = PBXGroup;
+			children = (
+				808904EA234FFA4000F2C192 /* CustomControl.swift */,
+			);
+			path = Controlelrs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 			files = (
 				808904D9234FF9A200F2C192 /* ViewController.swift in Sources */,
 				808904D5234FF9A200F2C192 /* AppDelegate.swift in Sources */,
+				808904EB234FFA4000F2C192 /* CustomControl.swift in Sources */,
 				808904D7234FF9A200F2C192 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,11 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
+    
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        if ratingControl.value == 1 {
+            self.title = "User Rating: \(ratingControl.value) star"
+        } else {
+            self.title = "User Rating: \(ratingControl.value) stars"
+        }
+    }
 }
-
