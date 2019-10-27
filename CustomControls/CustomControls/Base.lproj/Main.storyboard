@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BCu-d9-T0f">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="uF6-h7-7TZ">
+            <objects>
+                <navigationController id="BCu-d9-T0f" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NEj-rp-FDd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.2023637559" green="0.8980392157" blue="0.70665930880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hI3-2A-wZt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Jh-Kc-UnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-691" y="267"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CustomControls" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oKP-lj-Xd9" customClass="CustomControl" customModule="CustomControls" customModuleProvider="target">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="lUc-F5-AVF"/>
+                                </connections>
+                            </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3VZ-FD-hjA">
+                                <rect key="frame" x="182.5" y="698" width="51" height="31"/>
+                                <connections>
+                                    <action selector="ratingSwitchAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="YjA-ML-fBe"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on for 7 star rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW5-wy-Dg8">
+                                <rect key="frame" x="117" y="749" width="180" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2023637559" green="0.8980392157" blue="0.70665930880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oKP-lj-Xd9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CNd-Ti-zEz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rW5-wy-Dg8" secondAttribute="bottom" constant="92" id="DZi-Kg-SyQ"/>
+                            <constraint firstItem="rW5-wy-Dg8" firstAttribute="top" secondItem="3VZ-FD-hjA" secondAttribute="bottom" constant="20" id="G5t-eR-xCU"/>
+                            <constraint firstItem="rW5-wy-Dg8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q0q-Z1-Ikz"/>
+                            <constraint firstItem="3VZ-FD-hjA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mjU-Qh-zf8"/>
+                            <constraint firstItem="oKP-lj-Xd9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wVo-vO-B9O"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zWm-Aq-JpE"/>
+                    <connections>
+                        <outlet property="customControl" destination="oKP-lj-Xd9" id="EJm-Lc-ka3"/>
+                        <outlet property="ratingLabelForSwitch" destination="rW5-wy-Dg8" id="ibA-eU-NeH"/>
+                        <outlet property="ratingSwitch" destination="3VZ-FD-hjA" id="HBh-QS-o81"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130" y="267"/>
+        </scene>
+    </scenes>
+</document>
