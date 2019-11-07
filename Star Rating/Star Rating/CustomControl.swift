@@ -18,8 +18,8 @@ class CustomControl: UIControl {
     let componentCount: Int = 5
     let componentDimension: CGFloat = 40
     let componentSpaceInterval: CGFloat = 8
-    let componentActiveColor = UIColor.black
-    let componentInactiveColor = UIColor.gray
+    let componentActiveColor = UIColor.systemYellow
+    let componentInactiveColor = UIColor.quaternaryLabel
     //let unselectedComponentText = "☆"
     let componentText = "★"
     
@@ -44,6 +44,7 @@ class CustomControl: UIControl {
             )
             starLabel.tag = i
             starLabel.font = .boldSystemFont(ofSize: 32)
+            starLabel.textAlignment = .center
             starLabel.text = componentText
             starLabel.textColor = i == 1 ? componentActiveColor : componentInactiveColor
             
