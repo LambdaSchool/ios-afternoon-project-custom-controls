@@ -21,6 +21,8 @@ class CustomControl: UIControl {
     let componentActive = (color: UIColor.systemYellow, text: "★")
     let componentInactive = (color: UIColor.tertiaryLabel, text: "☆")
     
+    var isLtRLocale: Bool = true
+    
     // MARK: - Init
     
     required init?(coder: NSCoder) {
@@ -29,21 +31,22 @@ class CustomControl: UIControl {
     }
     
     func setup() {
+        // set bool for locale
+        isLtRLocale = effectiveUserInterfaceLayoutDirection == .leftToRight
+        
+        // make labels
         var starLabels = [UILabel]()
-        for i in 1...componentCount {
-            let starLabel = UILabel()
-            
-            //starLabel.translatesAutoresizingMaskIntoConstraints = false
-            starLabel.frame = CGRect(
-                x: CGFloat(i) * (componentSpaceInterval + componentDimension) - componentDimension,
+        for i in 0..<componentCount {
+            let starLabel = UILabel(frame: CGRect(
+                x: CGFloat(i) * (componentSpaceInterval + componentDimension) + componentSpaceInterval,
                 y: 0,
                 width: componentDimension,
                 height: componentDimension
-            )
-            starLabel.tag = i
+            ))
+            starLabel.tag = isLtRLocale ? i + 1 : componentCount - i
             starLabel.font = .boldSystemFont(ofSize: 32)
             starLabel.textAlignment = .center
-            if i == 1 {
+            if starLabel.tag == 1 {
                 starLabel.text = componentActive.text
                 starLabel.textColor = componentActive.color
             } else {
@@ -100,10 +103,10 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         for label in components {
             if label.frame.contains(touch.location(in: self)) && label.tag != value {
+                label.performFlare(increasingSpin: label.tag > value)
                 value = label.tag
-                sendActions(for: .valueChanged)
                 updateAppearanceFromValue()
-                label.performFlare()
+                sendActions(for: .valueChanged)
             }
         }
     }
@@ -123,17 +126,21 @@ class CustomControl: UIControl {
 
 extension UIView {
     // "Flare view" animation sequence
-    func performFlare() {
+    func performFlare(increasingSpin: Bool) {
+        // set localization to change spin-direction because I'm insufferably fiddly with these details
+        let isLtRLocale = effectiveUserInterfaceLayoutDirection == .leftToRight
+        let spinDir: CGFloat = increasingSpin ? 1 : -1
+        let sign: CGFloat = isLtRLocale ? spinDir : -spinDir
+        
         let scale: CGFloat = 1.4
         let duration = 0.4
-        let sign =
         
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3) {
-                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3).scaledBy(x: sqrt(scale), y: sqrt(scale))
+                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3 * sign).scaledBy(x: sqrt(scale), y: sqrt(scale))
             }
             UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
-                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3).scaledBy(x: sqrt(scale), y: sqrt(scale))
+                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3 * sign).scaledBy(x: sqrt(scale), y: sqrt(scale))
             }
             UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
                 self.transform = .identity
