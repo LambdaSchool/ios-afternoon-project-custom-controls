@@ -124,12 +124,20 @@ class CustomControl: UIControl {
 extension UIView {
     // "Flare view" animation sequence
     func performFlare() {
-        func flare()   { transform = CGAffineTransform(scaleX: 1.2, y: 1.2) }
-        func unflare() { transform = .identity }
+        let scale: CGFloat = 1.4
+        let duration = 0.4
+        let sign =
         
-        UIView.animate(
-            withDuration: 0.1,
-            animations: { flare() },
-            completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+        UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3) {
+                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3).scaledBy(x: sqrt(scale), y: sqrt(scale))
+            }
+            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
+                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3).scaledBy(x: sqrt(scale), y: sqrt(scale))
+            }
+            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
+                self.transform = .identity
+            }
+        })
     }
 }
