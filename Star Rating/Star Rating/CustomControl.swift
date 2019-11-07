@@ -97,7 +97,7 @@ class CustomControl: UIControl {
     
     func updateValue(at touch: UITouch) {
         for label in components {
-            if label.frame.contains(touch.location(in: self)) {
+            if label.frame.contains(touch.location(in: self)) && label.tag != value {
                 value = label.tag
                 sendActions(for: .valueChanged)
                 updateAppearanceFromValue()
