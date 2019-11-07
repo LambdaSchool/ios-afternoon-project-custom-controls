@@ -13,6 +13,7 @@ class CustomControl: UIControl {
     // MARK: - Properties
     
     var value: Int = 1
+    var components = [UILabel]()
     
     let componentCount: Int = 5
     let componentDimension: CGFloat = 40
@@ -34,10 +35,12 @@ class CustomControl: UIControl {
         for i in 1...componentCount {
             let starLabel = UILabel()
             
-            starLabel.translatesAutoresizingMaskIntoConstraints = false
+            //starLabel.translatesAutoresizingMaskIntoConstraints = false
             starLabel.frame = CGRect(
-                x: CGFloat(i) * componentSpaceInterval, y: 0,
-                width: componentDimension, height: componentDimension
+                x: CGFloat(i) * (componentSpaceInterval + componentDimension) - componentDimension,
+                y: 0,
+                width: componentDimension,
+                height: componentDimension
             )
             starLabel.tag = i
             starLabel.font = .boldSystemFont(ofSize: 32)
@@ -47,6 +50,7 @@ class CustomControl: UIControl {
             addSubview(starLabel)
             starLabels.append(starLabel)
         }
+        components = starLabels
     }
     
     override var intrinsicContentSize: CGSize {
