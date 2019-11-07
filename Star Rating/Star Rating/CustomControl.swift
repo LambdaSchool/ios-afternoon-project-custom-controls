@@ -95,12 +95,15 @@ class CustomControl: UIControl {
         sendActions(for: [.touchCancel])
     }
     
+    // MARK: - Update Methods
+    
     func updateValue(at touch: UITouch) {
         for label in components {
             if label.frame.contains(touch.location(in: self)) && label.tag != value {
                 value = label.tag
                 sendActions(for: .valueChanged)
                 updateAppearanceFromValue()
+                label.performFlare()
             }
         }
     }
@@ -115,5 +118,18 @@ class CustomControl: UIControl {
                 label.text = componentInactive.text
             }
         }
+    }
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(
+            withDuration: 0.3,
+            animations: { flare() },
+            completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
 }
