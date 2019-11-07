@@ -105,8 +105,8 @@ class CustomControl: UIControl {
             if label.frame.contains(touch.location(in: self)) && label.tag != value {
                 label.performFlare(increasingSpin: label.tag > value)
                 value = label.tag
-                updateAppearanceFromValue()
                 sendActions(for: .valueChanged)
+                updateAppearanceFromValue()
             }
         }
     }
@@ -123,6 +123,8 @@ class CustomControl: UIControl {
         }
     }
 }
+
+// MARK: - Animation
 
 extension UIView {
     // "Flare view" animation sequence
