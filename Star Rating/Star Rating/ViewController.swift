@@ -10,15 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         let starText = ratingControl.value == 1 ? "star" : "stars"
         title = "User Rating: \(ratingControl.value) \(starText)"
     }
-    
 }
 
