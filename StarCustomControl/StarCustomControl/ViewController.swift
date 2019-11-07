@@ -18,7 +18,8 @@ class ViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        title = "User Rating: \(ratingControl.value) starts"
+        title = "User Rating: \(ratingControl.value)"
+        title = (ratingControl.value < 2) ? title! + " star" : title! + " stars"
     }
 }
 
