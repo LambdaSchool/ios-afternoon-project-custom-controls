@@ -18,10 +18,8 @@ class CustomControl: UIControl {
     let componentCount: Int = 5
     let componentDimension: CGFloat = 40
     let componentSpaceInterval: CGFloat = 8
-    let componentActiveColor = UIColor.systemYellow
-    let componentInactiveColor = UIColor.quaternaryLabel
-    //let unselectedComponentText = "☆"
-    let componentText = "★"
+    let componentActive = (color: UIColor.systemYellow, text: "★")
+    let componentInactive = (color: UIColor.tertiaryLabel, text: "☆")
     
     // MARK: - Init
     
@@ -45,8 +43,13 @@ class CustomControl: UIControl {
             starLabel.tag = i
             starLabel.font = .boldSystemFont(ofSize: 32)
             starLabel.textAlignment = .center
-            starLabel.text = componentText
-            starLabel.textColor = i == 1 ? componentActiveColor : componentInactiveColor
+            if i == 1 {
+                starLabel.text = componentActive.text
+                starLabel.textColor = componentActive.color
+            } else {
+                starLabel.text = componentInactive.text
+                starLabel.textColor = componentInactive.color
+            }
             
             addSubview(starLabel)
             starLabels.append(starLabel)
@@ -93,6 +96,24 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        
+        for label in components {
+            if label.frame.contains(touch.location(in: self)) {
+                value = label.tag
+                sendActions(for: .valueChanged)
+                updateAppearanceFromValue()
+            }
+        }
+    }
+    
+    func updateAppearanceFromValue() {
+        for label in components {
+            if label.tag <= value {
+                label.textColor = componentActive.color
+                label.text = componentActive.text
+            } else {
+                label.textColor = componentInactive.color
+                label.text = componentInactive.text
+            }
+        }
     }
 }
