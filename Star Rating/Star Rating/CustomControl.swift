@@ -49,16 +49,9 @@ class CustomControl: UIControl {
             starLabel.tag = isLtRLocale ? i + 1 : componentCount - i
             starLabel.font = .boldSystemFont(ofSize: 32)
             starLabel.textAlignment = .center
-            let props = isActiveComponentProps[starLabel.tag == 1]!
-            starLabel.text = props.text
-            starLabel.textColor = props.color
-//            if starLabel.tag == 1 {
-//                starLabel.text = componentActive.text
-//                starLabel.textColor = componentActive.color
-//            } else {
-//                starLabel.text = componentInactive.text
-//                starLabel.textColor = componentInactive.color
-//            }
+            let props = isActiveComponentProps[starLabel.tag == 1]
+            starLabel.text = props?.text
+            starLabel.textColor = props?.color
             
             addSubview(starLabel)
             starLabels.append(starLabel)
@@ -119,9 +112,9 @@ class CustomControl: UIControl {
     
     func updateAppearanceFromValue() {
         for label in components {
-            let props = isActiveComponentProps[label.tag <= value]!
-            label.text = props.text
-            label.textColor = props.color
+            let props = isActiveComponentProps[label.tag <= value]
+            label.text = props?.text
+            label.textColor = props?.color
         }
     }
 }
