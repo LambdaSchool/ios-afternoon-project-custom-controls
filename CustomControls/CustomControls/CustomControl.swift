@@ -77,6 +77,7 @@ class CustomControl: UIControl {
     // MARK: - Touch Tracking
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        sendActions(for: [.valueChanged])
         updateValue(at: touch)
         return true
     }
