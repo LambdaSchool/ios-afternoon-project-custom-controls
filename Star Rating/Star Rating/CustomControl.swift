@@ -18,8 +18,10 @@ class CustomControl: UIControl {
     let componentCount: Int = 5
     let componentDimension: CGFloat = 40
     let componentSpaceInterval: CGFloat = 8
-    let componentActive = (color: UIColor.systemYellow, text: "★")
-    let componentInactive = (color: UIColor.tertiaryLabel, text: "☆")
+    let isActiveComponentProps: [Bool: (color: UIColor, text: String)] = [
+        true: (text: "★", color: UIColor.systemYellow),
+        false: (text: "☆", color: UIColor.tertiaryLabel)
+    ]
     
     var isLtRLocale: Bool = true
     
@@ -37,6 +39,7 @@ class CustomControl: UIControl {
         // make labels
         var starLabels = [UILabel]()
         for i in 0..<componentCount {
+        
             let starLabel = UILabel(frame: CGRect(
                 x: CGFloat(i) * (componentSpaceInterval + componentDimension) + componentSpaceInterval,
                 y: 0,
@@ -46,13 +49,16 @@ class CustomControl: UIControl {
             starLabel.tag = isLtRLocale ? i + 1 : componentCount - i
             starLabel.font = .boldSystemFont(ofSize: 32)
             starLabel.textAlignment = .center
-            if starLabel.tag == 1 {
-                starLabel.text = componentActive.text
-                starLabel.textColor = componentActive.color
-            } else {
-                starLabel.text = componentInactive.text
-                starLabel.textColor = componentInactive.color
-            }
+            let props = isActiveComponentProps[starLabel.tag == 1]!
+            starLabel.text = props.text
+            starLabel.textColor = props.color
+//            if starLabel.tag == 1 {
+//                starLabel.text = componentActive.text
+//                starLabel.textColor = componentActive.color
+//            } else {
+//                starLabel.text = componentInactive.text
+//                starLabel.textColor = componentInactive.color
+//            }
             
             addSubview(starLabel)
             starLabels.append(starLabel)
@@ -113,13 +119,9 @@ class CustomControl: UIControl {
     
     func updateAppearanceFromValue() {
         for label in components {
-            if label.tag <= value {
-                label.textColor = componentActive.color
-                label.text = componentActive.text
-            } else {
-                label.textColor = componentInactive.color
-                label.text = componentInactive.text
-            }
+            let props = isActiveComponentProps[label.tag <= value]!
+            label.text = props.text
+            label.textColor = props.color
         }
     }
 }
