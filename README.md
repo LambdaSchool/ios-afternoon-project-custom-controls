@@ -30,7 +30,7 @@ These steps walk you through creating the new control class and adding an instan
 9. Implement `updateRating`. Set the view controller's title to the string `"User Rating: N stars"` where N is the number of stars. This number is the control's visible `value` property.
 10. **Stretch**: Fix the title so it's correct for 1 ("star" not "stars") as well as 2-5.
 
-Target-action associates callbacks with an event. IB handles that for you by calling `func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControlEvents)` on your behalf. (You can add this by hand but it's so much easier to use IB.) This callback is a combination of an instance being called (the "target") and the method on the instance (the "action").
+
 
 ## Build the control view
 
