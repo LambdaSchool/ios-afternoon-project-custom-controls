@@ -16,7 +16,7 @@ class CustomControl: UIControl {
     private let componentDimension: CGFloat = 40.0
     private let componentCount: Int = 5
     private let componentActiveColor: UIColor = .yellow
-    private let componentInactiveColor: UIColor = .gray
+    private let componentInactiveColor: UIColor = .lightGray
 
 
     override init(frame: CGRect) {
@@ -39,7 +39,7 @@ class CustomControl: UIControl {
             let label = UILabel(frame: CGRect(x: 8.0 * CGFloat(n) + CGFloat(n) * componentDimension - componentDimension, y: 0, width: componentDimension, height: componentDimension))
             print(label.frame.minX)
             label.tag = Int(n)
-            label.text = "⭑"
+            label.text = "✡︎"
             label.textAlignment = .center
             label.font = .boldSystemFont(ofSize: 32)
             
