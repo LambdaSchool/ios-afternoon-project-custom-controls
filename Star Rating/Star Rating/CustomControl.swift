@@ -101,7 +101,9 @@ class CustomControl: UIControl {
     
     func updateValue(at touch: UITouch) {
         for label in components {
-            if label.frame.contains(touch.location(in: self)) && label.tag != value {
+            if label.frame.contains(touch.location(in: self))
+                && label.tag != value
+            {
                 label.performFlare(increasingSpin: label.tag > value)
                 value = label.tag
                 sendActions(for: .valueChanged)
@@ -134,10 +136,14 @@ extension UIView {
         
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3) {
-                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3 * sign).scaledBy(x: sqrt(scale), y: sqrt(scale))
+                self.transform = self.transform
+                    .rotated(by: 2 * CGFloat.pi / 3 * sign)
+                    .scaledBy(x: sqrt(scale), y: sqrt(scale))
             }
             UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3) {
-                self.transform = self.transform.rotated(by: 2 * CGFloat.pi / 3 * sign).scaledBy(x: sqrt(scale), y: sqrt(scale))
+                self.transform = self.transform
+                    .rotated(by: 2 * CGFloat.pi / 3 * sign)
+                    .scaledBy(x: sqrt(scale), y: sqrt(scale))
             }
             UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3) {
                 self.transform = .identity
