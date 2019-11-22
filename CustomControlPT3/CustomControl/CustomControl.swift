@@ -30,25 +30,18 @@ class CustomControl: UIControl {
     func setup() {
         for i in 0..<componentCount {
             let label = UILabel()
+//            label.translatesAutoresizingMaskIntoConstraints = false
             addSubview(label)
             
             label.tag = Int(i + 1)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = "✭"
-            label.textAlignment = .center
-            
             if i == 0 {
-                label.frame = CGRect(x: componentDistance,
-                y: 0.0,
-                width: componentDimension,
-                height: componentDimension)
-
+                label.frame = CGRect(x: componentDistance, y: 0.0,
+                                     width: componentDimension, height: componentDimension)
             } else {
-                label.frame = CGRect(x: componentDimension + componentDistance * CGFloat(i),
-                y: 0.0,
-                width: componentDimension,
-                height: componentDimension)
+                label.frame = CGRect(x: (componentDimension * CGFloat(i)) + (componentDistance * CGFloat(i + 1)), y: 0.0,
+                                     width: componentDimension, height: componentDimension)
             }
+            print("\(i): \(label.frame.minX), \(label.frame.minY)" )
 
             if i == 0 {
                 label.textColor = componentActiveColor
@@ -57,8 +50,9 @@ class CustomControl: UIControl {
             }
             
             label.font = .boldSystemFont(ofSize: 32.0)
+            label.text = "✭"
+            label.textAlignment = .center
             stars.append(label)
-
         }
         
 //        for label in stars {
@@ -82,10 +76,10 @@ class CustomControl: UIControl {
 //            }
 //        }
     }
-    
-    override func draw(_ rect: CGRect) {
-        <#code#>
-    }
+//    
+//    override func draw(_ rect: CGRect) {
+//        <#code#>
+//    }
     
     override var intrinsicContentSize: CGSize {
       let componentsWidth = CGFloat(componentCount) * componentDimension
@@ -93,4 +87,6 @@ class CustomControl: UIControl {
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
+    
+    
 }
