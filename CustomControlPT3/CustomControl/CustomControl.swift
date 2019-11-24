@@ -112,13 +112,18 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
 
         for star in stars {
+            let oldValue = value
             if touchPoint.x <= star.frame.maxX && touchPoint.x >= star.frame.minX {
                 value = star.tag
                 star.textColor = componentActiveColor
                 star.performFlare()
-                sendActions(for: .valueChanged)
-            } else {
+                if value != oldValue {
+                    sendActions(for: .valueChanged)
+                }
+            } else if touchPoint.x < star.frame.minX && star.textColor == componentActiveColor {
                 star.textColor = componentInactiveColor
+                value = value - 1
+                sendActions(for: .valueChanged)
             }
         }
     }
