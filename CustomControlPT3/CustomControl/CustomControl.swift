@@ -30,7 +30,6 @@ class CustomControl: UIControl {
     func setup() {
         for i in 0..<componentCount {
             let label = UILabel()
-//            label.translatesAutoresizingMaskIntoConstraints = false
             addSubview(label)
             
             label.tag = Int(i + 1)
@@ -41,7 +40,7 @@ class CustomControl: UIControl {
                 label.frame = CGRect(x: (componentDimension * CGFloat(i)) + (componentDistance * CGFloat(i + 1)), y: 0.0,
                                      width: componentDimension, height: componentDimension)
             }
-            print("\(i): \(label.frame.minX), \(label.frame.minY)" )
+            print("\(label.tag): \(label.frame.minX), \(label.frame.minY)" )
 
             if i == 0 {
                 label.textColor = componentActiveColor
@@ -64,7 +63,12 @@ class CustomControl: UIControl {
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        updateValue(at: touch)
+        let touchPoint = touch.location(in: self)
+        sendActions(for: .touchDown)
+
+        if touchPoint.x <= bounds.maxX && touchPoint.y <= bounds.maxY {
+            updateValue(at: touch)
+        }
         return true
     }
     
@@ -72,8 +76,8 @@ class CustomControl: UIControl {
         
         let touchPoint = touch.location(in: self)
         if touchPoint.x <= bounds.maxX && touchPoint.y <= bounds.maxY {
-            updateValue(at: touch)
             sendActions(for: .touchDragInside)
+            updateValue(at: touch)
         } else {
             sendActions(for: .touchDragOutside)
         }
@@ -82,6 +86,10 @@ class CustomControl: UIControl {
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         guard let touch = touch else { return }
+        
+        defer {
+             super.endTracking(touch, with: event)
+         }
         
         let touchPoint = touch.location(in: self)
         if touchPoint.x <= bounds.maxX && touchPoint.y <= bounds.maxY {
@@ -93,18 +101,24 @@ class CustomControl: UIControl {
     }
     
     override func cancelTracking(with event: UIEvent?) {
+        defer {
+            super.cancelTracking(with: event)
+        }
         sendActions(for: .touchCancel)
     }
     
     func updateValue(at touch: UITouch) {
         
         let touchPoint = touch.location(in: self)
-        
+
         for star in stars {
-            if touchPoint.x <= star.frame.maxX && touchPoint.y <= star.frame.maxY {
-                self.value = star.tag
+            if touchPoint.x <= star.frame.maxX && touchPoint.x >= star.frame.minX {
+                value = star.tag
                 star.textColor = componentActiveColor
+                star.performFlare()
                 sendActions(for: .valueChanged)
+            } else {
+                star.textColor = componentInactiveColor
             }
         }
     }
