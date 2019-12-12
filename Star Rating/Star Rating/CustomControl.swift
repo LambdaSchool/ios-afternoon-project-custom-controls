@@ -12,7 +12,8 @@ class CustomControl: UIControl {
     var value: Int = 1
     private let componentCount = 5
     private var components: [UILabel] = []
-    private let componentsDementions: CGFloat =  40
+    private let componentsDementions: CGFloat = 50
+    
     private let selectedStar = UIColor.red
     private let unselectedStar = UIColor.green
     
@@ -38,7 +39,7 @@ class CustomControl: UIControl {
     }
     
     func setup() {
-        for component in 1 ... componentCount {
+        for component in 1 ... componentCount { /* lets us create 5 labels*/
             let label = UILabel(frame: CGRect(x: startValueX, y: 0.0, width: componentsDementions, height: componentsDementions))
             startValueX += componentsDementions + 8.0
             label.tag = component
@@ -49,7 +50,7 @@ class CustomControl: UIControl {
                 label.textColor = unselectedStar
             }
             label.textAlignment = .center
-            label.font = UIFont.boldSystemFont(ofSize: 32.0)
+            label.font = UIFont.boldSystemFont(ofSize: 70.0)
             addSubview(label)
             labelArray.append(label)
         }
