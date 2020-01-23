@@ -8,8 +8,9 @@
 
 import UIKit
 
+@IBDesignable
 class CustomControl: UIControl {
-    var value: Int = 1
+    var value: Int = 5
     private let componentCount = 5
     private var components: [UILabel] = []
     private let componentsDementions: CGFloat = 50
@@ -18,7 +19,7 @@ class CustomControl: UIControl {
     private let unselectedStar = UIColor.green
     
     var labelArray = [UILabel]()
-    var startValueX: CGFloat = 8
+    var startValueX: CGFloat = 40
     
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentsDementions
@@ -41,7 +42,7 @@ class CustomControl: UIControl {
     func setup() {
         for component in 1 ... componentCount { /* lets us create 5 labels*/
             let label = UILabel(frame: CGRect(x: startValueX, y: 0.0, width: componentsDementions, height: componentsDementions))
-            startValueX += componentsDementions + 8.0
+            startValueX += componentsDementions + 5.0
             label.tag = component
             label.text = "❅"
             if component == 1 {
@@ -50,7 +51,7 @@ class CustomControl: UIControl {
                 label.textColor = unselectedStar
             }
             label.textAlignment = .center
-            label.font = UIFont.boldSystemFont(ofSize: 70.0)
+            label.font = UIFont.boldSystemFont(ofSize: 80.0)
             addSubview(label)
             labelArray.append(label)
         }

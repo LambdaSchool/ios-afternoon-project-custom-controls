@@ -14,9 +14,9 @@ class ViewController: UIViewController {
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         if ratingControl.value == 1 {
         
-        title = "UserRaiting: \(ratingControl.value) snow flake"
+        title = "User Raiting: \(ratingControl.value) Snow Flake"
         } else {
-            title = "UserRaiting: \(ratingControl.value) snow flakes"
+            title = "User Raiting: \(ratingControl.value) Snow Flakes"
         }
         
     }
