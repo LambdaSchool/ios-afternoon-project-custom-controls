@@ -66,10 +66,30 @@ class CustomControl: UIControl {
       return CGSize(width: width, height: componentDimension)
     }
     
+    func updateValue(at touch: UITouch) {
+           //check if touches intersect with label
+           for label in labelArray {
+               if label.bounds.contains(touch.location(in: label)) {
+                   if label.tag != value {
+                       value = label.tag
+                       sendActions(for: .valueChanged)
+                   }
+               }
+           }
+           //set active labels
+           for i in 0..<value {
+               labelArray[i].textColor = componentActiveColor
+           }
+           //set inactive labels
+           for i in value..<labelArray.count {
+               labelArray[i].textColor = componentInactiveColor
+           }
+       }
+    
     //MARK: Gestures/Touches
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
-        sendActions(for: [.touchDown, .valueChanged])
+        sendActions(for: [.touchDown])
         return true
     }
     
@@ -86,10 +106,10 @@ class CustomControl: UIControl {
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-        
         if checkTouchBounds(for: touch) {
             updateValue(at: touch!) //unwrapped in checkTouchBounds
             sendActions(for: [.touchUpInside])
+            performFlare()
         } else {
             sendActions(for: [.touchUpOutside])
         }
@@ -98,26 +118,6 @@ class CustomControl: UIControl {
     
     override func cancelTracking(with event: UIEvent?) {
         sendActions(for: .touchCancel)
-    }
-    
-    func updateValue(at touch: UITouch) {
-        //check if touches intersect with label
-        for label in labelArray {
-            if label.bounds.contains(touch.location(in: label)) {
-                if label.tag != value {
-                    value = label.tag
-                    sendActions(for: .valueChanged)
-                }
-                label.textColor = componentActiveColor
-            }
-        }
-        for i in 0..<value {
-            labelArray[i].textColor = componentActiveColor
-        }
-        
-        for i in value..<labelArray.count {
-            labelArray[i].textColor = componentInactiveColor
-        }
     }
     
     //MARK: Touch Helper
