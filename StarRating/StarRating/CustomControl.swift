@@ -17,6 +17,7 @@ class CustomControl: UIControl {
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
     private let componentInactiveColor: UIColor = .gray
+    var labels: [UILabel] = []
     
     // MARK: - View Lifecycle
     
@@ -26,8 +27,6 @@ class CustomControl: UIControl {
     }
     
     func setup() {
-        var labels: [UILabel] = []
-
         for i in 1...componentCount {
             let label = UILabel()
             label.tag = i
@@ -39,22 +38,46 @@ class CustomControl: UIControl {
             let origin = CGPoint(x: offset, y: 0)
             let size = CGSize(width: componentDimension, height: componentDimension)
             label.frame = CGRect(origin: origin, size: size)
-
+            
             if label.tag == 1 {
                 label.text = "⭑"
             } else {
                 label.text = "⭒"
             }
-
+            
             labels.append(label)
             addSubview(label)
         }
     }
     
     override var intrinsicContentSize: CGSize {
-      let componentsWidth = CGFloat(componentCount) * componentDimension
-      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
-      let width = componentsWidth + componentsSpacing
-      return CGSize(width: width, height: componentDimension)
+        let componentsWidth = CGFloat(componentCount) * componentDimension
+        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let width = componentsWidth + componentsSpacing
+        return CGSize(width: width, height: componentDimension)
     }
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        
+    }
+    
+    func updateValue(at touch: UITouch) {
+        
+    }
+    
+    
 }
