@@ -10,11 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
+    
+    // MARK: - Actions
 
-
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        let rating = ratingControl.value
+        let ratingUnits = (rating == 1) ? "star" : "stars"
+        navigationController?.title = "User Rating: \(String(rating)) \(ratingUnits)"
+    }
 }
-
