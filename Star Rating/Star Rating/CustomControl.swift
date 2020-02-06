@@ -64,13 +64,23 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touchPoint: CGPoint) {
-        var value = 0
-        for starLabel in starLabels {
-            if touchPoint.x > starLabel.frame.minX {
-                value += 1
-            }
+        
+        for starLabel in starLabels where starLabel.frame.contains(touchPoint) {
+            guard value != starLabel.tag else { return }
+            
+            value = starLabel.tag
+            starLabel.textColor = componentActiveColor
+            starLabel.performFlare()
+            break
         }
-        self.value = value
+        
+        for starLabel in starLabels where starLabel.tag < value {
+            starLabel.textColor = componentActiveColor
+        }
+        for starLabel in starLabels where starLabel.tag > value {
+            starLabel.textColor = componentInactiveColor
+        }
+        sendActions(for: [.valueChanged])
     }
     
     // MARK: - Touch Tracking
@@ -78,7 +88,7 @@ class CustomControl: UIControl {
         override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
             let touchPoint = touch.location(in: self)
             updateValue(at: touchPoint)
-            sendActions(for: [.touchDown, .valueChanged])
+            sendActions(for: [.touchDown])
             return true
         }
         
@@ -86,7 +96,7 @@ class CustomControl: UIControl {
             let touchPoint = touch.location(in: self)
             if bounds.contains(touchPoint) {
                 updateValue(at: touchPoint)
-                sendActions(for: [.touchDragInside, .valueChanged])
+                sendActions(for: [.touchDragInside])
             } else {
                 sendActions(for: [.touchDragOutside])
             }
@@ -101,7 +111,7 @@ class CustomControl: UIControl {
             let touchPoint = touch.location(in: self)
             if bounds.contains(touchPoint) {
                 updateValue(at: touchPoint)
-                sendActions(for: [.touchUpInside, .valueChanged])
+                sendActions(for: [.touchUpInside])
             } else {
                 sendActions(for: [.touchUpOutside])
             }
@@ -111,4 +121,18 @@ class CustomControl: UIControl {
             sendActions(for: [.touchCancel])
         }
     
+}
+
+// MARK: - UIView Animation
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }

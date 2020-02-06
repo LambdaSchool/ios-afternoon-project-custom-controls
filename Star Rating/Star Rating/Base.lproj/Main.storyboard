@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-633" y="87"/>
         </scene>
-        <!--View Controller-->
+        <!--User Rating: 1 star-->
         <scene sceneID="e0Z-VD-cWd">
             <objects>
                 <viewController id="3yX-Eq-tNX" customClass="ViewController" customModule="Star_Rating" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="chs-Oz-8vR"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4a4-1T-nq4"/>
+                    <navigationItem key="navigationItem" title="User Rating: 1 star" id="4a4-1T-nq4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLd-cs-CA2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="xGJ-M7-aSz" userLabel="Exit" sceneMemberID="exit"/>
