@@ -14,5 +14,5 @@ class CustomControl: UIControl {
     
     // MARK: - Properties
     
-    private var value: Int = 1
+     var value: Int = 1
 }
