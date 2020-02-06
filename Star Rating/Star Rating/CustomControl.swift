@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum LanguageDirection {
+enum LanguageDirection: Int {
     case leftToRight
     case rightToLeft
 }
@@ -35,6 +35,14 @@ class CustomControl: UIControl {
     private let componentCount: Int = 5
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
+    
+    // MARK: - Actions
+
+    @IBAction func languageDirectionToggled(_ sender: UISegmentedControl) {
+        guard let selectedLanguageDirection = LanguageDirection(rawValue: sender.selectedSegmentIndex) else { return }
+        
+        languageDirection = selectedLanguageDirection
+    }
     
     // MARK: - Initializers
 

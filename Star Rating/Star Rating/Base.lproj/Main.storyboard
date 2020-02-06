@@ -38,10 +38,34 @@
                                     <action selector="updateRating:" destination="xGJ-M7-aSz" eventType="valueChanged" id="pno-WY-80K"/>
                                 </connections>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9aX-7M-6ub">
+                                <rect key="frame" x="16" y="681" width="343" height="57"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language direction:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czg-BG-gDF">
+                                        <rect key="frame" x="100.33333333333333" y="0.0" width="142.33333333333337" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O1g-EU-las">
+                                        <rect key="frame" x="69" y="26" width="205" height="32"/>
+                                        <segments>
+                                            <segment title="Left-To-Right"/>
+                                            <segment title="Right-To-Left"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="languageDirectionToggled:" destination="WLJ-0m-0an" eventType="valueChanged" id="Jic-QO-GIl"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.86795731543744592" green="0.95133416194197529" blue="0.98548370599746704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WLJ-0m-0an" firstAttribute="centerX" secondItem="F7R-4A-Z2t" secondAttribute="centerX" id="82h-jm-JXn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9aX-7M-6ub" secondAttribute="trailing" id="AoV-gh-Afz"/>
+                            <constraint firstItem="chs-Oz-8vR" firstAttribute="bottom" secondItem="9aX-7M-6ub" secondAttribute="bottom" constant="40" id="YC2-0g-SHp"/>
+                            <constraint firstItem="9aX-7M-6ub" firstAttribute="leading" secondItem="F7R-4A-Z2t" secondAttribute="leadingMargin" id="auY-Hm-qQz"/>
                             <constraint firstItem="WLJ-0m-0an" firstAttribute="centerY" secondItem="F7R-4A-Z2t" secondAttribute="centerY" id="h8A-rb-QNq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="chs-Oz-8vR"/>
