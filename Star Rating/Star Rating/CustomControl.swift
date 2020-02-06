@@ -8,20 +8,33 @@
 
 import UIKit
 
+enum LanguageDirection {
+    case leftToRight
+    case rightToLeft
+}
+
 @IBDesignable
 class CustomControl: UIControl {
     
     // MARK: - Properties
 
-    var value: Int = 1
-    var starLabels: [UILabel] = []
+    private(set) var value: Int = 1
+    
+    var languageDirection: LanguageDirection = .leftToRight {
+        didSet {
+            guard languageDirection != oldValue else { return }
+            changeRatingDirection()
+        }
+    }
     
     // MARK: - Private Properties
 
-    let componentDimension: CGFloat = 40.0
-    let componentCount: Int = 5
-    let componentActiveColor: UIColor = .black
-    let componentInactiveColor: UIColor = .gray
+    private var starLabels: [UILabel] = []
+    
+    private let componentDimension: CGFloat = 40.0
+    private let componentCount: Int = 5
+    private let componentActiveColor: UIColor = .black
+    private let componentInactiveColor: UIColor = .gray
     
     // MARK: - Initializers
 
@@ -47,12 +60,16 @@ class CustomControl: UIControl {
             label.frame = CGRect(origin: labelOrigin, size: labelSize)
             label.tag = number
             label.font = UIFont.boldSystemFont(ofSize: 32.0)
-            label.text = "☆"
+            label.text = (number == 1) ? "⭐️" : "☆"
             label.textAlignment = .center
             label.textColor = (number == 1) ? componentActiveColor : componentInactiveColor
             
             addSubview(label)
             starLabels.append(label)
+        }
+        
+        if languageDirection == .rightToLeft {
+            changeRatingDirection()
         }
     }
     
@@ -69,18 +86,31 @@ class CustomControl: UIControl {
             guard value != starLabel.tag else { return }
             
             value = starLabel.tag
-            starLabel.textColor = componentActiveColor
             starLabel.performFlare()
             break
         }
-        
-        for starLabel in starLabels where starLabel.tag < value {
-            starLabel.textColor = componentActiveColor
-        }
-        for starLabel in starLabels where starLabel.tag > value {
-            starLabel.textColor = componentInactiveColor
-        }
+        updateComponentColors()
         sendActions(for: [.valueChanged])
+    }
+    
+    private func changeRatingDirection() {
+        for starLabel in starLabels {
+            let tag = componentCount - starLabel.tag + 1
+            starLabel.tag = tag
+        }
+        updateComponentColors()
+    }
+    
+    private func updateComponentColors() {
+        for starLabel in starLabels {
+            if starLabel.tag <= value {
+                starLabel.textColor = componentActiveColor
+                starLabel.text = "⭐️"
+            } else {
+                starLabel.textColor = componentInactiveColor
+                starLabel.text = "☆"
+            }
+        }
     }
     
     // MARK: - Touch Tracking
