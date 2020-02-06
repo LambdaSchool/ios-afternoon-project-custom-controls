@@ -94,7 +94,13 @@ class CustomControl: UIControl {
             guard value != starLabel.tag else { return }
             
             value = starLabel.tag
-            starLabel.performFlare()
+            
+            switch languageDirection {
+            case .leftToRight:
+                starLabel.performFlare()
+            case .rightToLeft:
+                starLabel.performSpin()
+            }
             break
         }
         updateComponentColors()
@@ -161,16 +167,26 @@ class CustomControl: UIControl {
     
 }
 
-// MARK: - UIView Animation
+// MARK: - UIView Animations
 
 extension UIView {
-  // "Flare view" animation sequence
-  func performFlare() {
-    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
-    func unflare() { transform = .identity }
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.2,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.08) { unflare() }})
+    }
     
-    UIView.animate(withDuration: 0.3,
-                   animations: { flare() },
-                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
-  }
+    // "Spin view" animation sequence
+    func performSpin() {
+        func spin()   { layer.transform = CATransform3DMakeRotation(CGFloat.pi/2, 0, 1, 0) }
+        func unspin() { layer.transform = CATransform3DIdentity }
+        
+        UIView.animate(withDuration: 0.1,
+                       animations: { spin() },
+                       completion: { _ in UIView.animate(withDuration: 0.15) { unspin() }})
+    }
 }
