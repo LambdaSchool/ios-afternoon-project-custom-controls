@@ -13,12 +13,12 @@ class ViewController: UIViewController {
     
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        navigationItem.title = "UserRating: \(ratingControl.value) stars"
+        navigationItem.title = "User Rating: \(ratingControl.value) stars"
         
         if ratingControl.value > 1 {
-            navigationItem.title = "UserRating: \(ratingControl.value) stars"
+            navigationItem.title = "User Rating: \(ratingControl.value) stars"
         } else {
-            navigationItem.title = "UserRating: \(ratingControl.value) star"
+            navigationItem.title = "User Rating: \(ratingControl.value) star"
             
         }
     }

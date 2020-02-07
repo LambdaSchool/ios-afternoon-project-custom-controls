@@ -36,8 +36,8 @@ class CustomControl: UIControl {
             
             label.frame = CGRect(origin: labelOrigin, size: labelSize)
             label.tag = number
-            label.font = UIFont.boldSystemFont(ofSize: 24)
-            label.text = "☆t"
+            label.font = UIFont.boldSystemFont(ofSize: 64)
+            label.text = "✬"
             label.textAlignment = .center
             label.textColor = (number == 1) ? componentActiveColor : componentInactiveColor
             
@@ -59,13 +59,13 @@ class CustomControl: UIControl {
             guard value != star.tag else { return }
             
             value = star.tag
-            star.textColor = componentActiveColor
+            star.textColor = componentInactiveColor
             star.performFlare()
-            break
+           
         }
         for star in stars where star.tag < value {
             
-            star.textColor = componentInactiveColor
+            star.textColor = componentActiveColor
             
         }
         sendActions(for: [.valueChanged])
@@ -118,7 +118,7 @@ class CustomControl: UIControl {
 extension UIView {
   // "Flare view" animation sequence
   func performFlare() {
-    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func flare()   { transform = CGAffineTransform(scaleX: 2, y: 2) }
     func unflare() { transform = .identity }
     
     UIView.animate(withDuration: 0.3,
