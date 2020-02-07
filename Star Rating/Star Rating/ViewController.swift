@@ -17,12 +17,11 @@ class ViewController: UIViewController {
         updateRating(customControl)
     }
 
+
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        switch ratingControl.value {
-        case 1: navigationItem.title = "User Rating: \(ratingControl.value) star"
-        default: navigationItem.title = "User Rating: \(ratingControl.value) stars"
+        navigationItem.title = "User Rating: \(ratingControl.value) stars"
     }
-}
+    
     
 }
 

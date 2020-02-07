@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="47" y="162"/>
         </scene>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="A6y-qE-8jJ">
             <objects>
                 <viewController id="oy8-gQ-Ufn" sceneMemberID="viewController">
@@ -33,9 +33,9 @@
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tx8-PC-PrB" customClass="CustomControl" customModule="Star_Rating" customModuleProvider="target">
                                 <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="updateRating:" destination="gcv-Sr-ztg" eventType="valueChanged" id="6nJ-Gm-vov"/>
+                                    <action selector="updateRating" destination="gcv-Sr-ztg" eventType="valueChanged" id="8OI-cf-zSg"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -46,7 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8ez-PJ-R3M"/>
                     </view>
-                    <navigationItem key="navigationItem" id="FjP-y3-d1d"/>
+                    <navigationItem key="navigationItem" title="Title" id="Eps-jg-SbW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1z-eg-5vT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="gcv-Sr-ztg" userLabel="Exit" sceneMemberID="exit"/>
