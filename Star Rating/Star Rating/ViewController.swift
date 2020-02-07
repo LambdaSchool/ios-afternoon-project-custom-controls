@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var customControl: CustomControl!
+//    var customControl: CustomControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        self.navigationItem.title = ("User Rating: \(customControl.value) Stars")
+//        self.navigationItem.title = ("User Rating: \(customControl.value) Stars")
+        if ratingControl.value > 1 {
+            title = "User Rating: \(ratingControl.value) Stars"
+        } else {
+            title = "User Rating: \(ratingControl.value) Star"
+        }
     }
     
 }

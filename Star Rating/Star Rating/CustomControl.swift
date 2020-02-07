@@ -68,6 +68,77 @@ class CustomControl: UIControl {
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
- 
+    
+    
+    //MARK: -- Touch Handlers
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        
+        return true
+        
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .touchDragInside])
+        } else {
+            sendActions(for: [.touchDragOutside, .touchUpOutside])
+        }
+         
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        defer { super.endTracking(touch, with: event) }
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchUpInside, .touchDragInside])
+        } else {
+            sendActions(for: [.touchUpOutside, .touchDragOutside])
+        }
 
+        
+    }
+ 
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
+    
+    func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
+        for label in startLabels {
+            if label.frame.contains(touchPoint) {
+                value = label.tag
+                label.performFlare()
+                sendActions(for: .valueChanged)
+            }
+            if label.tag <= value {
+                label.textColor = componentActiveColor
+                label.performFlare()
+                label.text = "★"
+            } else {
+                label.textColor = componentInactiveColor
+                label.text = "☆"
+            }
+        }
+        
+    }
+
+}
+
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
