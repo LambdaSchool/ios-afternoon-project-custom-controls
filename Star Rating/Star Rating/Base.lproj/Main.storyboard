@@ -30,12 +30,26 @@
                     <view key="view" contentMode="scaleToFill" id="tQn-2x-z5c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tx8-PC-PrB" customClass="CustomControl" customModule="Star_Rating" customModuleProvider="target">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="gcv-Sr-ztg" eventType="valueChanged" id="6nJ-Gm-vov"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tx8-PC-PrB" firstAttribute="centerY" secondItem="tQn-2x-z5c" secondAttribute="centerY" id="F7v-8C-1tl"/>
+                            <constraint firstItem="tx8-PC-PrB" firstAttribute="centerX" secondItem="tQn-2x-z5c" secondAttribute="centerX" id="hT5-Dg-4NM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8ez-PJ-R3M"/>
                     </view>
                     <navigationItem key="navigationItem" id="FjP-y3-d1d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1z-eg-5vT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gcv-Sr-ztg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="846" y="161"/>
         </scene>
