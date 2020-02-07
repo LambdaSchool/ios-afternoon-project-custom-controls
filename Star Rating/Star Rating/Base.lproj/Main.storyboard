@@ -26,7 +26,7 @@
         <!--Title-->
         <scene sceneID="A6y-qE-8jJ">
             <objects>
-                <viewController id="oy8-gQ-Ufn" sceneMemberID="viewController">
+                <viewController id="oy8-gQ-Ufn" customClass="ViewController" customModule="Star_Rating" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tQn-2x-z5c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
