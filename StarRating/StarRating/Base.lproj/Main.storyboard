@@ -14,12 +14,26 @@
                     <view key="view" contentMode="scaleToFill" id="Shg-jC-4oc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="isi-tz-QbG" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
+                                <rect key="frame" x="20" y="384" width="374" height="128"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="d61-Hb-DvL" eventType="valueChanged" id="XLE-xD-flY"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="isi-tz-QbG" firstAttribute="centerY" secondItem="Shg-jC-4oc" secondAttribute="centerY" id="a3w-uF-JqB"/>
+                            <constraint firstItem="isi-tz-QbG" firstAttribute="centerX" secondItem="Shg-jC-4oc" secondAttribute="centerX" id="bgQ-Nh-wk2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AeI-bU-QZy"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qwu-GF-Ud1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPb-rY-XhB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="d61-Hb-DvL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1502.8985507246377" y="200.89285714285714"/>
         </scene>
