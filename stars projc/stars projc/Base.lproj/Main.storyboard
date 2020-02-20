@@ -32,8 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-j5-y20" customClass="CustomControl" customModule="stars_projc" customModuleProvider="target">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="40" y="384" width="334" height="128"/>
                                 <connections>
                                     <action selector="updateRating:" destination="xbd-7f-BUc" eventType="valueChanged" id="hRQ-TY-7tm"/>
                                 </connections>
@@ -41,6 +40,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Yyp-j5-y20" firstAttribute="leading" secondItem="Exk-Kl-Ke4" secondAttribute="leading" constant="40" id="JJx-vw-upc"/>
+                            <constraint firstItem="Exk-Kl-Ke4" firstAttribute="trailing" secondItem="Yyp-j5-y20" secondAttribute="trailing" constant="40" id="h8s-AZ-KwE"/>
                             <constraint firstItem="Yyp-j5-y20" firstAttribute="centerY" secondItem="Kge-Dp-ywn" secondAttribute="centerY" id="nKS-E3-qKW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Exk-Kl-Ke4"/>
@@ -49,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D44-6S-vJl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-291" y="-256"/>
+            <point key="canvasLocation" x="-291.304347826087" y="-256.47321428571428"/>
         </scene>
     </scenes>
 </document>
