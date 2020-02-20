@@ -8,7 +8,8 @@
 
 import UIKit
 
-class CustomControl: UIControl {
+
+ @IBDesignable class CustomControl: UIControl {
 
     var value : Int  = 1
     
@@ -70,6 +71,42 @@ class CustomControl: UIControl {
         
     }
     
-   
+   // MARK: - Touch Tracking
+    func updateValue(at touch: UITouch) {
+       // TODO
+    }
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        let touch = touch.location(in: self)
+        
+        return true
+    }
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchDragInside,.touchDragOutside ])
+        } else {
+            sendActions(for: [.touchUpOutside,.touchDragOutside])
+        }
+        return true
+    }
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        defer {  super.endTracking(touch, with: event)  }
+           guard let touch = touch else { return }
+                
+                let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            
+        }
+    
+        
+    }
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
 
 }

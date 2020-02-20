@@ -31,9 +31,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="co8-H8-nA9" customClass="CustomControl" customModule="RatingCustomControl" customModuleProvider="target">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="co8-H8-nA9" customClass="CustomControl" customModule="RatingCustomControl" customModuleProvider="target">
+                                <rect key="frame" x="83" y="428" width="248" height="40"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="updateRating:" destination="vC9-3u-kH5" eventType="valueChanged" id="lgm-Qv-8dd"/>
                                 </connections>
@@ -51,7 +51,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6A-fJ-di1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="vC9-3u-kH5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-648" y="119"/>
+            <point key="canvasLocation" x="-272" y="94"/>
         </scene>
     </scenes>
 </document>
