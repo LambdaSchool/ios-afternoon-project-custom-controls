@@ -16,5 +16,11 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        title = ratingControl.value == 1 ? "User Rating : \(ratingControl.value) star" : "User Rating : \(ratingControl.value) stars"
+    }
+    
+    
+    
 }
 
