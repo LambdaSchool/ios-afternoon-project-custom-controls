@@ -17,7 +17,7 @@ class CustomControl: UIControl {
     private var componentDimension: CGFloat = 40.0
     private var componentCount: CGFloat = 5
     private var componentActiveColor: UIColor = .black
-    private var componentInactiveColo: UIColor = .gray
+    private var componentInactiveColor: UIColor = .gray
     var labelArray: [UILabel] = []
     
     // MARK: Initializers
@@ -35,9 +35,19 @@ class CustomControl: UIControl {
     // MARK: - Methods
     
     func updateValue(at touch: UITouch){
-        
+        for label in labelArray{
+            let touchPoint = touch.location(in: self)
+            if label.frame.contains(touchPoint){
+                value = label.tag
+                label.textColor = componentActiveColor
+                sendActions(for: .valueChanged)
+            }
+            if label.tag <= value{
+                label.performFlare()
+            }
+        }
     }
-
+    
     // MARK: - Set Up Methods
     
     override var intrinsicContentSize: CGSize {
@@ -59,13 +69,14 @@ class CustomControl: UIControl {
                                                  y: 0,
                                                  width: componentDimension,
                                                  height: componentDimension))
-        addSubview(newLabel)
-            
+            addSubview(newLabel)
             newLabel.tag = index
             newLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
             newLabel.text = "⭐️"
             if newLabel.tag == 1 {
                 newLabel.textColor = componentActiveColor
+            } else {
+                newLabel.textColor = componentInactiveColor
             }
             labelArray.append(newLabel)
         }
@@ -75,8 +86,6 @@ class CustomControl: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
-        sendActions(for: [.touchDown,
-                          .valueChanged])
         return true
     }
     
@@ -85,8 +94,9 @@ class CustomControl: UIControl {
         if bounds.contains(touchPoint){
             sendActions(for: [.touchDragInside])
             updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchDragOutside])
         }
-        sendActions(for: [.touchDragOutside])
         return true
     }
     
@@ -96,8 +106,9 @@ class CustomControl: UIControl {
         if bounds.contains(touchPoint){
             sendActions(for: [.touchUpInside])
             updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchUpOutside])
         }
-        sendActions(for: [.touchUpOutside])
     }
     
     override func cancelTracking(with event: UIEvent?) {

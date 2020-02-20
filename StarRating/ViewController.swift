@@ -18,10 +18,21 @@ class ViewController: UIViewController {
     @IBAction func customCell(_ sender: CustomControl) {
 
         if sender.value == 1 {
-            self.title = "User Rating: \(sender.value) star"
+            self.title = "User Rating: 1 star"
             } else {
             self.title = "User Rating: \(sender.value) stars"
             }
     }
+}
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
     
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }

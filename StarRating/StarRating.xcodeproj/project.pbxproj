@@ -59,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				726C3B2023FF2087004B5FEC /* View Controllers */,
-				726C3B1D23FF1C70004B5FEC /* Custom Views */,
 				726C3B1C23FF1C4D004B5FEC /* Custom Controls */,
 				726C3B0823FF1BB3004B5FEC /* AppDelegate.swift */,
 				726C3B0A23FF1BB3004B5FEC /* SceneDelegate.swift */,
@@ -77,13 +76,6 @@
 				726C3B1E23FF1CB7004B5FEC /* CustomControl.swift */,
 			);
 			path = "Custom Controls";
-			sourceTree = "<group>";
-		};
-		726C3B1D23FF1C70004B5FEC /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		726C3B2023FF2087004B5FEC /* View Controllers */ = {
