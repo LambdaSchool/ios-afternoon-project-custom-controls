@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSE-vn-fKD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="ixi-j1-wnB">
+            <objects>
+                <navigationController id="pSE-vn-fKD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zps-2x-LZ3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xbd-7f-BUc" kind="relationship" relationship="rootViewController" id="XLC-A6-gpa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2jd-cy-Eeq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1177" y="-256"/>
+        </scene>
+        <!--Stars View Controller-->
+        <scene sceneID="Ieu-Qr-rPu">
+            <objects>
+                <viewController id="xbd-7f-BUc" customClass="StarsViewController" customModule="stars_projc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kge-Dp-ywn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-j5-y20" customClass="CustomControl" customModule="stars_projc" customModuleProvider="target">
+                                <rect key="frame" x="40" y="384" width="334" height="128"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="xbd-7f-BUc" eventType="valueChanged" id="hRQ-TY-7tm"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Yyp-j5-y20" firstAttribute="centerX" secondItem="Kge-Dp-ywn" secondAttribute="centerX" id="6CW-MB-Mqk"/>
+                            <constraint firstItem="Yyp-j5-y20" firstAttribute="centerY" secondItem="Kge-Dp-ywn" secondAttribute="centerY" id="T37-Xv-R7u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Exk-Kl-Ke4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="REa-n7-c6D"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D44-6S-vJl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-291.304347826087" y="-256.47321428571428"/>
+        </scene>
+    </scenes>
+</document>
