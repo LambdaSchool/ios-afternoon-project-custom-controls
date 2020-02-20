@@ -40,9 +40,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Yyp-j5-y20" firstAttribute="leading" secondItem="Exk-Kl-Ke4" secondAttribute="leading" constant="40" id="JJx-vw-upc"/>
-                            <constraint firstItem="Exk-Kl-Ke4" firstAttribute="trailing" secondItem="Yyp-j5-y20" secondAttribute="trailing" constant="40" id="h8s-AZ-KwE"/>
-                            <constraint firstItem="Yyp-j5-y20" firstAttribute="centerY" secondItem="Kge-Dp-ywn" secondAttribute="centerY" id="nKS-E3-qKW"/>
+                            <constraint firstItem="Yyp-j5-y20" firstAttribute="centerX" secondItem="Kge-Dp-ywn" secondAttribute="centerX" id="6CW-MB-Mqk"/>
+                            <constraint firstItem="Yyp-j5-y20" firstAttribute="centerY" secondItem="Kge-Dp-ywn" secondAttribute="centerY" id="T37-Xv-R7u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Exk-Kl-Ke4"/>
                     </view>

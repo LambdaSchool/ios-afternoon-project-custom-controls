@@ -13,7 +13,7 @@ class CustomControl: UIControl {
     
     // MARK: - Properties
     var value = 1
-    
+    var starArray: Array<UILabel> = []
     let componentDimension: CGFloat = 40
     let componentCount: Int = 5
     let componentActiveColor: UIColor = .black
@@ -47,7 +47,59 @@ class CustomControl: UIControl {
             }else {
                 label.textColor = componentInactiveColor
             }
+            starArray.append(label)
             self.addSubview(label)
     }
   }
+    func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
+        for label in starArray {
+            if label.frame.contains(touchPoint) {
+                value = label.tag
+                for label in starArray {
+                if label.tag <= value{
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+              }
+            }
+         }
+      }
+   }
 }
+
+// MARK: - Extensions
+
+extension CustomControl {
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+            updateValue(at: touch)
+            return true
+        }
+
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+            let touchPoint = touch.location(in: self)
+            if bounds.contains(touchPoint) {
+                updateValue(at: touch)
+                sendActions(for: [.touchDragInside, .valueChanged])
+            }
+            return true
+        }
+
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+            defer { super.endTracking(touch, with: event) }
+            guard let touch = touch else { return }
+            let touchPoint = touch.location(in: self)
+            if bounds.contains(touchPoint) {
+
+                sendActions(for: [.touchUpInside, .touchUpOutside, .valueChanged])
+            } else {
+                sendActions(for: .touchUpOutside)
+            }
+            value = 1
+        }
+
+    override func cancelTracking(with event: UIEvent?) {
+            sendActions(for: .touchCancel)
+        }
+    }

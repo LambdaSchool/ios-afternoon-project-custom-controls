@@ -13,14 +13,14 @@ class StarsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         title = "1 Star"
+         title = "User Rating: 1 Star"
     }
     
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         if ratingControl.value < 2 {
-                 self.title = "\(ratingControl.value) star"
+                 self.title = "User Rating: \(ratingControl.value) star"
              } else {
-                 self.title = "\(ratingControl.value) stars"
+                 self.title = "User Rating: \(ratingControl.value) stars"
         }
     }
 }
