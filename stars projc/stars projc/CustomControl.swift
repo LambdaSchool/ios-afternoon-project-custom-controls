@@ -55,6 +55,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         for label in starArray {
             if label.frame.contains(touchPoint) {
+                label.flareView()
                 value = label.tag
                 for label in starArray {
                 if label.tag <= value{
@@ -64,7 +65,7 @@ class CustomControl: UIControl {
               }
             }
          }
-      }
+       }
    }
 }
 
@@ -103,3 +104,15 @@ extension CustomControl {
             sendActions(for: .touchCancel)
         }
     }
+
+extension UIView {
+    // "Flare View"
+    func flareView() {
+        func flare() { transform = CGAffineTransform(scaleX: 1.5, y: 1.5) }
+        func unflare() { transform = .identity }
+        
+     UIView.animate(withDuration: 0.5,
+                              animations: { flare() },
+                              completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+           }
+}
