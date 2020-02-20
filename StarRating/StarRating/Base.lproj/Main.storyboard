@@ -17,7 +17,7 @@
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="isi-tz-QbG" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
                                 <rect key="frame" x="20" y="384" width="374" height="128"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="updateRating:" destination="d61-Hb-DvL" eventType="valueChanged" id="XLE-xD-flY"/>
                                 </connections>
