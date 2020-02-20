@@ -26,16 +26,15 @@
         <!--View Controller-->
         <scene sceneID="3jU-Ly-Efo">
             <objects>
-                <viewController id="qps-0j-09j" sceneMemberID="viewController">
+                <viewController id="qps-0j-09j" customClass="ViewController" customModule="StarRating" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0QU-Qx-EBi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYk-y7-HJo" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
                                 <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="updateRating:" destination="6Rv-CW-Mua" eventType="valueChanged" id="geP-uX-tZG"/>
+                                    <action selector="customCell:" destination="qps-0j-09j" eventType="valueChanged" id="Gon-6R-DbU"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -49,7 +48,6 @@
                     <navigationItem key="navigationItem" id="LMp-Pl-dqS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azU-x7-SLM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="6Rv-CW-Mua" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-159" y="184"/>
         </scene>
