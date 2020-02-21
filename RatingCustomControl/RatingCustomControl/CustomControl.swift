@@ -81,23 +81,15 @@ class CustomControl: UIControl {
      var isTrigged = true
    // MARK: - Touch Tracking
     private func updateValue(at touch: UITouch) {
-      
-      
         for label in labels {
-          
         label.textColor = label.tag <= value ? componentActiveColor : componentInActiveColor
-            
             
             let touchPoint = touch.location(in: label)
             if label.bounds.contains(touchPoint) {
-     
                 label.performFlare()
                   value = label.tag
               sendActions(for: [.valueChanged])
-                
-         
         }
-       
     }
        
                        
