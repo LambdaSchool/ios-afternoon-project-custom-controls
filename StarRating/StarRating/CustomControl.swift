@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+@IBDesignable
 class CustomControl: UIControl {
     
     //MARK: - Variables
@@ -34,10 +34,9 @@ class CustomControl: UIControl {
     func setup() {
         for number in 1...componentCount {
             let label = UILabel(frame: CGRect(x: CGFloat(number) * 8 + (CGFloat(number) - 1) * componentDimension, y: 0.0, width: componentDimension, height: componentDimension))
-            label.translatesAutoresizingMaskIntoConstraints = false
             label.tag = number
             label.font = UIFont.boldSystemFont(ofSize: 32.0)
-            label.text = (number == 1) ? "🌟" : "☆"
+            label.text = (number == 1) ? "⭐️" : "☆"
             label.textAlignment = .center
             label.textColor = (number == 1) ? componentActiveColor : componentInactiveColor
             starArray.append(label)
@@ -46,7 +45,25 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        
+        for star in starArray where star.frame.contains(touch.location(in: self)) {
+            guard value != star.tag else { return }
+            value = star.tag
+            sendActions(for: [.valueChanged])
+            updateStar()
+            star.performFlare()
+        }
+    }
+    
+    func updateStar() {
+        for starLabel in starArray {
+            if starLabel.tag <= value {
+                starLabel.textColor = componentActiveColor
+                starLabel.text = "⭐️"
+            } else {
+                starLabel.textColor = componentInactiveColor
+                starLabel.text = "☆"
+            }
+        }
     }
     
     // This tells Auto Layout how big our custom control should be
@@ -90,4 +107,15 @@ class CustomControl: UIControl {
     override func cancelTracking(with event: UIEvent?) {
         sendActions(for: [.touchCancel])
     }
+}
+
+extension UIView {
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
