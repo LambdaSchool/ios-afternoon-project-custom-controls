@@ -9,7 +9,8 @@
 import UIKit
 
 
- @IBDesignable class CustomControl: UIControl {
+// @IBDesignable
+class CustomControl: UIControl {
 
     var value : Int  = 1
     
@@ -27,7 +28,7 @@ import UIKit
     private let componentActiveColor : UIColor = .black
     
     private let componentInActiveColor : UIColor = .gray
-    
+   
     var labels : [UILabel] = []
     
     override init(frame: CGRect) {
@@ -47,9 +48,10 @@ import UIKit
             label.tag = i
             label.frame.size  = CGSize(width: componentDimension, height: componentDimension)
             label.font = UIFont.boldSystemFont(ofSize: 32)
-            label.text = "⭐️"
+            label.text = "⭑"
             label.textAlignment = .center
-            label.textColor = label.tag == 1 ? componentActiveColor : componentInActiveColor
+            label.textColor = componentInActiveColor
+      
             switch label.tag {
             case 1:
                 label.frame.origin = CGPoint(x: 8.0, y: 0)
@@ -72,34 +74,62 @@ import UIKit
     }
     
    // MARK: - Touch Tracking
-    func updateValue(at touch: UITouch) {
+    private func updateValue(at touch: UITouch) {
        // TODO
+        for label in labels {
+            if label.frame.contains(touch.location(in: self)) {
+                //
+                 value = label.tag
+                var isTrigged = true
+        
+               
+                
+                if isTrigged {
+                    
+                    isTrigged = false
+                    label.textColor = componentActiveColor
+                    
+                    
+                } else {
+                    isTrigged = true
+                    label.textColor = componentInActiveColor
+                   
+                    
+                   
+                }
+                
+                
+            }
+        }
+       
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        updateValue(at: touch)
-        let touch = touch.location(in: self)
-        
+      
+          updateValue(at: touch)
+      
         return true
     }
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
-            sendActions(for: [.touchDragInside,.touchDragOutside ])
+            sendActions(for: [.touchDragInside ])
         } else {
-            sendActions(for: [.touchUpOutside,.touchDragOutside])
+            sendActions(for: [.touchDragOutside])
         }
         return true
     }
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        defer {  super.endTracking(touch, with: event)  }
-           guard let touch = touch else { return }
-                
-                let touchPoint = touch.location(in: self)
+         defer { super.endTracking(touch, with: event) }
+        guard let touch = touch else { return }
+        
+        let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
-            
+            sendActions(for: [.touchUpInside])
+        } else {
+            sendActions(for: .touchUpOutside)
         }
     
         
@@ -109,4 +139,15 @@ import UIKit
     }
     
 
+}
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }

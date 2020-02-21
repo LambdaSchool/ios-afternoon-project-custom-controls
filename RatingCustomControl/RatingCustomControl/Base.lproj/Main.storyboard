@@ -26,16 +26,16 @@
         <!--View Controller-->
         <scene sceneID="Se7-gi-C53">
             <objects>
-                <viewController id="kLt-TG-xl0" sceneMemberID="viewController">
+                <viewController id="kLt-TG-xl0" customClass="ViewController" customModule="RatingCustomControl" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d3s-EN-SxY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="co8-H8-nA9" customClass="CustomControl" customModule="RatingCustomControl" customModuleProvider="target">
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="co8-H8-nA9" customClass="CustomControl" customModule="RatingCustomControl" customModuleProvider="target">
                                 <rect key="frame" x="83" y="428" width="248" height="40"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="updateRating:" destination="vC9-3u-kH5" eventType="valueChanged" id="lgm-Qv-8dd"/>
+                                    <action selector="updateRating:" destination="kLt-TG-xl0" eventType="valueChanged" id="J0S-7p-LC8"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -49,7 +49,6 @@
                     <navigationItem key="navigationItem" id="J2x-e7-SU2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6A-fJ-di1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="vC9-3u-kH5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-272" y="94"/>
         </scene>
