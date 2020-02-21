@@ -19,6 +19,7 @@ class CustomControl: UIControl {
     private var componentActiveColor: UIColor = .black
     private var componentInactiveColor: UIColor = .gray
     var labelArray: [UILabel] = []
+    var isAnimating = false
     
     // MARK: Initializers
     
@@ -58,14 +59,11 @@ class CustomControl: UIControl {
     }
     
     private func setup(){
-        
         frame = CGRect(origin: .zero, size: intrinsicContentSize)
-        
-        
         for index in 1...Int(componentCount) {
-            let adjustedConstent = CGFloat(index - 1) * componentDimension + CGFloat(index) * 8.0
+            let adjustedConstant = CGFloat(index - 1) * componentDimension + CGFloat(index) * 8.0
             
-            let newLabel = UILabel(frame: CGRect(x: adjustedConstent,
+            let newLabel = UILabel(frame: CGRect(x: adjustedConstant,
                                                  y: 0,
                                                  width: componentDimension,
                                                  height: componentDimension))
@@ -114,5 +112,4 @@ class CustomControl: UIControl {
     override func cancelTracking(with event: UIEvent?) {
         sendActions(for: .touchCancel)
     }
-    
 }
