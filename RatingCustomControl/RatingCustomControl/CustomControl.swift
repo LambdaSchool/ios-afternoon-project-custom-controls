@@ -12,7 +12,7 @@ import UIKit
 // @IBDesignable
 class CustomControl: UIControl {
 
-    var value : Int  = 1
+     var value : Int  = 1
     
     override var intrinsicContentSize: CGSize {
       let componentsWidth = CGFloat(componentCount) * componentDimension
@@ -42,7 +42,7 @@ class CustomControl: UIControl {
     }
     
     private func setup() {
-        for i in 1 ... 5 {
+        for i in 1 ... componentCount {
             let label = UILabel()
           
             label.tag = i
@@ -50,8 +50,8 @@ class CustomControl: UIControl {
             label.font = UIFont.boldSystemFont(ofSize: 32)
             label.text = "⭑"
             label.textAlignment = .center
-            label.textColor = componentInActiveColor
-      
+            label.textColor = label.tag == 1 ? componentActiveColor : componentInActiveColor
+            
             switch label.tag {
             case 1:
                 label.frame.origin = CGPoint(x: 8.0, y: 0)
@@ -76,28 +76,18 @@ class CustomControl: UIControl {
    // MARK: - Touch Tracking
     private func updateValue(at touch: UITouch) {
        // TODO
+        var isTrigged = true
+      
         for label in labels {
             if label.frame.contains(touch.location(in: self)) {
                 //
-                 value = label.tag
-                var isTrigged = true
-        
-               
+                value = label.tag
+                label.performFlare()
                 
-                if isTrigged {
-                    
-                    isTrigged = false
-                    label.textColor = componentActiveColor
-                    
-                    
-                } else {
-                    isTrigged = true
-                    label.textColor = componentInActiveColor
-                   
-                    
-                   
-                }
-                
+                label.textColor = isTrigged ? componentActiveColor : componentInActiveColor
+
+                isTrigged.toggle()
+               sendActions(for: [.valueChanged])
                 
             }
         }
