@@ -20,7 +20,7 @@ class CustomControl: UIControl {
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
-    
+    var isTrigged = true
     private let componentDimension : CGFloat = 40.0
     
     private let componentCount  = 5
@@ -76,7 +76,7 @@ class CustomControl: UIControl {
    // MARK: - Touch Tracking
     private func updateValue(at touch: UITouch) {
        // TODO
-        var isTrigged = true
+      
       
         for label in labels {
             if label.frame.contains(touch.location(in: self)) {
@@ -85,8 +85,7 @@ class CustomControl: UIControl {
                 label.performFlare()
                 
                 label.textColor = isTrigged ? componentActiveColor : componentInActiveColor
-
-                isTrigged.toggle()
+                isTrigged = !isTrigged
                sendActions(for: [.valueChanged])
                 
             }
