@@ -30,7 +30,7 @@ class CustomControl: UIControl {
         setup()
     }
     
-    //MARK: - Functions
+    //MARK: - SetUp Function
     func setup() {
         for number in 1...componentCount {
             let label = UILabel(frame: CGRect(x: CGFloat(number) * 8 + (CGFloat(number) - 1) * componentDimension, y: 0.0, width: componentDimension, height: componentDimension))
@@ -44,6 +44,7 @@ class CustomControl: UIControl {
         }
     }
     
+    //MARK: - Update Functions
     func updateValue(at touch: UITouch) {
         for star in starArray where star.frame.contains(touch.location(in: self)) {
             guard value != star.tag else { return }
@@ -109,13 +110,14 @@ class CustomControl: UIControl {
     }
 }
 
+// MARK: - Flare Extension
 extension UIView {
-  func performFlare() {
-    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
-    func unflare() { transform = .identity }
-    
-    UIView.animate(withDuration: 0.3,
-                   animations: { flare() },
-                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
-  }
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+    }
 }

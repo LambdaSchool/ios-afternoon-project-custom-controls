@@ -15,10 +15,5 @@ class ViewController: UIViewController {
         let ratingUnits = (rating == 1) ? "star" : "stars"
         navigationItem.title = "User Rating: \(String(rating)) \(ratingUnits)"
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }
 
