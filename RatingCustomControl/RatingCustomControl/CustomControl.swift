@@ -20,7 +20,7 @@ class CustomControl: UIControl {
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
-    var isTrigged = true
+   
     private let componentDimension : CGFloat = 40.0
     
     private let componentCount  = 5
@@ -43,15 +43,19 @@ class CustomControl: UIControl {
     
     private func setup() {
         for i in 1 ... componentCount {
-            let label = UILabel()
-          
-            label.tag = i
-            label.frame.size  = CGSize(width: componentDimension, height: componentDimension)
-            label.font = UIFont.boldSystemFont(ofSize: 32)
-            label.text = "⭑"
-            label.textAlignment = .center
-            label.textColor = label.tag == 1 ? componentActiveColor : componentInActiveColor
+            let label : UILabel = {
+                let label = UILabel()
+                label.tag = i
+                label.frame.size  = CGSize(width: componentDimension, height: componentDimension)
+                label.font = UIFont.boldSystemFont(ofSize: 32)
+                label.text = "⭑"
+                label.textAlignment = .center
+                label.textColor = label.tag == 1 ? componentActiveColor : componentInActiveColor
+                return label
+                
+            }()
             
+          
             switch label.tag {
             case 1:
                 label.frame.origin = CGPoint(x: 8.0, y: 0)
@@ -73,28 +77,36 @@ class CustomControl: UIControl {
         
     }
     
+    
+     var isTrigged = true
    // MARK: - Touch Tracking
     private func updateValue(at touch: UITouch) {
        // TODO
       
       
         for label in labels {
-            if label.frame.contains(touch.location(in: self)) {
-                //
-                value = label.tag
+             
+            let touchPoint = touch.location(in: label)
+            if label.bounds.contains(touchPoint) {
+
+               
                 label.performFlare()
+                value = label.tag
                 
-                label.textColor = isTrigged ? componentActiveColor : componentInActiveColor
-                isTrigged = !isTrigged
-               sendActions(for: [.valueChanged])
+                for index in labels {
+                       index.textColor = index.tag <= value ? componentActiveColor : componentInActiveColor
+                }
+       
+                   sendActions(for: [.valueChanged])
                 
-            }
+         
         }
        
     }
-    
+       
+                       
+    }
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-      
           updateValue(at: touch)
       
         return true
@@ -103,7 +115,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
-            sendActions(for: [.touchDragInside ])
+            sendActions(for: [.touchUpInside])
         } else {
             sendActions(for: [.touchDragOutside])
         }
