@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.title = "User Rating: 0 stars"
     }
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
