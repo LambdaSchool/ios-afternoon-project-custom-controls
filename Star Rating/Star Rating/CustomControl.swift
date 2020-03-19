@@ -32,13 +32,27 @@ class CustomControl: UIControl {
             let newStar = UILabel()
             newStar.tag = count
             
+            // Place them in the view
             spacer += componentSpace
             newStar.frame = CGRect(origin: CGPoint(x: spacer, y: 0),
                                    size: CGSize(width: componentDimension, height: componentDimension))
             spacer += componentSpace
 
+            // Set the font
+            newStar.font = .boldSystemFont(ofSize: 32.0)
+            newStar.text = "★" // ☆
+            newStar.textAlignment = .center
+            newStar.textColor = count > 1 ? componentInactiveColor : componentActiveColor
+            
             addSubview(newStar)
             stars.append(newStar)
         }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+      let componentsWidth = CGFloat(componentCount) * componentDimension
+      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+      let width = componentsWidth + componentsSpacing
+      return CGSize(width: width, height: componentDimension)
     }
 }
