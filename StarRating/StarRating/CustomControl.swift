@@ -20,6 +20,7 @@ class CustomControl: UIControl {
         }
     }
     var labels: [UILabel] = []
+    var rightToLeft: Bool = true
     
     // MARK: - Private Properties
     
@@ -46,7 +47,12 @@ class CustomControl: UIControl {
         
         for tag in 0..<componentCount {
             let newLabel = UILabel()
-            newLabel.tag = tag + 1
+            if !rightToLeft {
+                newLabel.tag = tag + 1
+            } else {
+                newLabel.tag = componentCount - tag
+            }
+            
             if tag + 1 == 1 {
                 newLabel.textColor = componentActiveColor
                 newLabel.frame = CGRect(x: 8.0, y: 0.0, width: componentDimension, height: componentDimension)
