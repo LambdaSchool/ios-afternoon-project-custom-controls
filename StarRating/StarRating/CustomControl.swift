@@ -37,7 +37,7 @@ class CustomControl: UIControl {
     // MARK: - Methods
     
     private func setup() {
-        for tag in 0...4 {
+        for tag in 0..<componentCount {
             let newLabel = UILabel()
             newLabel.tag = tag + 1
             if tag + 1 == 1 {
@@ -63,13 +63,30 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
         
+        for tag in 0..<labels.count {
+            if labels[tag].bounds.contains(touchPoint) {
+                value = labels[tag].tag
+                print("Touched label \(tag)")
+                for update in 0..<labels.count {
+                    if labels[update].tag <= tag + 1 {
+                        labels[update].textColor = componentActiveColor
+                    } else {
+                        labels[update].textColor = componentInactiveColor
+                    }
+                }
+                sendActions(for: [.valueChanged])
+                break
+            }
+        }
     }
     
     // MARK: - Control Methods
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
+        print("Begin tracking")
         return true
     }
     
@@ -78,6 +95,7 @@ class CustomControl: UIControl {
         
         if self.bounds.contains(touchPoint) {
             updateValue(at: touch)
+            print("Continue tracking")
             sendActions(for: [.touchDragInside])
         } else {
             sendActions(for: [.touchDragOutside])
@@ -93,6 +111,7 @@ class CustomControl: UIControl {
         
         if self.bounds.contains(touchPoint) {
             updateValue(at: touch)
+            print("end tracking")
             sendActions(for: [.touchUpInside])
         } else {
             sendActions(for: [.touchUpOutside])
