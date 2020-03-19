@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+var countFoo: Int = 1
+
 class CustomControl: UIControl {
 
     // MARK: - Properties
@@ -85,7 +87,16 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touch: UITouch) {
+        print("updateValue \(countFoo)")
+        countFoo += 1
         
+        let touchPoint = touch.location(in: self)
+
+        for star in stars {
+            if star.frame.contains(touchPoint) {
+                print("Star \(star.tag)")
+            }
+        }
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
@@ -107,4 +118,16 @@ class CustomControl: UIControl {
         sendActions(for: [.touchCancel])
     }
     
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+    }
 }
