@@ -62,4 +62,46 @@ class CustomControl: UIControl {
         return CGSize(width: width, height: componentDimension)
     }
     
+    private func updateValue(at touch: UITouch) {
+        
+    }
+    
+    // MARK: - Control Methods
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        
+        if self.bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchDragInside])
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+        
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        
+        let touchPoint = touch.location(in: self)
+        
+        if self.bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchUpInside])
+        } else {
+            sendActions(for: [.touchUpOutside])
+        }
+        
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
 }
