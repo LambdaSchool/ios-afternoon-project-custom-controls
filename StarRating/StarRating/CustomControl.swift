@@ -13,7 +13,12 @@ class CustomControl: UIControl {
     
     // MARK: - Properties
     
-    var value: Int = 1
+    var value: Int = 1 {
+        didSet {
+            print("didSet")
+            sendActions(for: [.valueChanged])
+        }
+    }
     var labels: [UILabel] = []
     
     // MARK: - Private Properties
@@ -65,12 +70,14 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touch: UITouch) {
+        var updateValue = value
         
         for tag in 0..<labels.count {
-            
             let touchPoint = touch.location(in: labels[tag])
             if labels[tag].bounds.contains(touchPoint) {
-                value = labels[tag].tag
+                
+                updateValue = labels[tag].tag
+                
                 for update in 0..<labels.count {
                     if labels[update].tag <= tag + 1 {
                         labels[update].textColor = componentActiveColor
@@ -78,9 +85,13 @@ class CustomControl: UIControl {
                         labels[update].textColor = componentInactiveColor
                     }
                 }
-                sendActions(for: [.valueChanged])
+                labels[tag].performFlare()
                 
             }
+        }
+        
+        if updateValue != value {
+            value = updateValue
         }
     }
     
@@ -122,4 +133,15 @@ class CustomControl: UIControl {
         sendActions(for: [.touchCancel])
     }
     
+}
+
+extension UIView {
+    func performFlare() {
+        func flare() { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+    }
 }
