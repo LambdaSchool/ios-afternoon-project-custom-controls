@@ -10,6 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Properties
+    
+
+    // MARK: - Actions
+
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        let plural = ratingControl.value == 1 ? "" : "s"
+        title = "User Rating: \(ratingControl.value) star\(plural)"
+    }
+    
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
