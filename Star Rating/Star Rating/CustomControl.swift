@@ -16,8 +16,9 @@ class CustomControl: UIControl {
     let componentCount = 5
     let componentActiveColor = UIColor.black
     let componentInactiveColor = UIColor.gray
+    let componentSpace: CGFloat = 8.0
     
-    let stars = [UILabel]()
+    var stars = [UILabel]()
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -25,9 +26,17 @@ class CustomControl: UIControl {
     }
     
     func setup() {
+        var spacer: CGFloat = 0.0
+        
         for count in 1...5 {
             let newStar = UILabel()
             newStar.tag = count
+            
+            spacer += componentSpace
+            newStar.frame = CGRect(origin: CGPoint(x: spacer, y: 0),
+                                   size: CGSize(width: componentDimension, height: componentDimension))
+            spacer += componentSpace
+
             addSubview(newStar)
             stars.append(newStar)
         }
