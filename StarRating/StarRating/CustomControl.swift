@@ -47,7 +47,7 @@ class CustomControl: UIControl {
     private func setup() {
         var x = componentPadding
         
-        for i in 1...5 {
+        for i in 1...componentCount {
             let starImage = i == 1 ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
             let star = UIImageView(image: starImage)
             star.tintColor = componentColor
