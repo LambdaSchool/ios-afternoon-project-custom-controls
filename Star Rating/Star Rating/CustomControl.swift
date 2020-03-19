@@ -25,6 +25,8 @@ class CustomControl: UIControl {
     let componentCount = 5
     let componentActiveColor = UIColor.black
     let componentInactiveColor = UIColor.gray
+    let componentActiveText = "★"
+    let componentInactiveText = "☆"
     let componentSpace: CGFloat = 8.0
     
     var stars = [UILabel]()
@@ -55,13 +57,15 @@ class CustomControl: UIControl {
 
             // Set the font
             newStar.font = .boldSystemFont(ofSize: 32.0)
-            newStar.text = "★" // ☆
+            newStar.text = componentInactiveText
             newStar.textAlignment = .center
             newStar.textColor = count > 1 ? componentInactiveColor : componentActiveColor
             
             addSubview(newStar)
             stars.append(newStar)
         }
+        
+        updateStars()
     }
     
     override var intrinsicContentSize: CGSize {
@@ -93,6 +97,7 @@ class CustomControl: UIControl {
     private func updateStars() {
         for star in stars {
             star.textColor = star.tag <= value ? componentActiveColor : componentInactiveColor
+            star.text = star.tag <= value ? componentActiveText : componentInactiveText
         }
     }
     
