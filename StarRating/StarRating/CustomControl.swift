@@ -20,7 +20,7 @@ class CustomControl: UIControl {
         }
     }
     var labels: [UILabel] = []
-    var rightToLeft: Bool = true
+    var rightToLeft: Bool = false
     
     // MARK: - Private Properties
     
@@ -47,6 +47,7 @@ class CustomControl: UIControl {
         
         for tag in 0..<componentCount {
             let newLabel = UILabel()
+            
             if !rightToLeft {
                 newLabel.tag = tag + 1
             } else {
@@ -54,12 +55,16 @@ class CustomControl: UIControl {
             }
             
             if tag + 1 == 1 {
+                newLabel.frame = CGRect(x: (componentDimension / CGFloat(componentCount)), y: 0.0, width: componentDimension, height: componentDimension)
+            } else {
+                newLabel.frame = CGRect(x: labels.last!.frame.maxX + (componentDimension / CGFloat(componentCount)), y: 0.0, width: componentDimension, height: componentDimension)
+            }
+            if newLabel.tag == 1 {
                 newLabel.textColor = componentActiveColor
-                newLabel.frame = CGRect(x: 8.0, y: 0.0, width: componentDimension, height: componentDimension)
             } else {
                 newLabel.textColor = componentInactiveColor
-                newLabel.frame = CGRect(x: labels.last!.frame.maxX + 8.0, y: 0.0, width: componentDimension, height: componentDimension)
             }
+            
             newLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
             newLabel.text = "✭"
             newLabel.textAlignment = .center
@@ -80,29 +85,19 @@ class CustomControl: UIControl {
         
         for tag in 0..<labels.count {
             let touchPoint = touch.location(in: labels[tag])
-            print("Touched at tag: \(labels[tag])")
+            
             if labels[tag].bounds.contains(touchPoint) {
-                
+                print("Touched at tag: \(labels[tag])")
                 updateValue = labels[tag].tag
                 
-                for update in 0..<labels.count {
-                    if !rightToLeft {
-                        if labels[update].tag <= tag + 1 {
-                            labels[update].textColor = componentActiveColor
-                        } else {
-                            labels[update].textColor = componentInactiveColor
-                        }
+                for activeLabel in labels {
+                    if activeLabel.tag <= labels[tag].tag {
+                        activeLabel.textColor = componentActiveColor
                     } else {
-                        if labels[update].tag >= tag + 1 {
-                            labels[update].textColor = componentActiveColor
-                            print("Tag \(tag) is now active")
-                        } else {
-                            labels[update].textColor = componentInactiveColor
-                            print("Tag \(tag) is now inactive")
-                        }
+                        activeLabel.textColor = componentInactiveColor
                     }
-                    
                 }
+                
                 labels[tag].performFlare()
                 
             }
