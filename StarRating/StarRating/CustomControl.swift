@@ -20,6 +20,15 @@ class CustomControl: UIControl {
         }
     }
     
+    var rightToLeft = false {
+        didSet {
+            if rightToLeft {
+                layer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0)
+            } else {
+                layer.transform = CATransform3DIdentity
+            }
+        }
+    }
     
     // MARK: - Initializers
     
@@ -60,6 +69,8 @@ class CustomControl: UIControl {
             
             x += componentDimension + componentPadding
         }
+        
+        if rightToLeft { layer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0) }
     }
     
     private func updateValue(at touch: UITouch) {

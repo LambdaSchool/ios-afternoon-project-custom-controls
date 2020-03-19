@@ -9,14 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var starRatingControl: CustomControl!
+    
+    
+    // MARK: - IBActions
+    
     @IBAction func updateRating(_ sender: CustomControl) {
         title = "User Rating: \(sender.value) star\(sender.value > 1 ? "s" : "")"
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+    @IBAction func rightToLeftToggled(_ sender: UISwitch) {
+        starRatingControl.rightToLeft = sender.isOn
     }
-
-
 }
 

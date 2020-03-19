@@ -16,21 +16,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaj-qn-sFv" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <rect key="frame" x="87" y="384" width="240" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="h5x-R8-XgO"/>
                                 </connections>
                             </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u23-c0-F3I">
+                                <rect key="frame" x="182.5" y="771" width="51" height="31"/>
+                                <connections>
+                                    <action selector="rightToLeftToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="cN1-5S-sRo"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Right To Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1A-aa-YVu">
+                                <rect key="frame" x="158.5" y="728" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="gaj-qn-sFv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6zG-Nz-bQV"/>
                             <constraint firstItem="gaj-qn-sFv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A5I-lH-dhr"/>
+                            <constraint firstItem="u23-c0-F3I" firstAttribute="top" secondItem="z1A-aa-YVu" secondAttribute="bottom" constant="22" id="Keo-CU-YF3"/>
+                            <constraint firstItem="u23-c0-F3I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="REf-yV-F4s"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u23-c0-F3I" secondAttribute="bottom" constant="60" id="flO-ZT-Ymr"/>
+                            <constraint firstItem="z1A-aa-YVu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wex-OA-y2x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="HP0-tm-fcy"/>
+                    <connections>
+                        <outlet property="starRatingControl" destination="gaj-qn-sFv" id="x0y-Ex-AYs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
