@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class CustomControl: UIControl {
+
+    // MARK: - Properties
+
     var value: Int = 1
     
     let componentDimension: CGFloat = 40.0
@@ -20,11 +23,17 @@ class CustomControl: UIControl {
     
     var stars = [UILabel]()
 
+    // FIXME: Did I need to implement wasTriggered ?
+    
+    // MARK: - Initializers
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
     
+    // MARK: - View Lifecycle
+
     func setup() {
         var spacer: CGFloat = 0.0
         
@@ -55,4 +64,47 @@ class CustomControl: UIControl {
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
+
+    // MARK: - Touch Tracking
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        sendActions(for: [.touchDown, .valueChanged])
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .valueChanged])
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+        return true
+    }
+    
+    private func updateValue(at touch: UITouch) {
+        
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        // TODO: ? the end handler generates a value update. It provides a little safety net in case the lift event has moved the finger in an untracked movement. You can omit it if desired or keep it if you feel cautious.
+        // TODO: ? Replace the two actions with touchUpInside and touchUpOutside instead of the drag forms you used for continue.
+
+        guard let touch = touch else { return }
+        
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchUpInside, .valueChanged])
+        } else {
+            sendActions(for: [.touchUpOutside])
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
 }
