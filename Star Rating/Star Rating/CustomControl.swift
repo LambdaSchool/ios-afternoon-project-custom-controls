@@ -36,7 +36,7 @@ class CustomControl: UIControl {
             spacer += componentSpace
             newStar.frame = CGRect(origin: CGPoint(x: spacer, y: 0),
                                    size: CGSize(width: componentDimension, height: componentDimension))
-            spacer += componentSpace
+            spacer += componentDimension
 
             // Set the font
             newStar.font = .boldSystemFont(ofSize: 32.0)
