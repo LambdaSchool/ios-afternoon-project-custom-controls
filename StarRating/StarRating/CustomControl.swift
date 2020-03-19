@@ -20,7 +20,11 @@ class CustomControl: UIControl {
         }
     }
     var labels: [UILabel] = []
-    var rightToLeft: Bool = false
+    var rightToLeft: Bool = false {
+        didSet {
+            setup()
+        }
+    }
     
     // MARK: - Private Properties
     

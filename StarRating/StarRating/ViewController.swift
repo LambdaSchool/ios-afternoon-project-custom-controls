@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.title = "User Rating: 1 star."
         setUpButton()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -37,6 +38,12 @@ class ViewController: UIViewController {
             changeDirection.trailingAnchor.constraint(equalTo: customControl.trailingAnchor),
             changeDirection.topAnchor.constraint(equalTo: customControl.bottomAnchor, constant: 20)
         ])
+        
+        changeDirection.addTarget(self, action: #selector(toggleDirection), for: .touchUpInside)
+    }
+    
+    @objc private func toggleDirection() {
+        customControl.rightToLeft.toggle()
     }
     
 }
