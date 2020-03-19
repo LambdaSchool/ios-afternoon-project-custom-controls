@@ -99,6 +99,9 @@ class CustomControl: UIControl {
         for star in stars {
             star.textColor = star.tag <= value ? componentActiveColor : componentInactiveColor
             star.text = star.tag <= value ? componentActiveText : componentInactiveText
+            if star.tag == value {
+                star.performFlare()
+            }
         }
     }
     
