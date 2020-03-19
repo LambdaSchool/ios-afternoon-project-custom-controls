@@ -12,14 +12,16 @@ class CustomControl: UIControl {
 
     // MARK: - Properties
     
-    var value = 1
+    var value = 1 {
+        didSet {
+            if oldValue != value {
+                sendActions(for: .valueChanged)
+            }
+        }
+    }
     
-    // MARK: - Private
-
-    let componentDimension: CGFloat = 40
-    let componentPadding: CGFloat = 8
-    let componentCount = 5
-    let componentColor = UIColor.systemPink
+    
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,9 +33,18 @@ class CustomControl: UIControl {
         setup()
     }
     
+    
+    // MARK: - Private
+
+    private let componentDimension: CGFloat = 40
+    private let componentPadding: CGFloat = 8
+    private let componentCount = 5
+    private let componentColor = UIColor.systemPink
+    
+    private var components = [UIImageView]()
+    
+
     private func setup() {
-        var stars = [UIImageView]()
-        
         var x = componentPadding
         
         for i in 1...5 {
@@ -41,9 +52,8 @@ class CustomControl: UIControl {
             let star = UIImageView(image: starImage)
             star.tintColor = componentColor
             star.contentMode = .scaleAspectFit
-            star.tag = i
             
-            stars.append(star)
+            components.append(star)
             
             addSubview(star)
             star.frame = CGRect(x: x, y: 0, width: componentDimension, height: componentDimension)
@@ -52,52 +62,65 @@ class CustomControl: UIControl {
         }
     }
     
-    override var intrinsicContentSize: CGSize {
-      let componentsWidth = CGFloat(componentCount) * componentDimension
-      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
-      let width = componentsWidth + componentsSpacing
-      return CGSize(width: width, height: componentDimension)
+    private func updateValue(at touch: UITouch) {
+        for i in 0..<components.count {
+            let touchPoint = touch.location(in: components[i])
+            
+            if components[i].bounds.contains(touchPoint) {
+                for j in 0..<components.count {
+                    components[j].image = i >= j ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                }
+                value = i + 1
+                break
+            }
+        }
     }
     
-    private func updateValue(at point: CGPoint) {
-        
-    }
     
     // MARK: - Touch Tracking
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let touchPoint = touch.location(in: self)
-        updateValue(at: touchPoint)
+        updateValue(at: touch)
         sendActions(for: [.touchDown, .valueChanged])
         return true
     }
     
-      override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-          let touchPoint = touch.location(in: self)
-          if bounds.contains(touchPoint) {
-              updateValue(at: touchPoint)
-              sendActions(for: [.touchDragInside, .valueChanged])
-          } else {
-              sendActions(for: .touchDragOutside)
-          }
-
-          return true
-      }
-
-      override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-          guard let touch = touch else { return }
-
-          let touchPoint = touch.location(in: self)
-          if bounds.contains(touchPoint) {
-              updateValue(at: touchPoint)
-              sendActions(for: [.touchUpInside, .valueChanged])
-          } else {
-              sendActions(for: .touchUpOutside)
-          }
-      }
-
-      override func cancelTracking(with event: UIEvent?) {
-          sendActions(for: .touchCancel)
-      }
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .valueChanged])
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            updateValue(at: touch)
+            sendActions(for: [.touchUpInside, .valueChanged])
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
+    
+    
+    // MARK: - Size
+    
+    override var intrinsicContentSize: CGSize {
+        let componentsWidth = CGFloat(componentCount) * componentDimension
+        let componentsSpacing = CGFloat(componentCount + 1) * componentPadding
+        let width = componentsWidth + componentsSpacing
+        return CGSize(width: width, height: componentDimension)
+    }
 
 }
