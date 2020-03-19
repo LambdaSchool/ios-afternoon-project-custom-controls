@@ -37,6 +37,8 @@ class CustomControl: UIControl {
     // MARK: - Methods
     
     private func setup() {
+        
+        
         for tag in 0..<componentCount {
             let newLabel = UILabel()
             newLabel.tag = tag + 1
@@ -63,9 +65,13 @@ class CustomControl: UIControl {
     }
     
     private func updateValue(at touch: UITouch) {
-        let touchPoint = touch.location(in: self)
         
         for tag in 0..<labels.count {
+            
+            let touchPoint = touch.location(in: labels[tag])
+            print("Touch point: \(touchPoint)")
+            
+            print("Tag bounds \(labels[tag].bounds)")
             if labels[tag].bounds.contains(touchPoint) {
                 value = labels[tag].tag
                 print("Touched label \(tag)")
@@ -77,7 +83,7 @@ class CustomControl: UIControl {
                     }
                 }
                 sendActions(for: [.valueChanged])
-                break
+                
             }
         }
     }
