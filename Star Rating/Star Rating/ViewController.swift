@@ -9,6 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let customControl = CustomControl()
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        
+        if customControl.value < 2 {
+            self.title = "User Rating: N star"
+        } else {
+            self.title = "User Rating: N stars"
+        }
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

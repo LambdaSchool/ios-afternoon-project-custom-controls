@@ -12,6 +12,6 @@ import UIKit
 // This property is API-facing, clients will be able to see it.
 // Establishes your control as a value-providing (and value-changing) type.
 class CustomControl: UIControl {
-    var valie: Int = 1
+    var value: Int = 1
     
 }
