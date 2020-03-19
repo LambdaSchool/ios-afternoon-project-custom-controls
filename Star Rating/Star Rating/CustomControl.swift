@@ -46,7 +46,7 @@ class CustomControl: UIControl {
     func setup() {
         var spacer: CGFloat = 0.0
         
-        for count in 1...5 {
+        for count in 1...componentCount {
             let newStar = UILabel()
             newStar.tag = count
             
@@ -71,7 +71,7 @@ class CustomControl: UIControl {
     
     override var intrinsicContentSize: CGSize {
       let componentsWidth = CGFloat(componentCount) * componentDimension
-      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+      let componentsSpacing = CGFloat(componentCount + 1) * componentSpace
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
