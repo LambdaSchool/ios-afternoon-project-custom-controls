@@ -81,7 +81,7 @@ class CustomControl: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
-        sendActions(for: [.touchDown, .valueChanged])
+        sendActions(for: .touchDown)
         return true
     }
     
@@ -89,7 +89,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
-            sendActions(for: [.touchDragInside, .valueChanged])
+            sendActions(for: .touchDragInside)
         } else {
             sendActions(for: .touchDragOutside)
         }
@@ -103,7 +103,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
-            sendActions(for: [.touchUpInside, .valueChanged])
+            sendActions(for: .touchUpInside)
         } else {
             sendActions(for: .touchUpOutside)
         }
