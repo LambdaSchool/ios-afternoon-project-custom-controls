@@ -34,6 +34,7 @@ class CustomControl: UIControl {
         }
     }
     
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -56,7 +57,7 @@ class CustomControl: UIControl {
     
     private var components = [UIImageView]()
     
-
+    
     private func setup() {
         var x = componentPadding
         
@@ -78,6 +79,7 @@ class CustomControl: UIControl {
     private func updateComponents() {
         for i in 0..<components.count {
             components[i].image = value > i ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+            if i + 1 == value { components[i].performFlare() }
         }
     }
     
@@ -139,4 +141,16 @@ class CustomControl: UIControl {
         return CGSize(width: width, height: componentDimension)
     }
 
+}
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    UIView.animate(withDuration: 0.2, delay: 0, options: [.autoreverse], animations: {
+        self.transform = .init(scaleX: 1.2, y: 1.2)
+        self.transform = self.transform.rotated(by: -0.2)
+    }) { _ in
+        self.transform = .identity
+    }
+  }
 }
