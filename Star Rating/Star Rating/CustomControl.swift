@@ -13,7 +13,7 @@ class CustomControl: UIControl {
 
     // MARK: - Properties
 
-    var value: Int = 1 {
+    var value: Int = 0 {
         didSet {
             // TODO: Does this satisfy the strech> Store the old value before changing it and only send an update when the value has changed
             if value != oldValue {
@@ -23,7 +23,7 @@ class CustomControl: UIControl {
     }
     
     let componentDimension: CGFloat = 40.0
-    let componentCount = 5
+    let componentCount = 5 // Strech: Change the number of buttons works (2 - 9 tested)
     let componentActiveColor = UIColor.black
     let componentInactiveColor = UIColor.gray
     let componentActiveText = "★"
@@ -66,7 +66,7 @@ class CustomControl: UIControl {
             stars.append(newStar)
         }
         
-        updateStars()
+        value = 1
     }
     
     override var intrinsicContentSize: CGSize {
