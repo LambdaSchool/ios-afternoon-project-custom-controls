@@ -8,19 +8,23 @@
 
 import UIKit
 
+@IBDesignable
 class CustomControl: UIControl {
 
     // MARK: - Properties
     
-    var value = 1 {
+    @IBInspectable
+    var value: Int = 3 {
         didSet {
             if oldValue != value {
+                updateComponents()
                 sendActions(for: .valueChanged)
             }
         }
     }
     
-    var rightToLeft = false {
+    @IBInspectable
+    var rightToLeft: Bool = false {
         didSet {
             if rightToLeft {
                 layer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0)
@@ -57,7 +61,7 @@ class CustomControl: UIControl {
         var x = componentPadding
         
         for i in 1...componentCount {
-            let starImage = i == 1 ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+            let starImage = i <= value ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
             let star = UIImageView(image: starImage)
             star.tintColor = componentColor
             star.contentMode = .scaleAspectFit
@@ -69,8 +73,12 @@ class CustomControl: UIControl {
             
             x += componentDimension + componentPadding
         }
-        
-        if rightToLeft { layer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0) }
+    }
+    
+    private func updateComponents() {
+        for i in 0..<components.count {
+            components[i].image = value > i ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+        }
     }
     
     private func updateValue(at touch: UITouch) {
@@ -78,9 +86,6 @@ class CustomControl: UIControl {
             let touchPoint = touch.location(in: components[i])
             
             if components[i].bounds.contains(touchPoint) {
-                for j in 0..<components.count {
-                    components[j].image = i >= j ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
-                }
                 value = i + 1
                 break
             }
