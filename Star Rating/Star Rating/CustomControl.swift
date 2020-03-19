@@ -67,6 +67,8 @@ class CustomControl: UIControl {
         }
         
         value = 1
+        // FIXME: Why doesn't this work? Trying to get title set during start up
+        sendActions(for: [.valueChanged])
     }
     
     override var intrinsicContentSize: CGSize {
