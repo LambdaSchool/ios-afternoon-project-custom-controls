@@ -13,7 +13,7 @@ class CustomControl: UIControl {
     
     // MARK: - Properties
     
-    var value: Int = 1 {
+    var value: Int = 0 {
         didSet {
             print("didSet")
             sendActions(for: [.valueChanged])
@@ -47,7 +47,7 @@ class CustomControl: UIControl {
     // MARK: - Methods
     
     private func setup() {
-        
+        value = 1
         
         for tag in 0..<componentCount {
             let newLabel = UILabel()
