@@ -48,9 +48,10 @@ class CustomControl: UIControl {
             star.textColor = componentInactiveColor
             star.translatesAutoresizingMaskIntoConstraints = false
             starArray.append(star)
-            addSubview(star)
         }
+        addSubview(star)
     }
+    
     
     override var intrinsicContentSize: CGSize {
           let componentsWidth = CGFloat(componentCount) * componentDimension
