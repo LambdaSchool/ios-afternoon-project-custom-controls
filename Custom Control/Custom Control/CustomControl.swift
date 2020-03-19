@@ -17,14 +17,14 @@ class CustomControl: UIControl {
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
     
+    var labels: [UILabel] = []
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
 
     private func setup() {
-        
-        var labels: [UILabel] = []
         
         for number in 0...4 {
             let label = UILabel()
@@ -39,7 +39,21 @@ class CustomControl: UIControl {
             labels.append(label)
         }
         
-        #warning("Constraints not setup currectly")
+        /*
+        labels[0].frame = CGRect(x: 8, y: 0.0, width: componentDimension, height: componentDimension)
+        
+        for number in 0...4 {
+            labels[number].frame = CGRect(x: componentDimension + 16, y: 0.0, width: componentDimension, height: componentDimension)
+        }
+        */
+        
+        #warning("Constraints setup currectly?")
+        labels[0].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        labels[1].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        labels[2].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        labels[3].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        labels[4].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+
         NSLayoutConstraint.activate([
             labels[0].leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             labels[1].leadingAnchor.constraint(equalTo: labels[0].trailingAnchor, constant: 16),
@@ -58,7 +72,6 @@ class CustomControl: UIControl {
       return CGSize(width: width, height: componentDimension)
     }
     
-    
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
         return true
@@ -68,7 +81,9 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         if self.bounds.contains(touchPoint) {
             updateValue(at: touch)
-            sendActions(for: [.touchDragInside, .touchDragOutside])
+            sendActions(for: [.touchDragInside])
+        } else {
+            sendActions(for: [.touchDragOutside])
         }
         return true
     }
@@ -77,8 +92,10 @@ class CustomControl: UIControl {
         guard let touch = touch else { return }
         let touchPoint = touch.location(in: self)
         if self.bounds.contains(touchPoint) {
-            //updateValue(at: touch)
-            sendActions(for: [.touchUpInside, .touchUpOutside])
+            updateValue(at: touch)
+            sendActions(for: [.touchUpInside])
+        } else {
+            sendActions(for: [.touchUpOutside])
         }
     }
     
@@ -87,6 +104,23 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        
+        let touchPoint = touch.location(in: self)
+        for item in labels {
+            if item.frame.contains(touchPoint) && item.tag != value {
+                let temp = item.tag
+                // Tapped star and stars before it
+                for i in 0...temp-1 {
+                    labels[i].textColor = componentActiveColor
+                }
+                // Stars after tapped star
+                if temp != 5 {
+                    for i in temp...4 {
+                        labels[i].textColor = componentInactiveColor
+                    }
+                }
+                value = item.tag
+                sendActions(for: [.valueChanged])
+            }
+        }
     }
 }
