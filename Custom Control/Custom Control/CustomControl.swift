@@ -8,6 +8,18 @@
 
 import UIKit
 
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
+}
+
 class CustomControl: UIControl {
     
     var value: Int = 1
@@ -111,6 +123,7 @@ class CustomControl: UIControl {
                 // Tapped star and stars before it
                 for i in 0...temp-1 {
                     labels[i].textColor = componentActiveColor
+                    labels[i].performFlare()
                 }
                 // Stars after tapped star
                 if temp != 5 {
