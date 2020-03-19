@@ -15,6 +15,7 @@ class CustomControl: UIControl {
 
     var value: Int = 1 {
         didSet {
+            // TODO: Does this satisfy the strech> Store the old value before changing it and only send an update when the value has changed
             if value != oldValue {
                 updateStars()
             }
