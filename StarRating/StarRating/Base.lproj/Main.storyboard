@@ -18,6 +18,7 @@
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaj-qn-sFv" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
                                 <rect key="frame" x="83" y="428" width="248" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rightToLeft" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="value">

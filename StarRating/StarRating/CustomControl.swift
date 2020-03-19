@@ -53,7 +53,6 @@ class CustomControl: UIControl {
     private let componentDimension: CGFloat = 40
     private let componentPadding: CGFloat = 8
     private let componentCount = 5
-    private let componentColor = UIColor.systemPink
     
     private var components = [UIImageView]()
     
@@ -64,7 +63,6 @@ class CustomControl: UIControl {
         for i in 1...componentCount {
             let starImage = i <= value ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
             let star = UIImageView(image: starImage)
-            star.tintColor = componentColor
             star.contentMode = .scaleAspectFit
             
             components.append(star)
