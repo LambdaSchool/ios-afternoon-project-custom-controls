@@ -24,7 +24,7 @@ class CustomControl: UIControl {
     // MARK: - Private Properties
     
     private let componentDimension: CGFloat = 40.0
-    private let componentCount: Int = 5
+    private let componentCount: Int = 10
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
     
@@ -64,7 +64,7 @@ class CustomControl: UIControl {
     
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentDimension
-        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let componentsSpacing = CGFloat(componentCount + 1) * (componentDimension / CGFloat(componentCount))
         let width = componentsWidth + componentsSpacing
         return CGSize(width: width, height: componentDimension)
     }
