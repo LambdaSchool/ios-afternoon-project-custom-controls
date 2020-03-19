@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-class CustomControl {
+class CustomControl: UIControl {
     var value: Int = 1
 }
