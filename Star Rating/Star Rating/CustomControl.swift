@@ -95,6 +95,7 @@ class CustomControl: UIControl {
         return true
     }
     
+    /// Handles the UI portion of the update
     private func updateStars() {
         for star in stars {
             star.textColor = star.tag <= value ? componentActiveColor : componentInactiveColor
@@ -105,6 +106,8 @@ class CustomControl: UIControl {
         }
     }
     
+    /// Handles the data portion of the update
+    /// - Parameter touch: Where the user is currently touching the screen
     private func updateValue(at touch: UITouch) {
         let touchPoint = touch.location(in: self)
 
