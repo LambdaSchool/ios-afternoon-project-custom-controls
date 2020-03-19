@@ -66,14 +66,16 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         for label in ratingArray {
             if label.frame.contains(touch.location(in: self)) {
-                CustomControl.value = label.tag
-                for i in 0..<ratingArray.count {
-                    if ratingArray[i].tag <= CustomControl.value {
-                        ratingArray[i].textColor = componentActiveColor
-                    } else {
-                        ratingArray[i].textColor = componentInactiveColor
+                if CustomControl.value != label.tag {
+                    CustomControl.value = label.tag
+                    for i in 0..<ratingArray.count {
+                        if ratingArray[i].tag <= CustomControl.value {
+                            ratingArray[i].textColor = componentActiveColor
+                        } else {
+                            ratingArray[i].textColor = componentInactiveColor
+                        }
+                        sendActions(for: .valueChanged)
                     }
-                    sendActions(for: .valueChanged)
                 }
             }
         }
@@ -122,7 +124,7 @@ class CustomControl: UIControl {
 extension UIView {
     // Flare view animation sequence
     func performFlare() {
-        func flare() { transform = CGAffineTransform(scaleX: 1.6, y: 1.6)}
+        func flare() { transform = CGAffineTransform(scaleX: 1.3, y: 1.3)}
         func unflare() { transform = .identity}
         
         UIView.animate(withDuration: 0.3,
