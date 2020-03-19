@@ -25,7 +25,7 @@ class CustomControl: UIControl {
     // MARK: - Private Properties
     
     private let componentDimension: CGFloat = 40.0
-    private let componentCount: Int = 10
+    private let componentCount: Int = 3
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
     
@@ -80,16 +80,28 @@ class CustomControl: UIControl {
         
         for tag in 0..<labels.count {
             let touchPoint = touch.location(in: labels[tag])
+            print("Touched at tag: \(labels[tag])")
             if labels[tag].bounds.contains(touchPoint) {
                 
                 updateValue = labels[tag].tag
                 
                 for update in 0..<labels.count {
-                    if labels[update].tag <= tag + 1 {
-                        labels[update].textColor = componentActiveColor
+                    if !rightToLeft {
+                        if labels[update].tag <= tag + 1 {
+                            labels[update].textColor = componentActiveColor
+                        } else {
+                            labels[update].textColor = componentInactiveColor
+                        }
                     } else {
-                        labels[update].textColor = componentInactiveColor
+                        if labels[update].tag >= tag + 1 {
+                            labels[update].textColor = componentActiveColor
+                            print("Tag \(tag) is now active")
+                        } else {
+                            labels[update].textColor = componentInactiveColor
+                            print("Tag \(tag) is now inactive")
+                        }
                     }
+                    
                 }
                 labels[tag].performFlare()
                 
