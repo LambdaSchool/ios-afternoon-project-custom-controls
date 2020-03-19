@@ -29,7 +29,7 @@ class CustomControl: UIControl {
     // MARK: - Private Properties
     
     private let componentDimension: CGFloat = 40.0
-    private let componentCount: Int = 3
+    private let componentCount: Int = 5
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
     
