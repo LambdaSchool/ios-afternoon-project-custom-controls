@@ -39,17 +39,14 @@ class CustomControl: UIControl {
     private func setup() {
         for tag in 0...4 {
             let newLabel = UILabel()
-//            newLabel.translatesAutoresizingMaskIntoConstraints = false
             newLabel.tag = tag + 1
-            newLabel.frame.size = CGSize(width: componentDimension, height: componentDimension)
             if tag + 1 == 1 {
-//                newLabel.center = CGPoint(x: 8.0, y: 0)
                 newLabel.textColor = componentActiveColor
+                newLabel.frame = CGRect(x: 8.0, y: 0.0, width: componentDimension, height: componentDimension)
             } else {
-                newLabel.center = CGPoint(x: componentDimension + (8.0 * CGFloat(tag + 1)), y: 0)
                 newLabel.textColor = componentInactiveColor
+                newLabel.frame = CGRect(x: labels.last!.frame.maxX + 8.0, y: 0.0, width: componentDimension, height: componentDimension)
             }
-            newLabel.center.y = 0.0
             newLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
             newLabel.text = "✭"
             newLabel.textAlignment = .center
