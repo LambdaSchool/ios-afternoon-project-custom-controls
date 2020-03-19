@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
-var countFoo: Int = 1
-
 class CustomControl: UIControl {
 
     // MARK: - Properties
 
-    var value: Int = 1
+    var value: Int = 1 {
+        didSet {
+            if value != oldValue {
+                updateStars()
+            }
+        }
+    }
     
     let componentDimension: CGFloat = 40.0
     let componentCount = 5
@@ -86,15 +90,19 @@ class CustomControl: UIControl {
         return true
     }
     
+    private func updateStars() {
+        for star in stars {
+            star.textColor = star.tag <= value ? componentActiveColor : componentInactiveColor
+        }
+    }
+    
     private func updateValue(at touch: UITouch) {
-        print("updateValue \(countFoo)")
-        countFoo += 1
-        
         let touchPoint = touch.location(in: self)
 
         for star in stars {
             if star.frame.contains(touchPoint) {
-                print("Star \(star.tag)")
+                value = star.tag
+                print("Star \(value)")
             }
         }
     }
