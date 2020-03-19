@@ -18,11 +18,28 @@ class ViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func updateRating(_ sender: CustomControl) {
-        title = "User Rating: \(sender.value) star\(sender.value > 1 ? "s" : "")"
+        updateTitle()
     }
     
     @IBAction func rightToLeftToggled(_ sender: UISwitch) {
         starRatingControl.rightToLeft = sender.isOn
     }
+    
+    
+    // MARK: - View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateTitle()
+    }
+    
+    
+    // MARK: - Private
+    
+    private func updateTitle() {
+        title = "User Rating: \(starRatingControl.value) star\(starRatingControl.value > 1 ? "s" : "")"
+    }
+    
+  
 }
 

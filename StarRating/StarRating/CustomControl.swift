@@ -14,7 +14,7 @@ class CustomControl: UIControl {
     // MARK: - Properties
     
     @IBInspectable
-    var value: Int = 3 {
+    var value: Int = 1 {
         didSet {
             if oldValue != value {
                 updateComponents()
