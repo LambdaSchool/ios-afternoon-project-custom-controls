@@ -53,6 +53,7 @@ class CustomControl: UIControl {
     private let componentDimension: CGFloat = 40
     private let componentPadding: CGFloat = 8
     private let componentCount = 5
+    private var componentFlareEnabled = false
     
     private var components = [UIImageView]()
     
@@ -76,8 +77,8 @@ class CustomControl: UIControl {
     
     private func updateComponents() {
         for i in 0..<components.count {
-            components[i].image = value > i ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
-            if i + 1 == value { components[i].performFlare() }
+            components[i].image = i < value ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+            if i + 1 == value && componentFlareEnabled { components[i].performFlare() }
         }
     }
     
@@ -96,6 +97,7 @@ class CustomControl: UIControl {
     // MARK: - Touch Tracking
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        componentFlareEnabled = true
         updateValue(at: touch)
         sendActions(for: .touchDown)
         return true
