@@ -24,22 +24,18 @@ class CustomControl: UIControl {
     
     // MARK: - Initializers
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         setup()
         
     }
     
+//    let star = UILabel(frame: CGRect(x: 8.0, y: 0, width: componentDimension, height: componentDimension))
+    
     func setup() {
         
-        //        let stars = [star, star, star, star, star]
-        let star = UILabel(frame: CGRect(x: 8.0, y: 0, width: componentDimension, height: componentDimension))
-        
-        for i in 0...5 {
+        for i in 1...componentCount{
+            let star = UILabel()
             star.layoutMargins = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
             star.textAlignment = .center
             star.text = "✯"
@@ -47,9 +43,11 @@ class CustomControl: UIControl {
             star.tag = i
             star.textColor = componentInactiveColor
             star.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(star)
             starArray.append(star)
+            
         }
-        addSubview(star)
+        
     }
     
     
