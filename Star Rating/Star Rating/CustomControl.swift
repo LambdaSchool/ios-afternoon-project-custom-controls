@@ -6,7 +6,6 @@
 //  Copyright © 2020 Nichole Davidson. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 // This property is API-facing, clients will be able to see it.
@@ -33,7 +32,7 @@ class CustomControl: UIControl {
 //    let star = UILabel(frame: CGRect(x: 8.0, y: 0, width: componentDimension, height: componentDimension))
     
     func setup() {
-        
+        frame = CGRect(origin: .zero, size: intrinsicContentSize)
         for i in 1...componentCount{
             let star = UILabel()
             addSubview(star)
@@ -41,18 +40,18 @@ class CustomControl: UIControl {
             star.tag = i
             let starSize = CGSize(width: componentDimension, height: componentDimension)
             let starOrigin = CGPoint(x: 0, y: 0)
-            star.frame = CGRect(origin: starOrigin + 1.0 * 8.0, size: starSize)
-            star.layoutMargins = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
+            star.frame = CGRect(origin: starOrigin, size: starSize)
+//            star.layoutMargins = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
             star.textAlignment = .center
             star.text = "✯"
             star.font = .boldSystemFont(ofSize: 32.0)
-            
+            if i == 1 {
+                star.textColor = componentActiveColor
+            } else {
             star.textColor = componentInactiveColor
+            }
             star.translatesAutoresizingMaskIntoConstraints = false
-            
-            
         }
-        
     }
     
     
@@ -97,7 +96,13 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        
+        let touchPoint = touch.location(in: self)
+        for star in starArray {
+            if star.bounds.contains(touchPoint) {
+                value = star.tag
+                sendActions(for: [.valueChanged])
+            }
+        }
     }
       
 }
