@@ -29,6 +29,7 @@ class CustomControl: UIControl {
     let componentActiveText = "★"
     let componentInactiveText = "☆"
     let componentSpace: CGFloat = 8.0
+    let leftToRight = true // set to false for Right to Left
     
     var stars = [UILabel]()
 
@@ -46,7 +47,13 @@ class CustomControl: UIControl {
     func setup() {
         var spacer: CGFloat = 0.0
         
-        for count in 1...componentCount {
+        // Remember: Stride: to/end is never an element of the resulting sequence.
+        var componentDirection = stride(from: 1, to: componentCount + 1, by: 1) // Left to right
+        if !leftToRight {
+            componentDirection = stride(from: componentCount, to: 0, by: -1) // Right to left
+        }
+        
+        for count in componentDirection {
             let newStar = UILabel()
             newStar.tag = count
             
@@ -66,6 +73,7 @@ class CustomControl: UIControl {
             stars.append(newStar)
         }
         
+        // Trigger the updateStars() via didSet
         value = 1
         // FIXME: Why doesn't this work? Trying to get title set during start up
         sendActions(for: [.valueChanged])
