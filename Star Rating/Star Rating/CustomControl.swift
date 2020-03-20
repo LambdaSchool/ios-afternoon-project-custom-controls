@@ -21,16 +21,16 @@ class CustomControl: UIControl {
     private let componentActiveColor = UIColor.black
     private let componentInactiveColor = UIColor.gray
     
-    // MARK: - Initializers
     
-    required init?(coder aCoder: NSCoder) {
-        super.init(coder: aCoder)
-        setup()
-        
+    override var intrinsicContentSize: CGSize {
+        let componentsWidth = CGFloat(componentCount) * componentDimension
+        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let width = componentsWidth + componentsSpacing
+        return CGSize(width: width, height: componentDimension)
     }
     
-//    let star = UILabel(frame: CGRect(x: 8.0, y: 0, width: componentDimension, height: componentDimension))
-    
+    // MARK: - Initializers
+
     func setup() {
         frame = CGRect(origin: .zero, size: intrinsicContentSize)
         for i in 1...componentCount{
@@ -38,10 +38,10 @@ class CustomControl: UIControl {
             addSubview(star)
             starArray.append(star)
             star.tag = i
+            let offset = CGFloat(i - 1) * componentDimension + CGFloat(i) * 8.0
             let starSize = CGSize(width: componentDimension, height: componentDimension)
-            let starOrigin = CGPoint(x: 0, y: 0)
+            let starOrigin = CGPoint(x: offset, y: 0)
             star.frame = CGRect(origin: starOrigin, size: starSize)
-//            star.layoutMargins = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
             star.textAlignment = .center
             star.text = "✯"
             star.font = .boldSystemFont(ofSize: 32.0)
@@ -50,17 +50,14 @@ class CustomControl: UIControl {
             } else {
             star.textColor = componentInactiveColor
             }
-            star.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
-    
-    override var intrinsicContentSize: CGSize {
-          let componentsWidth = CGFloat(componentCount) * componentDimension
-          let componentsSpacing = CGFloat(componentCount + 1) * 8.0
-          let width = componentsWidth + componentsSpacing
-          return CGSize(width: width, height: componentDimension)
-      }
+    required init?(coder aCoder: NSCoder) {
+           super.init(coder: aCoder)
+           setup()
+           
+       }
     
     // MARK: - Touch Tracking
     
@@ -96,12 +93,26 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
+         let oldValue = value
         let touchPoint = touch.location(in: self)
         for star in starArray {
-            if star.bounds.contains(touchPoint) {
+            if star.frame.contains(touchPoint) && star.tag != value {
                 value = star.tag
-                sendActions(for: [.valueChanged])
+                
             }
+            
+            for i in 1...componentCount {
+                switch i <= value {
+                case true:
+                    starArray[i - 1].textColor = componentActiveColor
+                case false:
+                    starArray[i - 1].textColor = componentInactiveColor
+                }
+            }
+        }
+       
+        if value != oldValue {
+            sendActions(for: .valueChanged)
         }
     }
       
