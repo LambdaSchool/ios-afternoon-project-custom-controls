@@ -12,9 +12,14 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
     
-
+    @IBOutlet weak var starControl: CustomControl!
+    
     // MARK: - Actions
-
+    
+    @IBAction func changeDirection(_ sender: UISwitch) {
+        starControl.leftToRight = sender.isOn
+    }
+    
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         // Stretch: Title is correct for 1 ("star" not "stars") as well as 2-5.
         let plural = ratingControl.value == 1 ? "" : "s"

@@ -22,15 +22,39 @@
                                     <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="F2v-a7-exz"/>
                                 </connections>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-yx-D21">
+                                <rect key="frame" x="77.5" y="108" width="259" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-te-I9J">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="31"/>
+                                        <state key="normal" title="Right to Left"/>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1C-Io-cMo">
+                                        <rect key="frame" x="105" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="changeDirection:" destination="BYZ-38-t0r" eventType="valueChanged" id="DaS-KW-XDn"/>
+                                        </connections>
+                                    </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzX-ME-P2V">
+                                        <rect key="frame" x="174" y="0.0" width="85" height="31"/>
+                                        <state key="normal" title="Left to Right"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0w5-Y6-RNM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CWq-AM-EDS"/>
+                            <constraint firstItem="6aq-yx-D21" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="YtK-Eb-EvN"/>
                             <constraint firstItem="0w5-Y6-RNM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ass-AW-Kqj"/>
+                            <constraint firstItem="6aq-yx-D21" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ktc-cT-ull"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="lUf-Ow-ncs"/>
+                    <connections>
+                        <outlet property="starControl" destination="0w5-Y6-RNM" id="k5A-zb-sOq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

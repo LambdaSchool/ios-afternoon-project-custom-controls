@@ -29,7 +29,23 @@ class CustomControl: UIControl {
     let componentActiveText = "★"
     let componentInactiveText = "☆"
     let componentSpace: CGFloat = 8.0
-    let leftToRight = true // set to false for Right to Left
+    
+    // set to false for Right to Left
+    var leftToRight = true {
+        didSet {
+            // Remember: Stride: to/end is never an element of the resulting sequence.
+            var componentDirection = stride(from: 1, to: componentCount + 1, by: 1) // Left to right
+            if !leftToRight {
+                componentDirection = stride(from: componentCount, to: 0, by: -1) // Right to left
+            }
+
+            // Change direction by changing the order of the tag through the array.
+            for (index, tagNum) in componentDirection.enumerated() {
+                stars[index].tag = tagNum
+            }
+            updateStars()
+        }
+    }
     
     var stars = [UILabel]()
 
