@@ -132,7 +132,7 @@ class CustomControl: UIControl {
     }
     
     
-    // MARK: - Size
+    // MARK: - Sizing
     
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentDimension
@@ -140,8 +140,10 @@ class CustomControl: UIControl {
         let width = componentsWidth + componentsSpacing
         return CGSize(width: width, height: componentDimension)
     }
-
 }
+
+
+// MARK: - Flare Extension
 
 extension UIView {
   // "Flare view" animation sequence
