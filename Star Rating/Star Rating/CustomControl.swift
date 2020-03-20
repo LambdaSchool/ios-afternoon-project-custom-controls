@@ -36,15 +36,20 @@ class CustomControl: UIControl {
         
         for i in 1...componentCount{
             let star = UILabel()
+            addSubview(star)
+            starArray.append(star)
+            star.tag = i
+            let starSize = CGSize(width: componentDimension, height: componentDimension)
+            let starOrigin = CGPoint(x: 0, y: 0)
+            star.frame = CGRect(origin: starOrigin + 1.0 * 8.0, size: starSize)
             star.layoutMargins = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
             star.textAlignment = .center
             star.text = "✯"
             star.font = .boldSystemFont(ofSize: 32.0)
-            star.tag = i
+            
             star.textColor = componentInactiveColor
             star.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(star)
-            starArray.append(star)
+            
             
         }
         
