@@ -9,16 +9,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    enum rating: Int {
+        case oneStar, twoStars, threeStars, fourStars, fiveStars
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
         
-    
+        
     }
-
+    
+    func updateViews() {
+        self.title = "placeholder"
+        
+        
+    }
+    
     @IBAction func updateRating(_ ratingControl: CustomControl) {
         
-
     }
     
 }
