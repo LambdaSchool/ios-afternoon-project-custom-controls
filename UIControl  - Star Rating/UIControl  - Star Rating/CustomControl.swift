@@ -73,13 +73,15 @@ class CustomControl: UIControl {
             if stars[x].frame.contains(touchPoint) {
                 stars[x].textColor = componentActiveColor
                 value = stars[x].tag
-            }
-            if stars[x].tag <= value {
-                stars[x].textColor = componentActiveColor
-            }
-            else {
+            }  else {
                 stars[x].textColor = componentInactiveColor
             }
+        }
+        
+        for x in 0...4 {
+        if stars[x].tag <= value {
+               stars[x].textColor = componentActiveColor
+           }
         }
     }
     
