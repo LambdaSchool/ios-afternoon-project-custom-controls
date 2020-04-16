@@ -13,6 +13,7 @@ class CustomControl: UIControl {
     
     private var value: Int = 1
     private var star = UILabel()
+    private var stars = [UILabel]()
     private var componentDimension: CGFloat = 40.0
     private var componentCount: Int = 5
     private var componentActiveColor: UIColor = .black
@@ -21,7 +22,7 @@ class CustomControl: UIControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubviews()
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -31,23 +32,23 @@ class CustomControl: UIControl {
     private func setUpSubviews() {
         
         star.translatesAutoresizingMaskIntoConstraints = false
-
-        var stars = [UILabel]()
+        
+        
         for x in 0...4 {
             let star = (UILabel(frame: CGRect(x: (CGFloat(x) * componentDimension) + (CGFloat(x) * 8.0), y: 0, width: componentDimension, height: componentDimension)))
             
             star.text = "⭐︎"
             star.textAlignment = .center
             star.textColor = componentInactiveColor
-            star.font = UIFont.systemFont(ofSize: 30)
+            star.font = UIFont.systemFont(ofSize: 32)
             
             star.widthAnchor.constraint(equalTo: star.heightAnchor).isActive = true
             
-//            guard let starView = star as? UIView else { return }
+            //            guard let starView = star as? UIView else { return }
             stars.append(star)
             addSubview(stars[x])
         }
-         print(stars)
+        print(stars)
         stars[0].textColor = componentActiveColor
     }
     
@@ -61,22 +62,49 @@ class CustomControl: UIControl {
     
     // MARK: - Touch Tracking
     
-    //     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-    //
-    //     }
-    //
-    //     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-    //
-    //     }
-    //
-    //
-    //     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-    //
-    //
-    //     }
-    //
-    //     override func cancelTracking(with event: UIEvent?) {
-    //         sendActions(for: .touchCancel)
-    //
-    //     }
+    func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
+        
+        for x in 0...4 {
+            if stars[x].bounds.contains(touchPoint) {
+                stars[x].textColor = componentActiveColor
+            } else {
+                stars[x].textColor = componentInactiveColor
+            }
+        }
+    }
+    
+
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        sendActions(for: [.touchDown, .valueChanged])
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchDragInside, .valueChanged])
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
+    
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchUpInside, .valueChanged])
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+        
+    }
 }
