@@ -9,9 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+       }
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-            self.title = "User Rating: \(ratingControl.value) star(s)"
+            let rating = ratingControl.value
+            let ratingUnits = (rating == 1) ? "star" : "stars"
+            navigationItem.title = "User Rating: \(String(rating)) \(ratingUnits)"
         }
 }
 

@@ -34,7 +34,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J96-hC-bFj" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
                                 <rect key="frame" x="40" y="281" width="334" height="334"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="updateRating:" destination="pZd-cd-DHC" eventType="valueChanged" id="Qud-jr-FND"/>
                                 </connections>
