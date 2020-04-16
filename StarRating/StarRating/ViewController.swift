@@ -10,14 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let customControl = CustomControl()
-
     @IBAction func updateRating(_ sender: CustomControl) {
-        title = "User Rating: \(customControl.value)"
-        if customControl.value == 1 {
-            title?.append(" star")
-        } else {
-            title?.append(" stars")
+        title = "User Rating: \(sender.value) star"
+        if sender.value != 1 {
+            title?.append("s")
         }
     }
 }

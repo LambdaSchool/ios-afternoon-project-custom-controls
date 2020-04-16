@@ -26,7 +26,6 @@ class CustomControl: UIControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setup()
     }
     
     required init?(coder: NSCoder) {
@@ -44,19 +43,15 @@ class CustomControl: UIControl {
             addSubview(star)
             star.tag = n
             
-            starLabels.append(star)
-        }
-        
-        for star in starLabels {
             star.text = "★"
             star.font = .boldSystemFont(ofSize: 32)
             star.textAlignment = .center
             star.translatesAutoresizingMaskIntoConstraints = false
-            star.frame = CGRect(x: (componentDimension*CGFloat(star.tag-1)) + CGFloat(8*star.tag),
+            star.frame = CGRect(x: 0,
                                 y: 0,
                                 width: componentDimension,
                                 height: componentDimension)
-            
+                        
             NSLayoutConstraint.activate([
                 star.topAnchor.constraint(equalTo: topAnchor),
                 star.leadingAnchor.constraint(equalTo: leadingAnchor, constant: (componentDimension*CGFloat(star.tag-1)) + CGFloat(8*star.tag))
@@ -66,6 +61,7 @@ class CustomControl: UIControl {
             } else {
                 star.textColor = componentInactiveColor
             }
+            starLabels.append(star)
         }
     }
     
@@ -117,7 +113,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         
         for star in starLabels {
-            if star.bounds.contains(touchPoint) {
+            if star.frame.contains(touchPoint) {
                 star.performFlare()
                 value = star.tag
                 sendActions(for: [.valueChanged])
@@ -128,6 +124,7 @@ class CustomControl: UIControl {
                         star.textColor = componentInactiveColor
                     }
                 }
+                return
             }
         }
     }
