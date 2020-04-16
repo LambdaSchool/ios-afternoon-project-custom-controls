@@ -41,15 +41,17 @@ class CustomControl: UIControl {
             star.textAlignment = .center
             star.textColor = componentInactiveColor
             star.font = UIFont.systemFont(ofSize: 32)
+            star.tag = x
             
             star.widthAnchor.constraint(equalTo: star.heightAnchor).isActive = true
             
-            //            guard let starView = star as? UIView else { return }
             stars.append(star)
-            addSubview(stars[x])
+            print(star)
+            addSubview(star)
+            
         }
-        print(stars)
         stars[0].textColor = componentActiveColor
+        
     }
     
     
@@ -64,17 +66,21 @@ class CustomControl: UIControl {
     
     func updateValue(at touch: UITouch) {
         let touchPoint = touch.location(in: self)
+        let oldValue = value
+        let value = star.tag
         
         for x in 0...4 {
-            if stars[x].bounds.contains(touchPoint) {
+            if stars[x].frame.contains(touchPoint) {
                 stars[x].textColor = componentActiveColor
+                print("true")
             } else {
                 stars[x].textColor = componentInactiveColor
+                print("false")
             }
         }
     }
     
-
+    
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         updateValue(at: touch)
@@ -84,7 +90,7 @@ class CustomControl: UIControl {
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
-        if bounds.contains(touchPoint) {
+        if frame.contains(touchPoint) {
             updateValue(at: touch)
             sendActions(for: [.touchDragInside, .valueChanged])
         } else {
