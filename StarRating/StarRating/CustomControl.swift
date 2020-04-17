@@ -12,6 +12,8 @@ class CustomControl: UIControl {
     
     var value: Int = 1
     
+    private var labels: [UILabel] = []
+    
     private let componentDimension: CGFloat = 40
     private let componentCount = 5
     private let componentActiveColor: UIColor = .black
@@ -23,14 +25,13 @@ class CustomControl: UIControl {
     }
     
     private func setup() {
-        var labels: [UILabel] = []
         for i in 1...5 {
             let label = UILabel()
             label.tag = i
             label.font = .boldSystemFont(ofSize: 32)
             label.text = "⭑"
             label.textAlignment = .center
-            label.textColor = (i == 1) ? componentActiveColor : componentInactiveColor
+            label.textColor = (i <= value) ? componentActiveColor : componentInactiveColor
             label.frame = CGRect(x: 8 + CGFloat(i-1) * (componentDimension + 8), y: 0, width: componentDimension, height: componentDimension)
             
             addSubview(label)
@@ -46,7 +47,14 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
-        
+        labels.forEach {
+            if $0.frame.contains(touch.location(in: self)) {
+                value = $0.tag
+            }
+        }
+        labels.forEach {
+            $0.textColor = ($0.tag <= value) ? componentActiveColor : componentInactiveColor
+        }
     }
     
     // MARK: - UIControl
