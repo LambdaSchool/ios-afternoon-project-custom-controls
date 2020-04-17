@@ -49,3 +49,39 @@ class CustomControl: UIControl {
       return CGSize(width: width, height: componentDimension)
     }
 }
+
+extension CustomControl {
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+       // updateValue()
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchDragInside, .valueChanged])
+          //  updateValue()
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        defer {
+            super.endTracking(touch, with: event)
+        }
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchUpInside, .valueChanged])
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
+}
