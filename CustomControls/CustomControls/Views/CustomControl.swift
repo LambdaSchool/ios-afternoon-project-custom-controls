@@ -51,7 +51,6 @@ class CustomControl: UIControl {
             
             label.frame.size.width = componentDimension
             label.frame.size.height = componentDimension
-            label.backgroundColor = .blue
             label.font = UIFont.boldSystemFont(ofSize: 32)
             
             addSubview(label)
@@ -67,17 +66,34 @@ class CustomControl: UIControl {
     }
     
     func updateValue(at touch: UITouch) {
+        
+        let oldValue = value
+        
         let touchPoint = touch.location(in: self)
         for label in labelArray {
-            label.textColor = componentInactiveColor
-            if label.frame.contains(touchPoint) {
+//            label.textColor = componentInactiveColor
+            if label.frame.contains(touchPoint) && label.tag != value{
                 value = label.tag
-                label.performFlare()
-                for label in labelArray where label.tag <= value {
-                label.textColor = componentActiveColor
-                sendActions(for: .valueChanged)
+                
+                for index in 1...componentCount {
+                    switch index <= value {
+                    case true:
+                        labelArray[index - 1].textColor = componentActiveColor
+                    default:
+                        labelArray[index - 1].textColor = componentInactiveColor
+                    }
                 }
+                label.performFlare()
+                
+//                label.performFlare()
+//                for label in labelArray where label.tag <= value {
+//                label.textColor = componentActiveColor
+//                sendActions(for: .valueChanged)
+//                }
             }
+        }
+        if value != oldValue {
+            sendActions(for: .valueChanged)
         }
     }
     
@@ -86,11 +102,8 @@ class CustomControl: UIControl {
 extension CustomControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        
         updateValue(at: touch)
-
             sendActions(for: [.touchDown])
-
         return true
     }
     
