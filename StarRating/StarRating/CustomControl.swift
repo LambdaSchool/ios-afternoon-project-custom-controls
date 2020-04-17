@@ -52,7 +52,7 @@ class CustomControl: UIControl {
                 if value != $0.tag {
                     value = $0.tag
                     sendActions(for: .valueChanged)
-                    print("value changed")
+                    $0.performFlare()
                     
                     labels.forEach {
                         $0.textColor = ($0.tag <= value) ? componentActiveColor : componentInactiveColor
@@ -93,5 +93,17 @@ class CustomControl: UIControl {
     override func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
         sendActions(for: .touchCancel)
+    }
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
 }
