@@ -37,6 +37,8 @@ class CustomControl: UIControl {
             label.text = "☆"
             label.font = UIFont(name: "systemBold", size: 32.0)
             label.textAlignment = .center
+            
+            
             label.textColor = componentInActiveColor
             
         }
@@ -54,6 +56,7 @@ extension CustomControl {
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
         updateValue(at: touch)
+        
         return true
     }
     
@@ -86,8 +89,9 @@ extension CustomControl {
     }
     
     func updateValue(at touch: UITouch) {
+        let touchPoint = touch.location(in: self)
         for touchedLabel in labels {
-            if touchedLabel.bounds == touch.location(in: self) {
+            if touchedLabel.frame.contains(touchPoint){
                 value += 1
                 touchedLabel.textColor = componentActiveColor
                 sendActions(for: .valueChanged)

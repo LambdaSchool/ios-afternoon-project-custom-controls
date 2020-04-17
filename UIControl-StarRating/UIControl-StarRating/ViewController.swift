@@ -9,8 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-   // let customControl = CustomControl()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +17,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-//        if customControl.value == 1 {
-//        title = "User Rating 1 star."
-//        } else {
-//            title = "User Rating \(customControl.value) stars."
-//        }
+        if ratingControl.value == 1 {
+            self.title = "User Rating 1 star."
+        } else {
+            self.title = "User Rating \(ratingControl.value) stars."
+        }
     }
     
 }
