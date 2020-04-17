@@ -12,7 +12,6 @@ class ViewController: UIViewController {
 
     //Actions
     @IBAction func updateRating(_ sender: CustomControl) {
-        
         if customControl.value > 0 {
             title = "User Rating: \(customControl.value) stars"
         } else {
