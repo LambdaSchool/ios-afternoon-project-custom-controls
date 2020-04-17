@@ -31,12 +31,15 @@ class CustomControl: UIControl {
         for index in 1...6 {
             
             let label = UILabel()
+            if value == 0 {
+                label.textColor = componentInActiveColor
+            }
             addSubview(label)
             labels.append(label)
            
             label.tag = index
             label.frame = CGRect(x: componentDimension + CGFloat((index * 28)), y: 0.0, width: componentDimension, height: componentDimension)
-            label.text = "☆"
+            label.text = "✰"
             label.font = UIFont(name: "systemBold", size: 32.0)
             label.textAlignment = .center
             
@@ -85,6 +88,8 @@ extension CustomControl {
         if bounds.contains(touchPoint) {
             sendActions(for: [.touchUpInside, .valueChanged])
         } else {
+            value = 0
+            
             sendActions(for: .touchUpOutside)
         }
     }
@@ -99,6 +104,7 @@ extension CustomControl {
             label.textColor = componentInActiveColor
             if label.frame.contains(touchPoint) {
                 value = label.tag
+                label.performFlare()
                 for label in labels where label.tag <= value {
                 label.textColor = componentActiveColor
                 sendActions(for: .valueChanged)
@@ -112,11 +118,11 @@ extension CustomControl {
 extension UIView {
   // "Flare view" animation sequence
   func performFlare() {
-    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func flare()   { transform = CGAffineTransform(scaleX: 8.6, y: 8.6) }
     func unflare() { transform = .identity }
     
     UIView.animate(withDuration: 0.3,
                    animations: { flare() },
-                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+                   completion: { _ in UIView.animate(withDuration: 0.19) { unflare() }})
   }
 }
