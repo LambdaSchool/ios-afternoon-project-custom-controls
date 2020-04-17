@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     }
     
 }
+
 extension UIView {
   // "Flare view" animation sequence
   func performFlare() {

@@ -13,6 +13,7 @@ class CustomControl: UIControl {
     
     var value: Int = 1
     var labels: [UILabel] = []
+    var inBounds: Bool = false
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount: CGFloat = 5.0
@@ -32,15 +33,18 @@ class CustomControl: UIControl {
             let label = UILabel()
             addSubview(label)
             labels.append(label)
+           
             label.tag = index
-            label.frame = CGRect(x: componentDimension + CGFloat((index * 18)), y: 0.0, width: componentDimension, height: componentDimension)
+            label.frame = CGRect(x: componentDimension + CGFloat((index * 28)), y: 0.0, width: componentDimension, height: componentDimension)
             label.text = "☆"
             label.font = UIFont(name: "systemBold", size: 32.0)
             label.textAlignment = .center
             
-            
-            label.textColor = componentInActiveColor
-            
+            if inBounds {
+            label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInActiveColor
+            }
         }
     }
     
@@ -54,9 +58,9 @@ class CustomControl: UIControl {
 
 extension CustomControl {
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let touchPoint = touch.location(in: self)
-        updateValue(at: touch)
         
+        updateValue(at: touch)
+        sendActions(for: [.touchDown])
         return true
     }
     
@@ -88,14 +92,42 @@ extension CustomControl {
         sendActions(for: .touchCancel)
     }
     
+//    func updateValue(at touch: UITouch) {
+//        let touchPoint = touch.location(in: self)
+//        for touchedLabel in labels {
+//            if touchedLabel.frame.contains(touchPoint) {
+//                value = touchedLabel.tag
+//                if value < 5 {
+//                value += 1
+//                } else if value > 5 {
+//                    value -= 1
+//                }
+//                inBounds.toggle()
+//                touchedLabel.textColor = componentActiveColor
+//                sendActions(for: .valueChanged)
+//            } else {
+//                if value > 5 {
+//                    value -= 1
+//                }
+//                inBounds.toggle()
+//                touchedLabel.textColor = componentInActiveColor
+//                sendActions(for: .valueChanged)
+//            }
+//        }
+//    }
+    
     func updateValue(at touch: UITouch) {
         let touchPoint = touch.location(in: self)
-        for touchedLabel in labels {
-            if touchedLabel.frame.contains(touchPoint){
-                value += 1
-                touchedLabel.textColor = componentActiveColor
+        for label in labels {
+            label.textColor = componentInActiveColor
+            if label.frame.contains(touchPoint) {
+                value = label.tag
+                for label in labels where label.tag <= value {
+                label.textColor = componentActiveColor
                 sendActions(for: .valueChanged)
+                }
             }
         }
     }
+    
 }
