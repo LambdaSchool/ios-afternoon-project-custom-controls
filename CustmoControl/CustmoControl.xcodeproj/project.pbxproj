@@ -13,6 +13,7 @@
 		FEAC88B724493C76004D1D26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEAC88B524493C76004D1D26 /* Main.storyboard */; };
 		FEAC88B924493C77004D1D26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEAC88B824493C77004D1D26 /* Assets.xcassets */; };
 		FEAC88BC24493C77004D1D26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEAC88BA24493C77004D1D26 /* LaunchScreen.storyboard */; };
+		FEAC88C424493D90004D1D26 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAC88C324493D90004D1D26 /* CustomControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FEAC88B824493C77004D1D26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEAC88BB24493C77004D1D26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEAC88BD24493C77004D1D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEAC88C324493D90004D1D26 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				FEAC88B124493C76004D1D26 /* SceneDelegate.swift */,
 				FEAC88B324493C76004D1D26 /* ViewController.swift */,
 				FEAC88B524493C76004D1D26 /* Main.storyboard */,
+				FEAC88C324493D90004D1D26 /* CustomControl.swift */,
 				FEAC88B824493C77004D1D26 /* Assets.xcassets */,
 				FEAC88BA24493C77004D1D26 /* LaunchScreen.storyboard */,
 				FEAC88BD24493C77004D1D26 /* Info.plist */,
@@ -140,6 +143,7 @@
 			files = (
 				FEAC88B424493C76004D1D26 /* ViewController.swift in Sources */,
 				FEAC88B024493C76004D1D26 /* AppDelegate.swift in Sources */,
+				FEAC88C424493D90004D1D26 /* CustomControl.swift in Sources */,
 				FEAC88B224493C76004D1D26 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
