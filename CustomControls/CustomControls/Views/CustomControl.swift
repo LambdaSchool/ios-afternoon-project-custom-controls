@@ -24,35 +24,37 @@ class CustomControl: UIControl {
     }
     
     func setUp() {
+        
+        backgroundColor = .clear
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
-        stackView.spacing = 8
         
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        stackView.isUserInteractionEnabled = false
         
         
-        var labelTag = 0
-        for _ in 1...5 {
+        for index in 1...5 {
             let label = UILabel()
-            labelTag += 1
-            label.tag = labelTag
-            
+            label.isUserInteractionEnabled = true
+            label.tag = index
             label.text = "★"
             label.textColor = componentInactiveColor
-            addSubview(label)
+            
             labelArray.append(label)
             
             label.frame.size.width = componentDimension
             label.frame.size.height = componentDimension
+            label.backgroundColor = .blue
             label.font = UIFont.boldSystemFont(ofSize: 32)
             
+            addSubview(label)
             stackView.addArrangedSubview(label)
         }
     }
@@ -67,21 +69,27 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         let touchPoint = touch.location(in: self)
         for label in labelArray {
-            if label.bounds.contains(touchPoint) {
+            label.textColor = componentInactiveColor
+            if label.frame.contains(touchPoint) {
                 value = label.tag
+                for label in labelArray where label.tag <= value {
                 label.textColor = componentActiveColor
                 sendActions(for: .valueChanged)
+                }
             }
         }
     }
     
+}
+
+extension CustomControl {
+    
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        let touchPoint = touch.location(in: self)
         
         updateValue(at: touch)
-        if bounds.contains(touchPoint) {
+
             sendActions(for: [.touchDown])
-        }
+
         return true
     }
     
