@@ -10,35 +10,52 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let black: CGColor = UIColor.black.cgColor
+    let yellow: CGColor = UIColor.yellow.cgColor
+    let red: CGColor = UIColor.red.cgColor
+    let orange: CGColor = UIColor.orange.cgColor
+    let cyan: CGColor = UIColor.cyan.cgColor
+    let purple: CGColor = UIColor.purple.cgColor
+    let white: CGColor = UIColor.white.cgColor
+    let blue: CGColor = UIColor.blue.cgColor
+    
+ let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//    let gradientLayer = CAGradientLayer()
-//    gradientLayer.frame = self.view.bounds
-//    gradientLayer.colors = [UIColor.black.cgColor, UIColor.cyan.cgColor, UIColor.red.cgColor, UIColor.black.cgColor]
-//    self.view.layer.insertSublayer(gradientLayer, at: 0)
-        // Do any additional setup after loading the view.
+        updateViews(one: purple, two: orange, three: yellow, four: red, five: blue)
+        self.title = "User Rating: 1 star."
     }
-
+   
+    func updateViews(one: CGColor, two: CGColor, three: CGColor, four: CGColor, five: CGColor) {
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [one, two, three, four, five]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        if ratingControl.value == 1 {
-            self.title = "User Rating 1 star."
+         if ratingControl.value == 1 {
+            self.title = "User Rating: 1 star."
         } else {
-            self.title = "User Rating \(ratingControl.value) stars."
+            self.title = "User Rating: \(ratingControl.value) stars."
         }
         switch ratingControl.value {
-        case 0:
-            view.backgroundColor = .darkGray
         case 1:
-            view.backgroundColor = .lightGray
+            updateViews(one: red, two: white, three: white, four: blue, five: black)
+           // view.backgroundColor = .lightGray
         case 2:
-            view.backgroundColor = .cyan
+            updateViews(one: black, two: yellow, three: red, four: black, five: white)
+           // view.backgroundColor = .cyan
         case 3:
-            view.backgroundColor = .blue
+            updateViews(one: cyan, two: orange, three: red, four: black, five: blue)
+           // view.backgroundColor = .blue
         case 4:
-            view.backgroundColor = .purple
+            updateViews(one: red, two: black, three: yellow, four: red, five: red)
+           // view.backgroundColor = .purple
         case 5:
-            view.backgroundColor = .orange
+            updateViews(one: black, two: yellow, three: red, four: black, five: cyan)
+          //  view.backgroundColor = .orange
         default:
             break
         }
