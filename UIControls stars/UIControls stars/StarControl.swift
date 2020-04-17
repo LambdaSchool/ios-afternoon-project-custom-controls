@@ -10,46 +10,46 @@ import UIKit
 
 @IBDesignable
 class StarControl: UIControl {
-
+    
     var value: Int = 1
-      private let componentDimension: CGFloat = 40.0
-      private let componentCount = 5
-      private let componentActiveColor: UIColor = .red
-      private let componentInactiveColor: UIColor = .gray
-      private var stars: [UILabel] = []
-      
-      override init(frame: CGRect) {
-          super.init(frame: frame)
-          setUpSubviews()
-      }
-      
-      required init?(coder: NSCoder) {
-          super.init(coder: coder)
-          setUpSubviews()
-      }
+    private let componentDimension: CGFloat = 40.0
+    private let componentCount = 5
+    private let componentActiveColor: UIColor = .red
+    private let componentInactiveColor: UIColor = .gray
+    private var stars: [UILabel] = []
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setUpSubviews()
+    }
     
     func setUpSubviews() {
         var stars: [UILabel] = []
-               for i in 1...5 {
-                   let label = UILabel()
-                   let padding = CGFloat(8.0 * CGFloat(i))
-                      label.frame = CGRect(x: padding + (componentDimension * CGFloat(i - 1)), y: 0, width: componentDimension, height: componentDimension)
-                   
-                   let star = "⭐️"
-                   label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
-                   label.textAlignment = .center
-                   label.text = star
-                   if i == 1 {
-                       label.textColor = componentActiveColor
-                   } else {
-                       label.textColor = componentInactiveColor
-                   }
-                   label.tag = i
-                   stars.append(label)
-                   addSubview(label)
-               }
-               
-               self.stars = stars
+        for i in 1...5 {
+            let label = UILabel()
+            let padding = CGFloat(8.0 * CGFloat(i))
+            label.frame = CGRect(x: padding + (componentDimension * CGFloat(i - 1)), y: 0, width: componentDimension, height: componentDimension)
+            
+            let star = "⭑"
+            label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+            label.textAlignment = .center
+            label.text = star
+            if i == 1 {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+            }
+            label.tag = i
+            stars.append(label)
+            addSubview(label)
+        }
+        
+        self.stars = stars
     }
     
     override var intrinsicContentSize: CGSize {
@@ -60,21 +60,35 @@ class StarControl: UIControl {
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-          updateValue(at: touch)
-          return true
-      }
+        updateValue(at: touch)
+        return true
+    }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-           let touchPoint = touch.location(in: self)
-           if bounds.contains(touchPoint) {
-               sendActions(for: [.touchDragInside])
-               updateValue(at: touch)
-           } else {
-               sendActions(for: [.touchDragOutside])
-           }
-           return true
-       }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchDragInside])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+        return true
+    }
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: [.touchUpInside])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchUpOutside])
+        }
+        
+    }
     
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
     
     private func updateValue(at touch: UITouch) {
         
@@ -99,13 +113,13 @@ class StarControl: UIControl {
         }
     }
     /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
+    
 }
 
 extension UIView {
