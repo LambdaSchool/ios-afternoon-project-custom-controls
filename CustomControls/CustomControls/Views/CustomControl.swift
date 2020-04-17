@@ -13,7 +13,7 @@ class CustomControl: UIControl {
     var value: Int = 1
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
-    private let componentActiveColor: UIColor = #colorLiteral(red: 0.08015998453, green: 0.2788668573, blue: 0.3865089417, alpha: 1)
+    private let componentActiveColor: UIColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
     private let componentInactiveColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     
     var labelArray: [UILabel] = []
@@ -72,6 +72,7 @@ class CustomControl: UIControl {
             label.textColor = componentInactiveColor
             if label.frame.contains(touchPoint) {
                 value = label.tag
+                label.performFlare()
                 for label in labelArray where label.tag <= value {
                 label.textColor = componentActiveColor
                 sendActions(for: .valueChanged)
@@ -127,5 +128,16 @@ extension CustomControl {
         super.cancelTracking(with: event)
     }
     
-    
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+      func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+      func unflare() { transform = .identity }
+      
+      UIView.animate(withDuration: 0.3,
+                     animations: { flare() },
+                     completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+    }
 }
