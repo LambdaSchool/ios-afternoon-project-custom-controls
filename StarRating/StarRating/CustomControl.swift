@@ -44,4 +44,41 @@ class CustomControl: UIControl {
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension + 5)
     }
+    
+    func updateValue(at touch: UITouch) {
+        
+    }
+    
+    // MARK: - UIControl
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        if bounds.contains(touch.location(in: self)) {
+            updateValue(at: touch)
+            sendActions(for: .touchDragInside)
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        super.endTracking(touch, with: event)
+        guard let touch = touch else { return }
+        if bounds.contains(touch.location(in: self)) {
+            updateValue(at: touch)
+            sendActions(for: .touchUpInside)
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        super.cancelTracking(with: event)
+        sendActions(for: .touchCancel)
+    }
 }
