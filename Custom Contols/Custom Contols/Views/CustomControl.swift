@@ -27,26 +27,27 @@ class CustomControl: UIControl {
     }
     
     func setup() {
-        
+
         for number in 1...5 {
-            
+
             let starLabel = UILabel()
             starLabel.tag = number
-            
+            starLabel.frame = CGRect(x: (componentDimensions * CGFloat(number - 1)) + CGFloat(8 * number), y: 0, width: componentDimensions, height: componentDimensions)
+
             if number == 1 {
-                
+
                 starLabel.text = "★"
-                starLabel.frame = CGRect(x: 8, y: 0, width: componentDimensions, height: componentDimensions)
+                addSubview(starLabel)
+                starLabels.append(starLabel)
+
+            } else {
+                starLabel.text = "☆"
                 addSubview(starLabel)
                 starLabels.append(starLabel)
                 
-            } else {
-                starLabel.text = "☆"
-                starLabel.frame = CGRect(x: CGFloat(CGFloat(number * 8) + componentDimensions), y: 0, width: componentDimensions, height: componentDimensions)
-                addSubview(starLabel)
-                starLabels.append(starLabel)            }
+            }
         }
-        
+
     }
     
 } //End of class
