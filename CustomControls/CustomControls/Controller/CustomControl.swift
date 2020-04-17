@@ -109,6 +109,7 @@ class CustomControl: UIControl {
         for label in labels {
             let touchPoint = touch.location(in: label)
             if label.bounds.contains(touchPoint) {
+                value = label.tag
                 sendActions(for: .valueChanged)
                 label.textColor = componentActiveColor
                 label.performFlare()
