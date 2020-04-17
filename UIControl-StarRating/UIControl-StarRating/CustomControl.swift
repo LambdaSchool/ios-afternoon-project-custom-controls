@@ -28,7 +28,7 @@ class CustomControl: UIControl {
     
     func setUp() {
         
-        for index in 1...5 {
+        for index in 1...6 {
             
             let label = UILabel()
             addSubview(label)
@@ -50,7 +50,7 @@ class CustomControl: UIControl {
     
     override var intrinsicContentSize: CGSize {
       let componentsWidth = CGFloat(componentCount) * componentDimension
-      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+      let componentsSpacing = CGFloat(componentCount + 1) * 20.0
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
@@ -60,6 +60,7 @@ extension CustomControl {
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
         updateValue(at: touch)
+        
         sendActions(for: [.touchDown])
         return true
     }
@@ -92,30 +93,6 @@ extension CustomControl {
         sendActions(for: .touchCancel)
     }
     
-//    func updateValue(at touch: UITouch) {
-//        let touchPoint = touch.location(in: self)
-//        for touchedLabel in labels {
-//            if touchedLabel.frame.contains(touchPoint) {
-//                value = touchedLabel.tag
-//                if value < 5 {
-//                value += 1
-//                } else if value > 5 {
-//                    value -= 1
-//                }
-//                inBounds.toggle()
-//                touchedLabel.textColor = componentActiveColor
-//                sendActions(for: .valueChanged)
-//            } else {
-//                if value > 5 {
-//                    value -= 1
-//                }
-//                inBounds.toggle()
-//                touchedLabel.textColor = componentInActiveColor
-//                sendActions(for: .valueChanged)
-//            }
-//        }
-//    }
-    
     func updateValue(at touch: UITouch) {
         let touchPoint = touch.location(in: self)
         for label in labels {
@@ -129,5 +106,17 @@ extension CustomControl {
             }
         }
     }
+}
+
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
     
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
