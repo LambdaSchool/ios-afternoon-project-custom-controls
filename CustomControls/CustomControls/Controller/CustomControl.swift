@@ -59,9 +59,6 @@ class CustomControl: UIControl {
             //Set the size and location of the labels
             let padding = CGFloat(8.0 * CGFloat(i))
             label.frame = CGRect(x: padding + (componentDimension * CGFloat(i - 1)), y: 0, width: componentDimension, height: componentDimension)
-            
-            print(label.frame.origin)
-            
         }
     }
     
@@ -72,12 +69,72 @@ class CustomControl: UIControl {
       return CGSize(width: width, height: componentDimension)
     }
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
     }
-    */
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        //Set the touchPoint
+        let touchPoint = touch.location(in: self)
+        //Check to see if it's in the bounds
+        if bounds.contains(touchPoint) {
+            sendActions(for: .touchDragInside)
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
 
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        
+        //Set the touchPoint
+        let touchPoint = touch.location(in: self)
+        //Check to see if it's in the bounds
+        if bounds.contains(touchPoint) {
+            sendActions(for: .touchUpInside)
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
+    func updateValue(at touch: UITouch) {
+        for label in labels {
+            let touchPoint = touch.location(in: label)
+            if label.bounds.contains(touchPoint) {
+                sendActions(for: .valueChanged)
+                label.textColor = componentActiveColor
+                label.performFlare()
+                
+                for i in 1...label.tag {
+                    let label = labels.filter { $0.tag == i}.first
+                    if let label = label {
+                        label.textColor = componentActiveColor
+                    }
+                }
+            } else {
+                label.textColor = componentInactiveColor
+            }
+        }
+    }
+}
+
+// MARK: Extension
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
