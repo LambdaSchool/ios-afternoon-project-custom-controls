@@ -16,7 +16,7 @@ class CustomControl: UIControl {
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount: CGFloat = 5.0
-    private let componentActiveColor: UIColor = .black
+    private let componentActiveColor: UIColor = .red
     private let componentInActiveColor: UIColor = .gray
     
     required init?(coder aCoder: NSCoder) {
@@ -53,7 +53,7 @@ class CustomControl: UIControl {
 extension CustomControl {
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
-       // updateValue()
+        updateValue(at: touch)
         return true
     }
     
@@ -61,7 +61,7 @@ extension CustomControl {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             sendActions(for: [.touchDragInside, .valueChanged])
-          //  updateValue()
+            updateValue(at: touch)
         } else {
             sendActions(for: .touchDragOutside)
         }
@@ -83,5 +83,15 @@ extension CustomControl {
     
     override func cancelTracking(with event: UIEvent?) {
         sendActions(for: .touchCancel)
+    }
+    
+    func updateValue(at touch: UITouch) {
+        for touchedLabel in labels {
+            if touchedLabel.bounds == touch.location(in: self) {
+                value += 1
+                touchedLabel.textColor = componentActiveColor
+                sendActions(for: .valueChanged)
+            }
+        }
     }
 }
