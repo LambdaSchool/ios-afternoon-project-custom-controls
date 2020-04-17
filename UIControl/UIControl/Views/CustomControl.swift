@@ -48,12 +48,13 @@ class CustomControl: UIControl {
             label.textAlignment = .center
             starArray.append(label)
             
-            if label.tag == 1 {
-                label.textColor = componentActiveColor
-            } else {
-                label.textColor = componentInactiveColor
-            }
             
+        }
+        
+        if label.tag == 1 {
+            label.textColor = componentActiveColor
+        } else {
+            label.textColor = componentInactiveColor
         }
         
         let stackView = UIStackView(arrangedSubviews: starArray)
@@ -127,10 +128,21 @@ extension CustomControl {
             if touch.location(in: self).x >= label.frame.minX {
                 value = label.tag
                 label.textColor = componentActiveColor
+                label.performFlare()
             } else {
                 label.textColor = componentInactiveColor
             }
         }
     }
     
+}
+
+extension UIView {
+  func performFlare() {
+    func flare()  { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    UIView.animate(withDuration: 0.3,
+            animations: { flare() },
+            completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
