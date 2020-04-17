@@ -49,11 +49,16 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         labels.forEach {
             if $0.frame.contains(touch.location(in: self)) {
-                value = $0.tag
+                if value != $0.tag {
+                    value = $0.tag
+                    sendActions(for: .valueChanged)
+                    print("value changed")
+                    
+                    labels.forEach {
+                        $0.textColor = ($0.tag <= value) ? componentActiveColor : componentInactiveColor
+                    }
+                }
             }
-        }
-        labels.forEach {
-            $0.textColor = ($0.tag <= value) ? componentActiveColor : componentInactiveColor
         }
     }
     
