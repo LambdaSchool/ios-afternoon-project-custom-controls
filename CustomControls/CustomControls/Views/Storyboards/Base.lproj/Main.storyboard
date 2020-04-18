@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xc0-V3-lrz">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Qmg-dw-ew6">
+            <objects>
+                <navigationController id="Xc0-V3-lrz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UXs-WF-xb3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZuI-L1-oye" kind="relationship" relationship="rootViewController" id="PBe-6n-ulB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ng-8c-Ppt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="-830"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vIz-yA-FHw">
+            <objects>
+                <viewController id="ZuI-L1-oye" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JHX-rw-pnf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgC-gy-gOh" customClass="CustomControl">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="l55-o6-Jq6" firstAttribute="trailing" secondItem="PgC-gy-gOh" secondAttribute="trailing" constant="87" id="2tY-0h-2Cu"/>
+                            <constraint firstItem="PgC-gy-gOh" firstAttribute="top" secondItem="l55-o6-Jq6" secondAttribute="top" constant="296" id="FzA-RE-J7B"/>
+                            <constraint firstItem="l55-o6-Jq6" firstAttribute="bottom" secondItem="PgC-gy-gOh" secondAttribute="bottom" constant="350" id="NHm-a9-wZl"/>
+                            <constraint firstItem="PgC-gy-gOh" firstAttribute="leading" secondItem="l55-o6-Jq6" secondAttribute="leading" constant="87" id="g15-9S-nGS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="l55-o6-Jq6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="l45-XN-37l"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIw-cx-X1M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3080" y="-830"/>
+        </scene>
+    </scenes>
+</document>
