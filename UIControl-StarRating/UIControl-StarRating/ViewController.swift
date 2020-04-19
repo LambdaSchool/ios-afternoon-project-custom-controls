@@ -10,20 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let black: CGColor = UIColor.black.cgColor
+    let black: CGColor = UIColor.black.cgColor//
     let yellow: CGColor = UIColor.yellow.cgColor
-    let red: CGColor = UIColor.red.cgColor
+    let red: CGColor = UIColor.red.cgColor//
     let orange: CGColor = UIColor.orange.cgColor
     let cyan: CGColor = UIColor.cyan.cgColor
     let purple: CGColor = UIColor.purple.cgColor
-    let white: CGColor = UIColor.white.cgColor
-    let blue: CGColor = UIColor.blue.cgColor
+    let white: CGColor = UIColor.white.cgColor//
+    let blue: CGColor = UIColor.blue.cgColor//
+    let grey: CGColor = UIColor.gray.cgColor
     
  let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews(one: purple, two: orange, three: yellow, four: red, five: blue)
+        updateViews(one: grey, two: grey, three: grey, four: grey, five: grey)
         self.title = "User Rating: 1 star."
     }
    
@@ -43,19 +44,16 @@ class ViewController: UIViewController {
         switch ratingControl.value {
         case 1:
             updateViews(one: red, two: white, three: white, four: blue, five: black)
-           // view.backgroundColor = .lightGray
         case 2:
-            updateViews(one: black, two: yellow, three: red, four: black, five: white)
-           // view.backgroundColor = .cyan
+           updateViews(one: white, two: red, three: white, four: blue, five: black)
         case 3:
-            updateViews(one: cyan, two: orange, three: red, four: black, five: blue)
-           // view.backgroundColor = .blue
+            updateViews(one: white, two: white, three: red, four: blue, five: black)
         case 4:
-            updateViews(one: red, two: black, three: yellow, four: red, five: red)
-           // view.backgroundColor = .purple
+            updateViews(one: white, two: white, three: blue, four: red, five: black)
         case 5:
-            updateViews(one: black, two: yellow, three: red, four: black, five: cyan)
-          //  view.backgroundColor = .orange
+            updateViews(one: white, two: white, three: blue, four: black, five: red)
+        case 6:
+            updateViews(one: cyan, two: cyan, three: orange, four: cyan, five: cyan)
         default:
             break
         }

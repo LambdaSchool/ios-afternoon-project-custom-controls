@@ -15,10 +15,11 @@ class CustomControl: UIControl {
     var labels: [UILabel] = []
     var inBounds: Bool = false
     
+    
     private let componentDimension: CGFloat = 40.0
     private let componentCount: CGFloat = 5.0
     private let componentActiveColor: UIColor = .systemTeal
-    private let componentInactiveColor: UIColor = .systemGreen
+    private let componentInactiveColor: UIColor = .black
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
@@ -27,16 +28,33 @@ class CustomControl: UIControl {
     }
     
     func setUp() {
+        backgroundColor = .clear
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stackView)
         
-        for index in 1...6 {
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: stackView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        for index in 1...8 {
             
             let label = UILabel()
+            stackView.isUserInteractionEnabled = false
             addSubview(label)
             labels.append(label)
             label.tag = index
-            label.frame = CGRect(x: componentDimension + CGFloat((index * 28)), y: 0.0, width: componentDimension, height: componentDimension)
+           // label.frame = CGRect(x: componentDimension + CGFloat((index * 28)), y: 0.0, width: componentDimension, height: componentDimension)
+            label.frame.size.width = componentDimension
+            label.frame.size.height = componentDimension
             label.text = "✭"
-            label.font = UIFont(name: "systemBold", size: 32.0)
+            label.font = UIFont.boldSystemFont(ofSize: 32)
             label.textAlignment = .center
             
             if inBounds {
@@ -44,12 +62,14 @@ class CustomControl: UIControl {
             } else {
                 label.textColor = componentInactiveColor
             }
+           stackView.addArrangedSubview(label)
         }
+        
     }
     
     override var intrinsicContentSize: CGSize {
       let componentsWidth = CGFloat(componentCount) * componentDimension
-      let componentsSpacing = CGFloat(componentCount + 1) * 28.0
+      let componentsSpacing = CGFloat(componentCount + 1) * 18.0
       let width = componentsWidth + componentsSpacing
       return CGSize(width: width, height: componentDimension)
     }
