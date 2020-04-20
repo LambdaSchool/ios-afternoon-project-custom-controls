@@ -72,7 +72,10 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         for label in labelArray {
 //            label.textColor = componentInactiveColor
-            if label.frame.contains(touchPoint) && label.tag != value{
+            if label.frame.contains(touchPoint)
+                //stops the flickering when barely moving finger while still on same star label
+                && label.tag != value
+            {
                 value = label.tag
                 
                 for index in 1...componentCount {
