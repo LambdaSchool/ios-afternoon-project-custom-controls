@@ -18,13 +18,13 @@ class CustomControl: UIControl {
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount: CGFloat = 5.0
-    private let componentActiveColor: UIColor = .systemTeal
+    private let componentActiveColor: UIColor = .systemRed
     private let componentInactiveColor: UIColor = .black
     
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         setUp()
-        ()
+       
     }
     
     func setUp() {
@@ -50,7 +50,7 @@ class CustomControl: UIControl {
             addSubview(label)
             labels.append(label)
             label.tag = index
-           // label.frame = CGRect(x: componentDimension + CGFloat((index * 28)), y: 0.0, width: componentDimension, height: componentDimension)
+            label.frame = CGRect(x: componentDimension + CGFloat((index * 28)), y: 0.0, width: componentDimension, height: componentDimension)
             label.frame.size.width = componentDimension
             label.frame.size.height = componentDimension
             label.text = "✭"
@@ -98,9 +98,9 @@ extension CustomControl {
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         guard let touch = touch else { return }
         let touchPoint = touch.location(in: self)
-        defer {
-            super.endTracking(touch, with: event)
-        }
+//        defer {
+//            super.endTracking(touch, with: event)
+//        }
         if bounds.contains(touchPoint) {
             sendActions(for: [.touchUpInside, .valueChanged])
         } else if !bounds.contains(touchPoint ){
