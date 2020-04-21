@@ -2,10 +2,9 @@ import UIKit
 
 func expandTheNumber(num: Int) {
     
-    let m = String(num)
-    let amt = m.count
+    let amt = String(num).count
     for a in 1...amt {
-        let character 
+        let character
     }
     
 }
