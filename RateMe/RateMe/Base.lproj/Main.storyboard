@@ -18,7 +18,10 @@
                             <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abe-Ud-s50" customClass="CustomControl" customModule="RateMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="121" width="414" height="706"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="iqy-qg-6di" eventType="valueChanged" id="D6h-B0-qc9"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -27,6 +30,7 @@
                     <navigationItem key="navigationItem" id="7Rh-DQ-cBK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zg7-fo-beW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="iqy-qg-6di" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="473.91304347826093" y="151.33928571428569"/>
         </scene>
