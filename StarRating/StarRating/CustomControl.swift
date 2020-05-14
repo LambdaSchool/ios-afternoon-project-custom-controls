@@ -10,14 +10,19 @@ import UIKit
 
 @IBDesignable
 class CustomControl: UIControl {
-
+    
     var value: Int = 1
     var starLabelArray: [UILabel] = []
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
-    private let componentActiveColor: UIColor = .black
+    private let componentActiveColor: UIColor = .purple
     private let componentInactiveColor: UIColor = .gray
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSubview()
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -43,7 +48,7 @@ class CustomControl: UIControl {
                 label.textColor = componentInactiveColor
             }
         }
-    //MARK: - STACK VIEW FOR STARS
+        //MARK: - STACK VIEW FOR STARS
         
         let stackView = UIStackView(arrangedSubviews: starLabelArray)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +62,7 @@ class CustomControl: UIControl {
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-       
+        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -67,22 +72,55 @@ class CustomControl: UIControl {
         return CGSize(width: width, height: componentDimension)
     }
     
-    //MARK: - CUSTOM CONTROL
-}
-
-    
     //MARK: - BEGIN TRACKING
-
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
     
     //MARK: - CONTINUE TRACKING
-
-
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: .touchUpInside)
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
+    
+    
     //MARK: - END TRACKING
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint) {
+            sendActions(for: .touchUpInside)
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
     
     //MARK: - CANCEL TRACKING
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
     
+    func updateValue(at touch: UITouch) {
+        for label in starLabelArray {
+            let touchPoint = touch.location(in: label)
+            if label.bounds.contains(touchPoint) {
+                sendActions(for: .valueChanged)
+                label.textColor = componentActiveColor
+                
+            }
+        }
+    }
     
-
+}
 
 
 
