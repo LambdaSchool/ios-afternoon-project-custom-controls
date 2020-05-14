@@ -2,7 +2,7 @@
 //  CustomControl.swift
 //  Rating
 //
-//  Created by Dahna on 4/16/20.
+//  Created by Dahna on 5/14/20.
 //  Copyright © 2020 Dahna Buenrostro. All rights reserved.
 //
 
@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class CustomControl: UIControl {
+
     
     var value: Int = 1 {
         didSet {
@@ -78,7 +79,7 @@ class CustomControl: UIControl {
     func updateStars() {
         
         for i in 0...labelArray.count {
-            if labelArray[i].tag <= value {
+            if labelArray[i].tag > value + 1 {
                 labelArray[i].textColor = componentActiveColor
                 print("active")
             } else {
@@ -96,7 +97,13 @@ class CustomControl: UIControl {
             let touchPoint = touch.location(in: labelArray[i])
             if labelArray[i].bounds.contains(touchPoint) {
                 value = i + 1
-                
+                if labelArray[i].tag <= value {
+                    print(i)
+                    print(value)
+                    labelArray[i].textColor = componentActiveColor
+                } else {
+                    labelArray[i].textColor = componentInactiveColor
+                }
                 sendActions(for: .valueChanged)
                 
                 break
@@ -114,6 +121,7 @@ class CustomControl: UIControl {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
+
             sendActions(for: [.touchDragInside])
         } else {
             sendActions(for: .touchDragOutside)
@@ -127,6 +135,7 @@ class CustomControl: UIControl {
         if bounds.contains(touchPoint) {
             updateValue(at: touch)
             sendActions(for: [.touchUpInside])
+
         } else {
             sendActions(for: [.touchUpOutside])
         }
