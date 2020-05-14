@@ -19,7 +19,7 @@
                                 <rect key="frame" x="40" y="339" width="334" height="128"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="wOe-Xc-AvX" secondAttribute="height" multiplier="167:64" id="ypP-oX-QYj"/>
+                                    <constraint firstAttribute="width" secondItem="wOe-Xc-AvX" secondAttribute="height" id="ypP-oX-QYj"/>
                                 </constraints>
                                 <connections>
                                     <action selector="updateRating:" destination="BYZ-38-t0r" eventType="valueChanged" id="av7-h6-NNx"/>

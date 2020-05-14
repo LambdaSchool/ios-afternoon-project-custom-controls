@@ -12,34 +12,77 @@ import UIKit
 class CustomControl: UIControl {
 
     var value: Int = 1
+    var starLabelArray: [UILabel] = []
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
     private let componentActiveColor: UIColor = .black
     private let componentInactiveColor: UIColor = .gray
     
-    required init?(coder acoder: NSCoder) {
-        super.init(coder: acoder)
-        setup()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupSubview()
     }
     
-    func setup() {
-        var labelOne = UILabel()
-        var labelTwo = UILabel()
-        var labelThree = UILabel()
-        var labelFour = UILabel()
-        var labelFive = UILabel()
+    func setupSubview() {
+        backgroundColor = .clear
         
-        let labelArray = [labelOne, labelTwo, labelThree, labelFour, labelFive]
+        for i in 1...5 {
+            let label = UILabel()
+            addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            
+            label.font = UIFont.boldSystemFont(ofSize: 32.0)
+            label.text = "✩"
+            label.textAlignment = .center
+            starLabelArray.append(label)
+            
+            if i == 1 {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+            }
+        }
+    //MARK: - STACK VIEW FOR STARS
         
+        let stackView = UIStackView(arrangedSubviews: starLabelArray)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stackView)
+        stackView.isUserInteractionEnabled = false
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.spacing = 8
+        
+        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
        
     }
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override var intrinsicContentSize: CGSize {
+        let componentsWidth = CGFloat(componentCount) * componentDimension
+        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let width = componentsWidth + componentsSpacing
+        return CGSize(width: width, height: componentDimension)
     }
     
-
+    //MARK: - CUSTOM CONTROL
 }
+
+    
+    //MARK: - BEGIN TRACKING
+
+    
+    //MARK: - CONTINUE TRACKING
+
+
+    //MARK: - END TRACKING
+    
+    //MARK: - CANCEL TRACKING
+    
+    
+
+
+
+
