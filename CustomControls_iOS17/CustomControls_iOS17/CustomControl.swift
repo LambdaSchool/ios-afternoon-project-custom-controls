@@ -11,7 +11,11 @@ import UIKit
 class CustomControl: UIControl {
     
     // MARK: - Properties -
-    var value: Int = 1
+    var value: Int = 1 {
+        didSet {
+            updateViews()
+        }
+    }
     
     private let componentDimension: CGFloat = 40.0
     private let componentCount = 5
@@ -62,33 +66,32 @@ class CustomControl: UIControl {
     func updateValue(at touch: UITouch) {
         for component in components {
             if component.frame.contains(touch.location(in: self)) {
-                value = component.tag
-                for label in components {
-                    if label.tag <= value {
-                        label.textColor = componentActiveColor
-                    }
-                }
+                self.value = component.tag
+            }
+        }
+    }
+    
+    private func updateViews() {
+        for label in components {
+            if label.tag <= self.value {
+                label.textColor = componentActiveColor
             } else {
-                for label in components {
-                    if label.tag > value {
-                        label.textColor = componentInactiveColor
-                    }
-                }
+                label.textColor = componentInactiveColor
             }
         }
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        sendActions(for: .valueChanged)
-        updateValue(at: touch)
+        //sendActions(for: .valueChanged)
+        //updateValue(at: touch)
         return true
     }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
-            sendActions(for: [.touchDragInside, .valueChanged])
             updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .valueChanged])
         } else {
             sendActions(for: [.touchDragOutside])
         }
@@ -98,8 +101,8 @@ class CustomControl: UIControl {
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         guard let touch = touch else { return }
         if bounds.contains(touch.location(in: self)) {
-            sendActions(for: [.touchDragInside])
             updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .valueChanged])
         } else {
             sendActions(for: [.touchDragOutside])
             return

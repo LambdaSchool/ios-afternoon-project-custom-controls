@@ -10,23 +10,25 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var customControl = CustomControl()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationTitle()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationTitle(value: 1)
     }
     
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        navigationTitle()
+        navigationTitle(value: ratingControl.value)
     }
     
-    func navigationTitle() {
-        if customControl.value == 1 {
-            self.title = "User Rating: \(customControl.value) Star."
+    func navigationTitle(value: Int) {
+        if value == 1 {
+            self.title = "User Rating: \(value) Star."
         } else {
-            self.title = "User Rating: \(customControl.value) Stars."
+            self.title = "User Rating: \(value) Stars."
         }
     }
 }
