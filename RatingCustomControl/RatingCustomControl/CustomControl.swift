@@ -30,6 +30,30 @@ class CustomControl: UIControl {
         setUpViews()
     }
     
+    // MARK: - Control Functions
+    
+    private func updateValue(at touch: UITouch){
+        for label in starLabels{
+            let touchpoint = touch.location(in: label)
+            if label.bounds.contains(touchpoint) {
+                self.value = label.tag
+                sendActions(for: .valueChanged)
+                label.textColor = componentActiveColor
+                label.performFlare()
+                
+                for i in 1...label.tag {
+                    let label = starLabels.filter { $0.tag == i}.first
+                    if let label = label {
+                        label.textColor = componentActiveColor
+                    }
+                }
+            } else {
+                label.textColor = componentInactiveColor
+            }
+        }
+    }
+    
+    
     // MARK: - Setting Up Views
     private func setUpViews(){
         
@@ -57,9 +81,55 @@ class CustomControl: UIControl {
     }
     
     override var intrinsicContentSize: CGSize {
-      let componentsWidth = CGFloat(componentCount) * componentDimension
-      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
-      let width = componentsWidth + componentsSpacing
-      return CGSize(width: width, height: componentDimension)
+        let componentsWidth = CGFloat(componentCount) * componentDimension
+        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let width = componentsWidth + componentsSpacing
+        return CGSize(width: width, height: componentDimension)
+    }
+    
+    // MARK: - Touch Tracking
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchPoint = touch.location(in: self)
+        
+        if bounds.contains(touchPoint){
+            sendActions(for: [.touchDragInside, .valueChanged])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchDragOutside)
+        }
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        let touchPoint = touch.location(in: self)
+        if bounds.contains(touchPoint){
+            sendActions(for: [.touchUpInside, .valueChanged])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: .touchUpOutside)
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
+}
+
+extension UIView {
+    // "Flare view" animation sequence
+    func performFlare() {
+        func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+        func unflare() { transform = .identity }
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: { flare() },
+                       completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
     }
 }

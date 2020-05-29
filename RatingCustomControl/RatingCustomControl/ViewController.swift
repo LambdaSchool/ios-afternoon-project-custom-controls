@@ -16,11 +16,10 @@ class ViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        let customControl = CustomControl()
-        if customControl.value > 1 {
-            self.navigationItem.title = "User Rating: \(customControl.value) stars"
+        if ratingControl.value > 1 {
+            self.navigationItem.title = "User Rating: \(ratingControl.value) Stars"
         } else {
-            self.navigationItem.title = "User Rating: \(customControl.value) star"
+            self.navigationItem.title = "User Rating: \(ratingControl.value) Star"
         }
     }
 }
