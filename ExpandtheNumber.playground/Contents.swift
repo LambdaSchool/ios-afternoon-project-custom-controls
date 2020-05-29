@@ -1,25 +1,36 @@
 import UIKit
 
 var numbers: [String] = []
-var test = ""
 
-func expandTheNumber(num: Int) {
+func expandTheNumber(num: Int) -> [String] {
     let characters = String(num)
-    let amt = characters.count
-    let first = characters.prefix(1)
-    let firstConverted = Int(first)
-    // need to convert to nth place out in 0s
-   
-    
-    for _ in 1...amt-1 {
-        let zero = "0"
-        let place = test + zero
-       // numbers.append(characters[a])
-       test = place
-        
+    var amt = characters.count
+    while amt > 0 {
+        for i in characters {
+            let expandedNumbers = Int(Double(String(i))! * (pow(Double(10), (Double(String(amt-1))!))))
+            numbers.append(String(expandedNumbers))
+         amt -= 1
+        }
     }
-   
-print(first + test)
-    
+    return numbers
 }
- expandTheNumber(num: 450)
+expandTheNumber(num: 34)
+
+/// Solution Code to Challenge
+func expandTheNumber(_ number: Int) -> [Int] {
+    guard number != 0 else { return [0] }
+    
+    var numbers: [Int] = []
+    var multiplier = 1
+    var remainder = number
+    
+    while remainder > 0 {
+        let digit = (remainder % 10) * multiplier
+        numbers.insert(digit, at: 0)
+        multiplier *= 10
+        remainder /= 10
+    }
+    return numbers
+}
+
+expandTheNumber(34)

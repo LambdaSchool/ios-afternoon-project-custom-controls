@@ -42,11 +42,11 @@ class CustomControl: UIControl {
             stackView.topAnchor.constraint(equalTo: stackView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+
+        stackView.isUserInteractionEnabled = false
         
-        for index in 1...8 {
-            
+        for index in 1...6 {
             let label = UILabel()
-            stackView.isUserInteractionEnabled = false
             addSubview(label)
             labels.append(label)
             label.tag = index
@@ -57,7 +57,7 @@ class CustomControl: UIControl {
             label.font = UIFont.boldSystemFont(ofSize: 32)
             label.textAlignment = .center
             
-            if inBounds {
+            if inBounds || label.tag == 1 {
                 label.textColor = componentActiveColor
             } else {
                 label.textColor = componentInactiveColor
@@ -87,7 +87,7 @@ extension CustomControl {
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPoint = touch.location(in: self)
         if bounds.contains(touchPoint) {
-            sendActions(for: [.touchDragInside, .valueChanged])
+            sendActions(for: [.touchDragInside]) //, .valueChanged])
             updateValue(at: touch)
         } else {
             sendActions(for: .touchDragOutside)
@@ -98,9 +98,9 @@ extension CustomControl {
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         guard let touch = touch else { return }
         let touchPoint = touch.location(in: self)
-//        defer {
-//            super.endTracking(touch, with: event)
-//        }
+        defer {
+            super.endTracking(touch, with: event)
+        }
         if bounds.contains(touchPoint) {
             sendActions(for: [.touchUpInside, .valueChanged])
         } else if !bounds.contains(touchPoint ){
@@ -132,7 +132,7 @@ extension CustomControl {
 
 extension UIView {
   // "Flare view" animation sequence
-  func performFlare() {
+    func performFlare() {
     func flare()   { transform = CGAffineTransform(scaleX: 8.6, y: 8.6) }
     func unflare() { transform = .identity }
     
