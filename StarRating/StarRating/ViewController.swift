@@ -9,12 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationTitle(value: 1)
+    }
+    
+    
 
-
+    // IBAction
+    @IBAction func updateRating(_ ratingControl: CustomControl) {
+        navigationTitle(value: ratingControl.value)
+    }
+    
+    
+ 
+    
+    
+    func navigationTitle(value: Int) {
+        if value == 1 {
+            self.title = "User Rating: \(value) Star."
+        } else {
+            self.title = "User Rating: \(value) Stars"
+        }
+    }
 }
 
