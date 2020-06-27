@@ -13,9 +13,10 @@ class CustomControl: UIControl {
     var labels: [UILabel] = []
     var value: Int = 1
     
-    private let componentDimension: CGFloat = 40.0
-    private let componentCount: Int = 6
-    private let componentActiveColor: UIColor = .black
+    private let componentDimension: CGFloat = 34.0
+    private let componentCount: Int = 10
+    private let spacing: CGFloat = 2.0
+    private let componentActiveColor: UIColor = .systemOrange
     private let componentInactiveColor: UIColor = .gray
     
     required init?(coder aCoder: NSCoder) {
@@ -26,7 +27,6 @@ class CustomControl: UIControl {
     
     // MARK: - Methods
     private func setup() {
-        let spacing: CGFloat = 8.0
         var x: CGFloat = spacing
         
         for i in 0..<self.componentCount {
@@ -41,8 +41,10 @@ class CustomControl: UIControl {
             label.text = "☆"
             label.textAlignment = .center
             if label.tag == 1 {
+                label.text = "★"
                 label.textColor = componentActiveColor
             } else {
+                label.text = "☆"
                 label.textColor = componentInactiveColor
             }
         }
@@ -50,7 +52,7 @@ class CustomControl: UIControl {
     
     override var intrinsicContentSize: CGSize {
         let componentsWidth = CGFloat(componentCount) * componentDimension
-        let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+        let componentsSpacing = CGFloat(componentCount + 1) * spacing
         let width = componentsWidth + componentsSpacing
         return CGSize(width: width, height: componentDimension)
     }
@@ -66,8 +68,10 @@ class CustomControl: UIControl {
                     
                     for label in self.labels {
                         if label.tag <= value {
+                            label.text = "★"
                             label.textColor = componentActiveColor
                         } else {
+                            label.text = "☆"
                             label.textColor = componentInactiveColor
                         }
                     }
