@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		1A755D2F24D27E2B00927FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A755D2E24D27E2B00927FA4 /* AppDelegate.swift */; };
 		1A755D3124D27E2B00927FA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A755D3024D27E2B00927FA4 /* SceneDelegate.swift */; };
-		1A755D3324D27E2B00927FA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A755D3224D27E2B00927FA4 /* ViewController.swift */; };
 		1A755D3624D27E2B00927FA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A755D3424D27E2B00927FA4 /* Main.storyboard */; };
 		1A755D3824D27E2E00927FA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A755D3724D27E2E00927FA4 /* Assets.xcassets */; };
 		1A755D3B24D27E2E00927FA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A755D3924D27E2E00927FA4 /* LaunchScreen.storyboard */; };
+		1A755D4324D3A44F00927FA4 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A755D4224D3A44F00927FA4 /* CustomControl.swift */; };
+		1AF0E9E924D3A7CF007EDF13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF0E9E824D3A7CF007EDF13 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A755D2B24D27E2B00927FA4 /* CustomControls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomControls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A755D2E24D27E2B00927FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A755D3024D27E2B00927FA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1A755D3224D27E2B00927FA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1A755D3524D27E2B00927FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A755D3724D27E2E00927FA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A755D3A24D27E2E00927FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A755D3C24D27E2E00927FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A755D4224D3A44F00927FA4 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
+		1AF0E9E824D3A7CF007EDF13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				1A755D2E24D27E2B00927FA4 /* AppDelegate.swift */,
 				1A755D3024D27E2B00927FA4 /* SceneDelegate.swift */,
-				1A755D3224D27E2B00927FA4 /* ViewController.swift */,
+				1A755D4224D3A44F00927FA4 /* CustomControl.swift */,
+				1AF0E9E824D3A7CF007EDF13 /* ViewController.swift */,
 				1A755D3424D27E2B00927FA4 /* Main.storyboard */,
 				1A755D3724D27E2E00927FA4 /* Assets.xcassets */,
 				1A755D3924D27E2E00927FA4 /* LaunchScreen.storyboard */,
@@ -138,8 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A755D3324D27E2B00927FA4 /* ViewController.swift in Sources */,
 				1A755D2F24D27E2B00927FA4 /* AppDelegate.swift in Sources */,
+				1A755D4324D3A44F00927FA4 /* CustomControl.swift in Sources */,
+				1AF0E9E924D3A7CF007EDF13 /* ViewController.swift in Sources */,
 				1A755D3124D27E2B00927FA4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
