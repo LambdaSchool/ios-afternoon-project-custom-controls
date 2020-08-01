@@ -12,21 +12,15 @@ class CustomControl: UIControl {
     
     var value: Int = 1
     
-//    Create the following private constants for your class: componentDimension, a CGFloat equal to 40.0, componentCount, equal to 5, componentActiveColor, which is UIColor.black, and componentInactiveColor, which is UIColor.gray.
-    
     private let componentDimension: CGFloat = 40.0
     private var componentCount: Int = 5
     private let componentActiveColor = UIColor.black
     private let componentInactiveColor = UIColor.gray
     
-//    Add an init?(coder aCoder: NSCoder) initializer. After calling super, have it call a setup() function, which is where you'll perform your setup work.
-    
     required init?(coder aCoder: NSCoder) {
         super.init(coder: aCoder)
         setup()
     }
-    
-//    In setup use a loop to create five labels (using the UILabel() constructor). Add each one as a subview. Store each label into a local array with append.
     
     var labels: [UILabel] = []
     
@@ -48,11 +42,6 @@ class CustomControl: UIControl {
         }
     }
     
-//    In your loop, add a tag for each view that represents which star it is. The first star is tag 1. The fifth is tag 5. The tags let you quickly update the control's value.
-//    Set each label's frame to size componentDimension by componentDimension. (Yes, they are all square). Lay out the labels in a row with 8 points of space between each one. The first label should be at (8.0, 0), which allows a small pad between it and the edge of the control. The next one starts at (componentDimension + 16.0, 0.0), and so forth.
-//    Set the font (bold system font, size 32.0), text (pick your favorite Unicode star from the character picker), and alignment (center) for your label.
-//    Set the label's textColor to either the active (for the first) or inactive (for the others) component color
-    
     override var intrinsicContentSize: CGSize {
       let componentsWidth = CGFloat(componentCount) * componentDimension
       let componentsSpacing = CGFloat(componentCount + 1) * 8.0
@@ -60,4 +49,61 @@ class CustomControl: UIControl {
       return CGSize(width: width, height: componentDimension)
     }
     
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        if bounds.contains(touch.location(in: self)) {
+            sendActions(for: [.touchDragInside])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchDragOutside])
+        }
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        guard let touch = touch else { return }
+        if bounds.contains(touch.location(in: self)) {
+            sendActions(for: [.touchUpInside])
+            updateValue(at: touch)
+        } else {
+            sendActions(for: [.touchUpOutside])
+        }
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: [.touchCancel])
+    }
+    
+    func updateValue(at touch: UITouch) {
+        var newValue: Int = value
+        for label in labels {
+            if label.frame.contains(touch.location(in: self)) {
+                label.textColor = componentActiveColor
+                label.performFlare()
+                newValue = label.tag
+            } else if label.tag < newValue {
+                label.textColor = componentActiveColor
+            } else {
+                label.textColor = componentInactiveColor
+            }
+        }
+        value = newValue
+        sendActions(for: .valueChanged)
+    }
+    
+}
+
+extension UIView {
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3,
+                   animations: { flare() },
+                   completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }

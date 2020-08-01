@@ -19,7 +19,7 @@
                                 <rect key="frame" x="87" y="384" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.90028382564877152" green="0.85093219234246575" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="updateRating:" destination="6fq-Sx-l1x" eventType="valueChanged" id="ieN-y0-Orf"/>
+                                    <action selector="updateRating:" destination="6fq-Sx-l1x" eventType="valueChanged" id="lHl-wu-hOW"/>
                                 </connections>
                             </view>
                         </subviews>

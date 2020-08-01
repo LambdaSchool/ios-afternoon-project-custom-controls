@@ -12,26 +12,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func updateRating(_ ratingControl: CustomControl) {
-        title = "User Rating: \(ratingControl.value) Star"
+        var title = "User Rating: \(ratingControl.value) Star"
         if ratingControl.value > 1 {
-            title?.append("s")
+            title.append("s")
         }
+        self.navigationItem.title = title
     }
     
 }
