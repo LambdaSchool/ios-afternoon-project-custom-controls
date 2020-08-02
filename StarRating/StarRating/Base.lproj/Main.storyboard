@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hfU-5v-ddP">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Lu1-5E-9GX">
+            <objects>
+                <navigationController id="hfU-5v-ddP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nt2-KL-sVP">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3yX-Eq-tNX" kind="relationship" relationship="rootViewController" id="wVG-C5-1UX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MBT-BL-fhI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-633" y="87"/>
+        </scene>
+        <!--User Rating: 1 star-->
+        <scene sceneID="e0Z-VD-cWd">
+            <objects>
+                <viewController id="3yX-Eq-tNX" customClass="ViewController" customModule="StarRating" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F7R-4A-Z2t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="9aX-7M-6ub">
+                                <rect key="frame" x="16" y="698" width="343" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language direction:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czg-BG-gDF">
+                                        <rect key="frame" x="100.33333333333333" y="0.0" width="142.33333333333337" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O1g-EU-las">
+                                        <rect key="frame" x="132" y="25" width="79" height="32"/>
+                                        <segments>
+                                            <segment title="" image="arrowshape.turn.up.right.fill" catalog="system"/>
+                                            <segment title="" image="arrowshape.turn.up.left.fill" catalog="system"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="languageDirectionToggled:" destination="WLJ-0m-0an" eventType="valueChanged" id="Jic-QO-GIl"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-0m-0an" customClass="CustomControl" customModule="StarRating" customModuleProvider="target">
+                                <rect key="frame" x="63" y="348" width="247.99999999999997" height="40"/>
+                                <connections>
+                                    <action selector="updateRating:" destination="3yX-Eq-tNX" eventType="valueChanged" id="ASx-RN-gUc"/>
+                                    <action selector="updateRating:" destination="xGJ-M7-aSz" eventType="valueChanged" id="pno-WY-80K"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53984159231185913" green="0.90828055143356323" blue="0.55848997831344604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="WLJ-0m-0an" firstAttribute="centerX" secondItem="F7R-4A-Z2t" secondAttribute="centerX" id="82h-jm-JXn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9aX-7M-6ub" secondAttribute="trailing" id="AoV-gh-Afz"/>
+                            <constraint firstItem="chs-Oz-8vR" firstAttribute="bottom" secondItem="9aX-7M-6ub" secondAttribute="bottom" constant="24" id="YC2-0g-SHp"/>
+                            <constraint firstItem="9aX-7M-6ub" firstAttribute="leading" secondItem="F7R-4A-Z2t" secondAttribute="leadingMargin" id="auY-Hm-qQz"/>
+                            <constraint firstItem="WLJ-0m-0an" firstAttribute="centerY" secondItem="F7R-4A-Z2t" secondAttribute="centerY" constant="-38" id="h8A-rb-QNq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="chs-Oz-8vR"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="User Rating: 1 star" id="4a4-1T-nq4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mLd-cs-CA2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="xGJ-M7-aSz" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="119.2" y="85.714285714285722"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.left.fill" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
+    </resources>
+</document>
